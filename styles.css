@@ -61,23 +61,16 @@ body
     background-position: center center;
     background-attachment: fixed;
 }
-.container
-{
-    width: 90%;
-}
 nav
 {
-    position: relative;
-    margin: 20px  10px 10px 10px;
-    /*top: 20px;*/
+    position: fixed;
+    top: 15px;
     width: 100%;
     height: 50px;
     background: #34495e;
-    border-radius: 8px;
     font-size: 0;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
     display: inline-flex;
-    
+    justify-content: space-around;
 }
 nav a
 {
@@ -85,35 +78,47 @@ nav a
     text-decoration: none;
     color: white;
     line-height: 50px;
-    /* text-transform: uppercase; */
     position: relative;
-    z-index: 1;
-    
     text-align: center;
-    flex: auto;
 }
 a:nth-child(1)
 {
-    width: 100px;
+    flex-basis: 20%;
 }
 a:nth-child(2)
 {
-    width: 100px;
+    flex-basis: 20%;
 }
 a:nth-child(3)
 {
-    width: 100px;
+    flex-basis: 20%;
 }
 a:nth-child(4)
 {
-    width: 100px;
+    flex-basis: 20%;
 }
 nav .current
 {
     height: 100%;
     top: 0;
-    z-index: 0;
+    /*z-index: 0;*/
     background: #1abc9c;
     width: 100px;
     border-radius: 8px;
+}
+
+.container
+{
+    width: 85%;
+    /*position: fixed;*/
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 20px;
+    height: auto;   
+    background: aliceblue;
+}
+
+footer
+{
+    text-align: center;
 }
