@@ -155,7 +155,55 @@ nav .current
     border-radius: 8px;
 }
 
+.container
+{
+    width: 71%;
+    overflow: hidden;
+    margin: auto;
+    padding: 20px;
+    height: auto;   
+    margin-top: 100px;
+    background: aliceblue;
+    font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
+}
 
+@media all and ( min-width: 1080px)
+{
+    .sidebar
+    {
+        position: fixed;
+        width: 13%;
+        top: 100px;
+        left: 0;
+        height: auto;
+        background: rgba(36, 27, 27 ,.5);
+        font-size: 90%;
+    }
+    .sidebar a
+    {
+        display: block;
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+    .sidebar a:hover
+    {
+        margin-left: 20px;
+        transition: 0.4s;
+        color: #fff;
+    }
+    .blogName
+    {
+        font-size: 150%;
+        font-weight: bold;
+    }
+}
+
+@media all and (min-width: 1px) and (max-width: 1079px) 
+{
+    /*.sidebar { display: none; }*/
+    .container {display: none;}
     .sidebar
     {
         width: 71%;
@@ -167,7 +215,6 @@ nav .current
         font-size: 110%;
         background: rgba(36, 27, 27 ,.5);
         background-position: center;
-        text-align: center;
     }
     .sidebar a
     {
@@ -189,6 +236,7 @@ nav .current
         font-size: 160%;
         font-weight: bold;
     }
+}
 
 footer
 {
