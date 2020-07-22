@@ -109,13 +109,46 @@ nav .current
 
 .container
 {
-    width: 85%;
+    width: 71%;
     /*position: fixed;*/
     overflow: hidden;
     margin: 20px auto;
     padding: 20px;
     height: auto;   
     background: aliceblue;
+}
+
+@media all and ( min-width: 1080px)
+{
+    .sidebar
+    {
+        position: fixed;
+        width: 13%;
+        top: 100px;
+        left: 0;
+        height: auto;
+        background: rgba(36, 27, 27 ,.5);
+        font-size: 90%;
+    }
+    .sidebar a
+    {
+        display: block;
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+    .sidebar a:hover
+    {
+        margin-left: 20px;
+        transition: 0.4s;
+        color: #fff;
+    }
+    .blogName
+    {
+        font-size: 150%;
+        font-weight: bold;
+    }
 }
 
 footer
