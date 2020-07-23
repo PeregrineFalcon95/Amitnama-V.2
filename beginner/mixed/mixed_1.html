@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mixed - 1</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Nam" href="../../index.html">AmitNama</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link active" href="#">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link " href="mixed_1_bangla.html">বাংলা</a>
+		       			</li>
+		       		</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro">
+			<div class="col-12">
+				<p class="intro-graph">Mixed Problem solving Series for beginners Part 1.</p>
+			</div>
+		</div>
+
+	</header>
+	
+
+	<main>
+		<!-- Blog Lists -->
+		
+		<div class="container">
+			<div class="col-10 offset-1 mt-20">
+				<div class="card">
+				    <div class="card-body">
+						<h3 class="card-title">Mixed. Part 1</h3>
+						<h4 class="problem-title">Jolly Jumpers – Online Judge (Uva) - 10038  Problem Tutorial and Solution.</h4>
+						
+						<p class="card-text">
+						<br>
+						<a href="https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=979" target="blank">Problem Link Online Judge (Uva) 10038</a>
+						</p>
+
+						<p class="card-text">
+						<br>
+						You are given a sequence of size n. So, there are n-1 absolute differences of adjacent values. If all the numbers from 1 to n-1 are present in the absolute differences of adjacent values, the sequence is Jolly Jumper otherwise it is not. We have to check if the given sequence is jolly jumper or not.<br>Before go through the solution please try to solve this by yourself.
+						<br>
+						<br>
+					    </p>
+						<p class="make_bold">Solution:</p>
+						<p class="card-text">
+						<br>
+						Time Limit - 3 seconds. <br> Maximum size of the sequence n <= 3000.We can find the absolute differences of the adjacent values by iterating the sequence once. But how can we check if all the values from 1 to n-1 are present in the absolute differences? Please observe, the value of n can be maximum 3000. We can use an extra array to mark if the values from 1 to n-1 are present as absolute differences. Can we solve this by ourselves now? Please try to solve this by yourself now. If you can’t solve this after trying enough only then go for the next part. <br><br>Let’s have a boolean array named “marker” of size 3001. For each test cases let’s make the values of each index 0. And we will take the input in an array named “ar”. Let’s, val = absolute difference of two adjacent values. Now, every time we find the value of valm let’s make marker [ val ] = 1. But we have to be careful not to mark the index when the val is greater than n-1. Because then it will give us a runtime error if we try to mark an index greater than the size of marker array. So we can code this as following.
+						<br>
+						<br>
+						</p>
+						<pre >
+	for ( int i = 2 ; i <= n; i++ )
+        {
+            int val = abs( ar [ i ] - ar [ i - 1 ] );
+            if( val < n )marker [ val ] = 1;
+        }
+						</pre>
+						<p class="card-text">
+							<br>
+						Now we have to check if all the indexes from 1 to n-1 in the marker array equal to 1. If not, it’s not a jolly jumper sequence.
+							<br>
+							<br>
+						</p>
+						<pre>
+	int temp = 0;
+        for ( int i = 1 ; i < n ; i++ )
+        {
+            if ( !marker [ i ] )
+            {
+                temp = 1;
+                break;
+            }
+        }
+
+        if ( !temp )cout<<"Jolly\n";
+        else cout<<"Not jolly\n";
+
+						</pre>
+						<p class="card-text">
+						<br>
+						<a href="codes/uva_10038.html" target="blank">Full Code with C++</a>
+						<br>
+						Can you solve this whole problems using a single loop? I mean can you solve this whole problem within the loop that is used for taking input?
+						Think!
+						</p>
+						
+			   		</div>
+				</div>	
+		    </div>
+
+			
+			
+
+
+
+
+			
+		</div>
+		
+
+	</main>
+	
+	
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer__" href="../../About Me/about_me.html">About Me</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

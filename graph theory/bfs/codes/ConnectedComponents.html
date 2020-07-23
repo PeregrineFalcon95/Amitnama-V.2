@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Connected Components?</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>Connected Components? - Codeforces code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define mxs 200010
+
+bool visited [ mxs ];
+int n , m , component;
+
+set < int > graph [ mxs ];
+set < int > nvis;
+
+queue < int > qu;
+set < int > ::iterator it , it2;
+vector < int > v;
+
+void bfs ( int source );
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin>>n>>m;
+
+    int a , b;
+    while( m-- )
+    {
+        cin>>a>>b;
+        graph [ a ].insert( b );
+        graph [ b ].insert( a );
+    }
+
+    ///Marking each node as not visited
+    for ( int i = 1; i <= n; i++ )nvis.insert( i );
+
+    ///Checking if the node is visited already, if not calling bfs
+    for ( int i = 1; i <= n; i++ )if ( !visited [ i ] )bfs ( i );
+
+    ///Printing the number of components
+    cout<< component<<"\n";
+
+    sort(v.begin(),v.end());
+    for ( int i = 0; i != component; i++ )cout<< v [ i ]<<" ";
+
+    return 0;
+}
+void bfs ( int source )
+{
+    int a;
+    ///Increasing the number of components
+    component++;
+
+    int nodes = 1;
+
+    ///Pushing the source node, marking as visited
+    qu.push( source );
+    nvis.erase( source );
+    visited [ source ] = 1;
+
+    while ( !qu.empty() )
+    {
+        a = qu.front();
+        qu.pop();
+
+        ///Checking for every unvisited nodes, if they have any connections
+        for ( it = nvis.begin(); it != nvis.end(); )
+        {
+            if ( !graph [ a ].count( *it ) )
+            {
+                visited [ *it ] = 1;
+
+                nodes++;
+
+                ///saving node in a temporary iterator for erasing
+                it2 = it;
+                it++;
+
+                qu.push( *it2 );
+                nvis.erase( *it2 );
+            }
+            else it++;
+        }
+    }
+    v.push_back ( nodes );
+}
+
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

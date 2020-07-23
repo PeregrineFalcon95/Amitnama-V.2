@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prime Numbers and Prime Checking.</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+	
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Nam" href="../index.html">AmitNama</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link active" href="#">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link " href="Prime_Numbers_and_Prime_checking_bangla.html">বাংলা</a>
+		       			</li>
+		       		</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro">
+			<div class="col-12">
+				<p class="intro-graph">Prime Numbers and Prime checking.</p>
+			</div>
+		</div>
+
+	</header>
+	
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<p class="card-text">
+								 <span class="make_bold">What is Prime Number?</span> <br>
+								 Prime numbers are whole numbers greater than 1 that have only two factors. 1 and the number itself. Prime numbers are divisible only by the number 1 and itself. <br>1 itself is not a prime number. <br> The first prime number is 2. Two is the only even prime number. Because the rest of the even numbers are divisible by 2. <br> 3, 5, 7 are some of the prime numbers. Because only 1 and the number itself can divide them. <br>But 4 or 6 are not prime numbers. 2 can divide 4 and 6 can be divided by 2 and 3. <br> <br>
+								 <span class="make_bold">How many prime numbers are there?</span> <br> There are infinite  number of prime numbers. Mathematician <span class="make-italic">Euclid</span> proved that prime numbers can not be finite. <br> Suppose, someone claimed that there are P<sub>n</sub> prime numbers. <br>Let's multiply those P<sub>n</sub> primes and add 1 with the answer. Let's the number be <span class="make_bold">X. <br><br>  <span class="make_bold">X</span> = P<sub>1</sub> * P<sub>2</sub> * P<sub>3</sub> * …………… * P<sub>n-1</sub> * P<sub>n</sub> + 1. </span> <br> <br> <span class="make_bold">X-1</span> will be divisible by those primes. But <span class="make_bold">X</span> can not be divided by any of the P<sub>n</sub> prime numbers. Every time there will be a remainder equal to 1. So, <span class="make_bold">X</span> is a prime number. We can say that no one can claim that prime numbers are finite. <br> But will the multiplied value always be a prime number? <br> Let's multiply every prime number till 13.<br> <br> <span class="make_bold">2 * 3 * 5 * 7 * 11 * 13 + 1 = 30031 </span> <br> <br>But 30031 = 59 * 509. That's not a prime number. <br> We proved that prime numbers are not finite. The prove does not says the new value will be a prime number. <br> <br>  <span class="make_bold">What is Co-Prime</span>? <br> A set of integers with two or more value can be called coprime if its elements share no common positive factor except 1. <br> Let's look at the numbers 21 and 22. <br>Divisors of 21 are 1, 3, 7, 21. Divisors of 22 are 1, 2, 11, 22. <br>They don't have any common divisor other than 1. So they are Co-Prime. <br> But 21 and 27 are not co-prime. Divisors of 21 are 1, 3, 7, 21. Divisors of 27 are 1, 3, 9, 27. There are another common divisor other than 1 between 21 and 27. That is 3. so they are not co-prime. <br> <br> Some properties of Co-Prime: <br><br> 1 is Co-Prime with every number. <br><br> All prime numbers are Co-Prime to each other. Because no prime number has any divisor other than 1 and itself. <br><br> Two adjacent numbers are always Co-Prime. Because the divisors of the first number can not divide the second number. There will be always a remainder equal to 1. <br> <br> The sum of any two co-prime is always co-prime with their product. Summation of 5 and 6 equals to 11 and the product is 30. Here, 30 and 11 are Co-Prime to each other. <br><br>
+
+								 <span class="make_bold">How can we check that if a number is prime or not?</span> <br> <br>
+
+								 Prime numbers can not be divided by any numbers other than 1 and itself. So, for a number <span class="make_bold">n</span>, we can simply check if the number is divisible by any number from 2 to <span class="make_bold">n</span>-1. <br> <br></p> <pre> 
+bool IsPrime( int n )
+{
+    for ( int i = 2 ; i < n; i++ )
+    {
+        if ( n % i == 0 )return false;
+    }
+    return true;
+}</pre>
+ 							<p class="card-text">
+ 								<br><br>Can we make the process faster?  <br> No even numbers are prime number except 2. So, first we can check if the number is even. Then we can skip checking for even numbers inside the loop. <br> Can we divide <span class="make_bold">n</span> with any value greater than <span class="make_bold">n/2</span>? <br> We don't need to run the loop till <span class="make_bold">n</span>-1. We can check only the first half numbers of <span class="make_bold">n</span>.  <br> Can we make the process even faster? <br>Yes, we can! <br>Let's find out the divisors of 64. <br> The divisors of 64 are 1,2,4,8,16,32,64. <br>Let's align them pairwise. <br> 1 * 64 = 64 <br>2 * 32 = 64 <br>4 * 16 = 64 <br> 8 * 8 = 64 <br>We can easily see that the smaller numbers are always less than or equal to the <span class="make-italic">Square Root of</span> 64. <br>So, for checking the divisors of 64, we can check each number till the <span class="make-italic">Square Root</span> of 64. To check if a number is prime or not we can loop over the numbers less than or equal to the square root of this number and check if the number can be divisible. Let's check for the number 64. Square root of 64 is equal to 8. Here, 8 * 8 equals to 64. If we increase one of these numbers it will become  8 * 9 = 72. We can see that the answer is greater than 64. <br>Try to write the code yourself first. <br> </p> <pre>
+bool IsPrime( int n )
+{
+    ///Checking if the number is 2 or an even number
+    if ( n == 2 )return true; 
+    else if ( n % 2 == 0 )return false;
+
+    ///Checking if the number is divisible by the odd number under square root
+    for ( int i = 3 ; i * i <= n; i++ )
+    {
+        if ( n % i == 0 )return false;
+    }
+    return true;
+}</pre>
+                          <p class="card-text-bangla">
+                          	<br> <br>Hope that you understood clearly. Solve the problems given below! <br> <br>
+                          	<span class="make_bold">Practice Problems:</span> <br>
+                          	<a href="https://onlinejudge.org/external/102/10235.pdf" target="blank">10235 - Simply Emirp (Uva) Online Judge.</a> <br> 
+                          	<a href="https://onlinejudge.org/external/109/10924.pdf" target="blank">10924 - Prime Words (Uva) Online Judge.</a> <br> <a href="https://codeforces.com/contest/17/problem/A" target="blank">Noldbach problem - Codeforces.</a>
+							</p>
+							
+				   		</div>
+					</div>	
+			    </div>
+			
+		</div>
+		
+
+	</main>
+	
+	
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer__" href="../About Me/about_me.html">About Me</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

@@ -96,8 +96,9 @@ table {
     font-family: "Dosis";
     src: url(fonts/Dosis-VariableFont_wght.ttf);
 }
-
-
+@font-face {
+    font-family: "SolaimanLipi_bangla";
+    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
 /*==================END OF FONTS======================*/
 body 
@@ -143,6 +144,7 @@ nav .current
 
 .sidebar
 {
+    font-family: "SolaimanLipi_bangla";
     width: 75%;
     overflow: hidden;
     margin-top: 100px;

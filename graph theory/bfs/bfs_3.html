@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 3</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Nam" href="../../index.html">AmitNama</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link active" href="#">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link " href="bfs_3_bangla.html">বাংলা</a>
+		       			</li>
+		       		</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials. Part 3</p>
+			</div>
+		</div>
+
+	</header>
+	
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<p class="card-text">
+								<a href="bfs_1.html" target="blank">Learn bfs from here!</a> <br>
+								<a href="bfs_2.html" target="blank">Part 2!</a>
+								<br> <br>
+								<span class="make_bold">Problem: </span>
+								You’re given an undirected, unweighted graph. You’ve to tell what is the length of the shortest cycle in this graph? Try to solve this yourself first.<br>
+								<span class="make_bold">Solution: </span> It’s a very simple problem. We’ll run a bfs from each node. Suppose source node is <span class="make_bold">s</span>. Front node is <span class="make_bold">a</span> inside the bfs. And every adjacent node of node <span class="make_bold">a</span> is <span class="make_bold">b</span>. <br> While traversing the graph, every time we check for node <span class="make_bold">b</span>, we’ll also check if that node is already visited. If it is, there is a cycle in this graph. What is the length of this cycle? <br> Very simple! <br><br>
+								<span class="make_bold">Distance of a from s + distance of b from s + 1.</span> <br><br>
+								Why we’re adding plus 1? Because node <span class="make_bold">a</span> and node <span class="make_bold">b</span> is connected through an edge. <br> Anythins suspicious? <br> If you think so, you're right! While we'll check for node <span class="make_bold">b</span> from node <span class="make_bold">a</span> we've to check if node <span class="make_bold">b</span> is the parent of node <span class="make_bold">a</span>. Because its an undirected graph. <br> Now solve the following problem! <br> <br> <a href="https://icpcarchive.ecs.baylor.edu/external/61/6151.pdf" target="blank">6151 Beehives - ICPC Live Archive.</a> <br> 
+								<a href="codes/6151_live.html" target="blank">Complete code with C++</a> <br>
+								<br>
+								<span class="make_bold">Cycle In Maze.</span> <br>
+								<a href="https://codeforces.com/contest/769/problem/C" target="blank">Cycle In Maze Codeforces</a> Please read the problem.<br>
+								You’re given a grid containing <span class="make_bold">n*m</span> cells and an integer <span class="make_bold">k</span>. Source cell is the cell containing a character <span class="make_bold">X</span>. You’ve to start and finish your journey in the source cell. Total path length have to be equal to <span class="make_bold">k</span>. You can visit a cell multiple times. If there are one or more such paths, you’ve to print the <span class="make-italic">lexicographically minimal</span> path or tell it is impossible to travel in such a way. <br>Now try to solve this yourself! <br><br>
+								<span class="make_bold">Solution: </span> We can’t start and finish our journey in the same cell in a grid with an odd length path. First we’ll check if the value of <span class="make_bold">k</span> is odd. <br> How can we solve the rest? <br>
+								Let’s find the shortest path for every cell from source cell and save them in the level array. <br>
+								We’ve to find the <span class="make-italic">lexicographically minimal</span> path. So we’ll traverse the grid in <span class="make_bold">D L R U</span> order. Let’s change our direction array in following manner: <br> <br>
+							</p>
+							<pre>
+int dx[]={+1,+0,+0,-1};
+int dy[]={+0,-1,+1,+0};</pre>
+							<p class="card-text">
+								<br>
+								We’ll traverse <span class="make_bold">k</span> times from one cell to another with a simple loop. We’ll try to move from our current cell using the direction array. We can move from one cell to other only if we can go back to the source node with the remaining moves. Which we can easily check using the level array. <br>That was the reason we implemented the bfs before. <br>Now I hope that you won’t have any trouble solving the problem! <br> <br> 
+								<a href="codes/CycleInMaze.html" target="blank">Full code in C++</a>
+								<br> <br>
+								<span class="make_bold">Police Stations.</span> <br>
+								<a href="https://codeforces.com/contest/796/problem/D" target="blank">Police Stations Codeforces.</a> Please read this problem. <br> <span class="make_bold">Problem: </span> You’re given a tree consists of <span class="make_bold">n</span> nodes. There are <span class="make_bold">k</span> police stations in this tree. We’ve to remove maximum number of edges in such a way that after the removals it is still possible to visit at least one police station from each node using maximum of <span class="make_bold">d</span> edges. <br>Please try to solve this yourself before moving below. <br> <br> <span class="make_bold">Solution: </span> What can be the simplest solution? Find the nearest police station for each node. Then remove every edges which are not in any path from every node to its nearest police station. How can we do that? <br> Run a bfs from each node and save the path to its nearest police station. Then iterate over the edges and check if it is a part of any path. But this solution will surely get us a TLE verdict. <br><br> So we will use <span class="make-italic">Multiple Source Bfs</span> to solve this problem! <br> Let’s push all the police stations to the queue as source. Make all of their level equal to 0. Then visit every node using bfs. For each node save their parent. Then check for the input edges which edges are not in any path from the nodes to their nearest police stations using the parent array.  <br>How can we be sure about the fact that for every node it is possible to reach to its nearest police station using maximum of <span class="make_bold">d</span> edges?  <br> It is possible to reach a police station using maximum of <span class="make_bold">d</span> edges for each node in the initial graph. So, while we’re running multiple source bfs, we’re visiting the nearest nodes for each police station because no node is visited twice. <br>Now solve this problem if you haven’t solved it yet! <br><br>
+
+								<a href="codes/PoliceStations.html" target="blank"> Full code in C++</a><br><br>
+								<span class="make_bold">COVID-19 Outbreak.</span> <br>
+								<a href="https://toph.co/p/covid-19-outbreak" target="blank">COVID-19 Outbreak - Toph</a> Please read this problem. <br> <span class="make_bold">Problem: </span> You’re given a tree consist of <span class="make_bold">n</span> nodes. Node <span class="make_bold">z</span> is the capital of the tree. There are some food trucks in every node. Every edge has a capacity of how many trucks can pass this edge. <br>If you send trucks from every node towards node <span class="make_bold">z</span> in optimal way, how many trucks can be there in the end? Our goal is to maximize the number of trucks.<br>Try to solve it yourself first. <br><br>
+								<span class="make_bold">Solution: </span> You can solve this problem easily using <a href="#" target="blank">Depth First Search</a>. But here we'll try to solve this using <span class="make-italic">Breadth First Search</span>. <br> Here every node is source node. Because we’ll send trucks from every nodes. We can use multiple source bfs to solve this problem! But in which order we’ll push the nodes in the queue? And how can we send those trucks? <br> We’ll push the farthest node from node <span class="make_bold">z</span> in the queue. Then the second farthest node and then the third farthest node and so on.........  <br> That means we’ll push the nodes in the queue according to the distance from the node <span class="make_bold">z</span>. Sorted according to farthest to shortest! <br>We are pushing the nodes before starting the bfs. So, we won’t push any nodes in the queue inside our bfs. <br>But how will we send those trucks?  <br><br>Suppose the initial flow for each node is the number of trucks each node has initially. While checking the adjacent nodes of the front node of the queue we’ll pass the maximum possible flow to the adjacent nodes by checking the limits and update the new flow. After finishing transferring flow the answer is the flow of node <span class="make_bold">z</span>! <br> Let's see the procedure step by step: <br><br><span class="make_bold">1</span>. Run a bfs from capital <span class="make_bold">z</span>. Save every node in a vector according to the distance from node <span class="make_bold">z</span>. <br><span class="make_bold">2</span>. We’ll push all the nodes from the sorted vector to queue. <br><span class="make_bold">3</span>. Let’s empty the queue. For every front node of the queue let’s check all of its adjacent nodes and pass the maximum possible flow by checking the limits. <br><br>In the end the flow of node <span class="make_bold">z</span> is the answer! <br> Hope that you won't have any problem to solve this problem!<br> <br>
+
+								<a href="codes/COVID-19Outbreak.html" target="blank">Full code with C++.</a>
+								<br><br>
+
+								Some problems to practice: <br>
+								<a href="https://www.spoj.com/problems/AKBAR/" target="blank">Akbar , The great - Spoj</a> 
+								<br><br>
+								<span class="make_bold">KuPellaKeS:</span><br>
+								<a href="https://onlinejudge.org/external/109/10968.pdf" target="blank">KuPellaKeS </a>Please read the problem.<br>
+								<br> <span class="make_bold">Problem: </span> You are given a graph consist of <span class="make_bold">n</span> nodes and <span class="make_bold">m</span> edges. Initially maximum two nodes can have odd number of degrees. We have to remove minimum number of nodes in such a way that after the removal every node should have even number of degrees and every node have some adjacent nodes. <br><br>
+								<span class="make_bold">Solution: </span> It need some brainstorming to solve this problem. But once you find out the solution it’s easy. If the given graph already fulfill the requirements the answer is zero! Otherwise we’ve to find two nodes with odd number of degrees. Let’s assume they are node <span class="make_bold">a</span> and node <span class="make_bold">b</span>. Now we’ve to find the shortest path from <span class="make_bold">a</span> to <span class="make_bold">b</span> that every node in that shortest path have more than two edges.  And the answer will be the length of that path. If there are no such path the answer will be impossible. <br> <br>
+								<a href="codes/KuPellaKeS.html" target="blank">Full code with C++.</a> <br> <br>
+
+								Some problems to practice: <br>
+								<a href="https://www.spoj.com/problems/AKBAR/" target="blank">Akbar , The great - Spoj</a> <br> <a href="http://uva.onlinejudge.org/external/109/10977.pdf" target="blank">10977 - Enchanted Forest (Uva) Online Judge.</a> <br> <a href="http://uva.onlinejudge.org/external/113/11352.pdf" target="blank">  11352 - Crazy King (Uva) Online Judge.</a> <br> <a href="https://codeforces.com/gym/102411/problem/E" target="blank">Equidistant Codeforces</a> <br>
+								<a href="https://codeforces.com/contest/35/problem/C" target="blank">Fire Again - Codeforces</a> <br>
+								<a href="https://www.spoj.com/problems/SERGRID/" target="blank">Grid - Spoj</a>
+								<br><br> 
+								<a href="bfs_4_bangla.html"><span class="make_bold">Start Reading Part 4!</span></a>
+								<br>
+							</p>
+							
+				   		</div>
+					</div>	
+			    </div>
+			
+		</div>
+		
+
+	</main>
+	
+	
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer__" href="../../About Me/about_me.html">About Me</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

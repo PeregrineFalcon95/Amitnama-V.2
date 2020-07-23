@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 3 বাংলা</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	
+</head>
+<body class="sorir">
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="bfs_3.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials বাংলায়। Part 3</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<!--
+							<p>This text contains <sup>superscript</sup> text.</p>
+							<p>This text contains <sub>superscript</sub> text.</p>
+							-->
+							
+							<p class="card-text-bangla">
+								<a href="bfs_1_bangla.html" target="blank">Bfs না পারলে এখান থেকে শিখে ফেলুন!</a> <br>
+								<a href="bfs_2_bangla.html" target="blank">Part 2!</a>
+								<br><br>
+								<span class="make_bold">সমস্যাঃ </span>
+								আপনাকে একটি <span class="make-italic">undirected, unweighted</span> গ্রাফ দেওয়া আছে। আপনাকে বলতে হবে গ্রাফের সবচেয়ে ছোট সাইকেল এর দৈর্ঘ্য কতো। চেষ্টা করে দেখুন তো সমাধান বের করার। <br>
+								<span class="make_bold">সমাধানঃ </span> এটি খুবই সহজ একটি সমস্যা। আমারা প্রতিটি নোড থেকে একবার বিএফএস চালাবো। ধরি সোর্স নোড হচ্ছে <span class="make_bold">s</span>. আর বিএফএস এর মধ্যে কিউ এর ফ্রন্ট নোড হচ্ছে <span class="make_bold">a</span> এবং <span class="make_bold">a</span> এর সকল <span class="make-italic">adjacent</span> নোড হচ্ছে <span class="make_bold">b</span>. <br> এখন গ্রাফ <span class="make-italic">traverse</span> করার সময় প্রতিটি <span class="make_bold">b</span> চেক করার সময় আমরা যদি দেখি <span class="make_bold">b</span> ইতিমধ্যে ভিজিট করা হয়েছে তাহলেই কিন্তু আমাদের গ্রাফ এ সাইকেল আছে! কিন্তু আমরা সাইকেল এর দৈর্ঘ্য কিভাবে পাবো? <br> খুবই সহজ! <br><br>
+								<span class="make_bold">s থেকে a এর দূরত্ব + s থেকে b এর দূরত্ব + 1.</span> <br><br>
+								আমরা 1 কেন যোগ করলাম? কারন <span class="make_bold">a</span> এবং <span class="make_bold">b</span> একটি <span class="make-italic">edge</span> দিয়ে সংযুক্ত আছে। <br> উপরের লেখা পড়ে কি মনে হচ্ছে যে কোন ঘাপলা আছে? <br> যদি মনে হয় তাহলে আপনি সঠিক! আমরা যখন <span class="make_bold">a</span> থেকে <span class="make_bold">b</span> চেক করবো, তখন আমাদের চেক করতে হবে নোড <span class="make_bold">a</span> এর প্যারেন্ট নোড <span class="make_bold">b</span> কিনা। কারন এটি একটি <span class="make-italic">undirected graph</span>. <br>এবার ঝটপট নিচের প্রবলেমটির সমাধান করে ফেলুন! <br> <br> <a href="https://icpcarchive.ecs.baylor.edu/external/61/6151.pdf" target="blank">6151 Beehives - ICPC Live Archive.</a> <br>
+								<a href="codes/6151_live.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে</a> <br>
+								<br>
+								<span class="make_bold">Cycle In Maze.</span> <br>
+								<a href="https://codeforces.com/contest/769/problem/C" target="blank">Cycle In Maze Codeforces</a> প্রবলেমটি পড়ে ফেলুন। <br> <span class="make_bold">সমস্যাঃ </span>
+								আমাদের <span class="make_bold">n*m</span> সাইজের একটি গ্রিড দেওয়া আছে। আর দেওয়া আছে একটি ইন্টিজার <span class="make_bold">k</span>. আমাদের সোর্স সেল হচ্ছে সে নোড যে নোড এ <span class="make_bold">X</span> আছে। আমাদের বলতে হবে আমরা গ্রিড এ এমন ভাবে <span class="make-italic">traverse</span> করতে পারবো কিনা যে সোর্স সেল থেকে যাত্রা শুরু করে আবার সোর্স সেল এই ফিরে আসবো এবং আমাদের যাত্রা পথের দৈর্ঘ্য হবে <span class="make_bold">k</span>. আমরা একটি সেল যতোবার ইচ্ছে ততোবার ভিজিট করতে পারবো। যদি এমন এক বা একাধিক পথ থাকে তাহলে সে পথ গুলোর মধ্যে <span class="make-italic">lexicographically minimal</span> পথটি প্রিন্ট করতে হবে। <br> ঝটপট সমাধান করে ফেলুন! <br><br>
+								<span class="make_bold">সমাধানঃ </span>একটু খেয়াল করলেই দেখতে পাবো যে, গ্রিড এ সাইকেল থাকলে সেটি সবসময় <span class="make-italic">even length</span> এর হবে। <span class="make-italic">odd length</span> এর কোন সাইকেল থাকতে পারে না। তাই <span class="make_bold">k</span> এর মান বিজোড় হলে এমন পথ পাওয়া সম্ভব নয়! <br> বাকি অংশ কিভাবে সমাধান করতে পারি? <br>
+								এখন গ্রিড এর মধ্যে বিএফএস চালিয়ে সোর্স নোড থেকে সব নোড এর <span class="make-italic">shortest path </span>বের করে নেই এবং সেটি সেভ করে রাখি লেভেল অ্যারেতে। <br>
+								আমাদের <span class="make-italic">lexicographically minimal</span> পথ বের করতে হবে। তাই আমরা চেষ্টা করবো <span class="make_bold">D L R U</span> এই অর্ডার এ ভিজিট করতে। তাই আমরা আমাদের <span class="make-italic">direction array</span> টি বদলে নিতে পারি এই ভাবেঃ <br> <br>
+							</p>
+							<pre>
+int dx[]={+1,+0,+0,-1};
+int dy[]={+0,-1,+1,+0};</pre>
+							<p class="card-text-bangla">
+								<br>
+								আমরা একটি সিম্পল লুপ দিয়ে <span class="make_bold">k</span> বার এক সেল থেকে আরেক সেল এ মুভ করবো। বর্তমান পজিশন থেকে আমরা <span class="make-italic">direction array</span> দিয়ে মুভ করার চেষ্টা করবো। আমরা কোন সেল এ তখনই মুভ করতে পারবো যখন সে সেল থেকে আবার আমরা সোর্স নোড এ ফিরে যেতে পারি আমাদের হাতে থাকা বাকি মুভগুলো দিয়ে। সেটি আমরা লেভেল অ্যারে থেকে সহজেই দেখে নিতে পারি। আগের বিএফএস চালানোর কারন ছিল এই! <br>
+								আশা করি এই প্রবলেম সমাধান করতে আর সমস্যা হবে না। <br> <br> 
+								<a href="codes/CycleInMaze.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a>
+								<br> <br>
+								<span class="make_bold">Police Stations.</span> <br>
+								<a href="https://codeforces.com/contest/796/problem/D" target="blank">Police Stations Codeforces.</a>প্রবলেমটি ঝটপট পড়ে ফেলুন। <br> <span class="make_bold">সমস্যাঃ </span>
+								একটি ট্রি দেওয়া আছে <span class="make_bold">n</span> সংখ্যক নোড এর। <span class="make_bold">k</span> সংখ্যক নোড এ পুলিশ ষ্টেশন আছে। আমাদের সর্বোচ্চ সংখ্যক <span class="make-italic">edge</span> রিমুভ করতে হবে এমনভাবে যেন <span class="make-italic">edge</span> রিমুভ করার পরেও প্রতি নোড থেকে সর্বোচ্চ <span class="make_bold">d</span> সংখ্যক <span class="make-italic">edge</span> ব্যবহার করে কোন না কোন পুলিশ ষ্টেশনে যাওয়া যায়। <br>চেষ্টা করে দেখুন তো সমাধান করতে পারেন কিনা? <br> <br> <span class="make_bold">সমাধানঃ </span> প্রতিটি নোডকে তার সবচেয়ে কাছের পুলিশ ষ্টেশন এর সাথে কানেক্টেড রাখার জন্য দরকারি সব <span class="make-italic">edge</span> রেখে বাকি সব <span class="make-italic">edge</span> মুছে দিলেই কিন্তু আমাদের অপ্টিমাল আনসার পেয়ে যাবো। এটি আমরা কিভাবে করতে পারি? প্রতিটি নোড থেকে বিএফএস চালিয়ে তার সবচেয়ে কাছের পুলিশ ষ্টেশন খুজে বের করবো। তারপর প্রতিটি নোড থেকে তার কাছের পুলিশ ষ্টেশন এ যাওয়ার রাস্তাগুলো বাদ দিয়ে বাকিসব edge মুছে দিবো। কিন্তু এটি করলে নিশ্চিত টাইম লিমিট এক্সক্সিডেড ভারডিক্ট পাওয়া যাবে। <br> তাই আমরা এই প্রবলেম এর জন্য <span class="make-italic">Multiple Source Bfs</span> ব্যবহার করবো! <br> আমাদের যখন পুলিশ ষ্টেশন এর ইনফরমেশন দেওয়া হবে তখন সবগুলো ষ্টেশনকে আমরা কিউতে পুশ করে নিবো। সবার লেভেল 0 করে নিবো। তারপর বিএফএস চালিয়ে সবগুলো নোড ভিজিট করবো। সব নোড এর জন্য তাদের প্যারেন্ট সেভ করে রাখবো। তারপর ইনপুট <span class="make-italic">edge</span> গুলোর জন্য চেক করবো কোন কোন <span class="make-italic">edge</span> আমরা ব্যবহার করিনি। <br>এইভাবে সমাধান করলে আমরা কিভাবে নিশ্চিত হবো যে প্রতিটি নোড থেকে সর্বোচ্চ <span class="make_bold">d</span> সংখ্যক <span class="make-italic">edge</span> ব্যবহার আমরা কোন পুলিশ ষ্টেশন এ যেতে পারছি? <br> আমাদের কিন্তু বলা আছে যে ইনপুট গ্রাফটি এমন ভাবে দেওয়া আছে যে প্রতিটি নোড থেকে সর্বোচ্চ <span class="make_bold">d</span> সংখ্যক <span class="make-italic">edge</span> ব্যবহার আমরা কোন না কোন পুলিশ ষ্টেশন এ যেতে পারবো। তাই আমরা যখন প্রতিটি পুলিশ ষ্টেশন থেকে যাত্রা শুরু করছি প্রতিটি স্টেপ এ তাদের থেকে সবচেয়ে কাছে নোড গুলোকেই পাচ্ছি! <br>এখন ঝটপট কোড করে ফেলুন! <br><br>
+								<a href="codes/PoliceStations.html" target="blank"> সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
+								<span class="make_bold">COVID-19 Outbreak.</span> <br>
+								<a href="https://toph.co/p/covid-19-outbreak" target="blank">COVID-19 Outbreak - Toph</a> প্রবলেমটি পড়ে ফেলুন। <br> <span class="make_bold">সমস্যাঃ </span> আমাদের <span class="make_bold">n</span> নোড দিয়ে গঠিত একটি ট্রি দেওয়া আছে। <span class="make_bold">z</span> হচ্ছে সে ট্রি এর রাজধানী। প্রতিটি নোড এ কিছু ট্রাক ভর্তি খাবার আছে। আর প্রতিটি <span class="make-italic">edge</span> দিয়ে কতোগুলো ট্রাক খাবার পাঠানো যাবে সেটার ও একটি লিমিট দেওয়া আছে। <br>আমাদের বলতে হবে সব নোড থেকে অপ্টিমাল ওয়েতে খাবারের ট্রাক পাঠালে রাজধানী <span class="make_bold">z</span> এ সর্বমোট কতো ট্রাক খাবার থাকবে? 
+								<br> চেষ্টা করে দেখুন তো সমাধান করতে পারেন কিনা? <br><br>
+								<span class="make_bold">সমাধানঃ </span> এই প্রবলেমটি সহজেই <a href="#" target="blank">Depth First Search</a> দিয়ে সমাধান করা যায়। কিন্তু আমরা এখন চেষ্টা করবো <span class="make-italic">Breadth First Search</span> দিয়ে সমাধান করার। <br> এখানে প্রতিটি নোডই কিন্তু সোর্স। কারন প্রতিটি নোড থেকেই আমরা খাবার ট্রাক পাঠাবো। আমরা এখানেও <span class="make-italic">multiple source bfs</span> ব্যবহার করতে পারি! কিন্তু কিউতে কোন অর্ডারে আমরা নোডগুলোকে পুশ করবো? আর ট্রাকই বা কিভাবে পাঠাবো? <br>আমরা রাজধানী <span class="make_bold">z</span> থেকে সবচেয়ে দুরের নোডকে সবচেয়ে আগে কিউতে পুশ করবো! তারপর দ্বিতীয় সর্বোচ্চ দুরত্তের নোডটিকে তারপর তৃতীয় সর্বোচ্চ দুরত্তের নোড.......... <br> তারমানে আমরা দুরত্তের অর্ডার অনুসারে কিউতে সবগুলো নোডকে পুশ করবো! দূরত্ব অনুসারে বড় থেকে ছোট! <br>বিএফএস শুরুর পূর্বেই সব নোড পুশ করে নিচ্ছি। তাই বিএফএস এর মধ্যে কোন নোড কিউতে পুশ করার প্রয়োজন নেই। <br> কিন্তু আমরা ট্রাক কিভাবে পাঠাবো? <br><br>ধরি, প্রতিটি নোড এ যে পরিমাণ ট্রাক আছে সেটি আমাদের প্রতিটি নোড এর ইনিশিয়াল ফ্লো। আমরা বিএফএস মধ্যে কিউ এর ফ্রন্ট নোড এর সকল <span class="make-italic">adjacent</span> নোড চেক করার সময় সর্বোচ্চ ফ্লো পাঠানোর চেষ্টা করবো <span class="make-italic">edge</span> এর লিমিট চেক করে। তখন প্রতিটি নোড এর ফ্লো আমরা আপডেট করে দিবো। তাহলে সবশেষে নোড <span class="make_bold">z</span> এর ফ্লো ই আমাদের উত্তর! <br> আসুন স্টেপ বাই স্টেপ দেখি কি করতে হবেঃ <br><br><span class="make_bold">1</span>. রাজধানী <span class="make_bold">z</span> থেকে একটি বিএফএস চালাই। একটি ভেক্টরে প্রতিটি নোডকে লেভেল অনুসারে সেভ করে রাখি। <br><span class="make_bold">2</span>. আমাদের লেভেল অনুসারে সর্ট করা ভেক্টর থেকে বড় থেকে ছোট লেভেল এর নোড গুলোকে কিউতে পুশ করি। <br><span class="make_bold">3</span>. আমাদের কিউ খালি করি। প্রতিবার ফ্রন্ট নোড এর সকল <span class="make-italic">adjacent</span> নোড এ সর্বোচ্চ ফ্লো পাঠানোর চেষ্টা করি। <br><br>সবশেষে নোড <span class="make_bold">z</span> এর ফ্লো ই হচ্ছে আমাদের উত্তর! <br>আশাকরি এখন সমাধান করতে আর কোন সমস্যা হবে না!<br><br>
+
+								<a href="codes/COVID-19Outbreak.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a>
+								<br><br>
+								<span class="make_bold">KuPellaKeS:</span><br>
+								<a href="https://onlinejudge.org/external/109/10968.pdf" target="blank">KuPellaKeS </a>প্রবলেমটি পড়ে ফেলুন! <br>
+								<br> <span class="make_bold">সমস্যাঃ </span> আমাদের  <span class="make_bold">n</span> সংখ্যক নোড আর <span class="make_bold">m</span> সংখ্যক <span class="make-italic">edge</span> দিয়ে গঠিত একটি গ্রাফ দেওয়া আছে। যেখানে <span class="make-italic">maximum</span> দুটি নোড এর <span class="make-italic">edge</span> সংখ্যা বিজোড় হতে পারে। আমাদের সর্বনিম্ন সংখ্যক <span class="make-italic">edge</span> রিমুভ করে গ্রাফ টিকে এমন ভাবে সাজাতে হবে যেন সকল নোড এর <span class="make-italic">edge</span> সংখ্যা জোড় হয়। আর প্রতিটি নোড এর যেন কোন না কোন <span class="make-italic">adjacent</span> নোড থাকে। <br><br>
+								<span class="make_bold">সমাধানঃ </span> প্রবলেমটি সমাধান করার জন্য একটু বেশী চিন্তা করার প্রয়োজন। কিন্তু সমাধান সহজ। আমাদের যদি এমন গ্রাফ দেওয়া থাকে যে সেটি ইতিমধ্যেই সকল চাহিদা পুরন করে তাহলে উত্তর হবে শূন্য! তানাহলে আমাদের প্রথম বিজোড় ডিগ্রীর নোড থেকে দ্বিতীয় বিজোড় ডিগ্রীর নোড এ যেতে হবে এমন একটি পাথ ধরে যেন পাথের সকল নোড এর ডিগ্রী দুই এর অধিক হয়। সে পাথের দৈর্ঘ্যই হবে আমাদের উত্তর। যদি সেটি না করা যায় তাহলে আউটপুট হবে "Poor Koorosh". <br> <br>
+								<a href="codes/KuPellaKeS.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br> <br>
+
+								প্র্যাকটিস করার জন্য কিছু প্রবলেম: <br>
+								<a href="https://www.spoj.com/problems/AKBAR/" target="blank">Akbar , The great - Spoj</a> <br>
+								<a href="http://uva.onlinejudge.org/external/109/10977.pdf" target="blank">10977 - Enchanted Forest (Uva) Online Judge.</a> <br><a href="http://uva.onlinejudge.org/external/113/11352.pdf" target="blank">  11352 - Crazy King (Uva) Online Judge.</a> <br> <a href="https://codeforces.com/gym/102411/problem/E" target="blank">Equidistant Codeforces</a><br> 
+								<a href="https://codeforces.com/contest/35/problem/C" target="blank">Fire Again - Codeforces</a> <br>
+								<a href="https://www.spoj.com/problems/SERGRID/" target="blank">Grid - Spoj</a>
+
+								<br><br>  
+								<a href="bfs_4_bangla.html"><span class="make_bold">Start Reading Part 4!</span></a> 
+								<br>
+							</p>
+				   		</div>
+					</div>	
+			    </div>
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

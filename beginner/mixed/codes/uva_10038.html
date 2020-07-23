@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Uva 1038 Solution</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Online Judge (uva) 10038 Jolly Jumpers solution in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long int
+#define inf ( ll  )( 1e9 + 10 )
+#define mxs (int)( 1e4 + 10 )
+string s , s2 , s3;
+int ar [ mxs ] ;
+bool marker [ mxs ];
+void brain();
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    int n;
+    while( cin>>n )
+    {
+        ///Making the value of whole marker array 0
+        memset( marker , 0 , sizeof marker );
+
+        for ( int i = 1 ; i <= n; i++ )cin>>ar [ i ];
+
+        ///Calculating the absolute difference
+        for ( int i = 2 ; i <= n; i++ )
+        {
+            int val = abs( ar [ i ] - ar [ i - 1 ] );
+
+            if( val < n )marker [ val ] = 1;
+        }
+
+        int temp = 0;
+        for ( int i = 1 ; i < n ; i++ )
+        {
+            if ( !marker [ i ] )
+            {
+                temp = 1;
+                break;
+            }
+        }
+
+        if ( !temp )cout<<"Jolly\n";
+        else cout<<"Not jolly\n";
+    }
+}
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

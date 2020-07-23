@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cycle In Maze</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>Cycle In Maze Codeforces code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int dx[]={+1,0,+0,-1};///Four Directions
+int dy[]={+0,-1,+1,+0};///Four directions
+int n , m , k;
+char grid [ 1010 ] [ 1010 ];
+vector < char > v;
+int level [ 1010 ] [ 1010 ];
+bool visited [ 1010 ] [ 1010 ];
+void brain();
+bool checker( int x , int y )
+{
+    return !( x < 0 || y < 0 || x == n || y == m || grid [ x ] [ y ] == '*'  );
+}
+void bfs( int row , int col );
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    cin>>n>>m>>k;
+    for ( int i = 0 ; i < n; i++ )cin>>grid [ i ];
+
+    ///Checking if odd length path.
+    if ( k&1 )
+    {
+        cout<<"IMPOSSIBLE";
+        return;
+    }
+
+    ///Searching for the start cell
+    int row = -1 , col ;
+    for ( int i = 0 ; i < n; i++ )
+    {
+        for ( int j = 0 ; j < m; j++ )
+        {
+            if ( grid [ i ] [ j ] == 'X' )
+            {
+                row = i;
+                col = j;
+                ///Calling bfs
+                bfs( i , j );
+                break;
+            }
+        }
+        if ( row != -1 )break;
+    }
+
+
+    int sz = k;
+    char ch;
+    ///Checking for path
+    while( k-- )
+    {
+        for ( int i = 0 ; i < 4; i++ )
+        {
+            int a = dx [ i ] + row;
+            int b = dy [ i ] + col;
+            ///Checking for valid move
+            if ( checker( a , b ) && level [ a ] [ b ] <= k )
+            {
+                if ( !i )ch = 'D';
+                else if ( i == 1 )ch = 'L';
+                else if ( i == 2 )ch = 'R';
+                else ch = 'U';
+
+                v.push_back( ch );
+                row = a;
+                col = b;
+                break;
+            }
+        }
+    }
+
+    if ( v.size() != sz )cout<<"IMPOSSIBLE";
+    else
+    {
+        for ( int i = 0 ; i < sz; i++ )cout<< v [ i ];
+    }
+}
+void bfs( int row , int col )
+{
+    queue < pair < int , int > > qu;
+
+    ///Pushing the source cell
+    qu.push( { row , col } );
+    visited [ row ] [ col ] = 1;
+
+    while( !qu.empty() )
+    {
+        row = qu.front().first;
+        col = qu.front().second;
+        qu.pop();
+
+        for ( int i = 0 ; i < 4; i++ )
+        {
+            int a = dx [ i ] + row;
+            int b = dy [ i ] + col;
+            ///Checking if I can come back with the remaining moves
+            if ( checker( a, b ) && !visited [ a ] [ b ] )
+            {
+                qu.push( { a, b } );
+                level [ a ] [ b ] = level [ row ] [ col ] + 1;
+                visited [ a ] [ b ] = 1;
+            }
+        }
+    }
+}
+
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

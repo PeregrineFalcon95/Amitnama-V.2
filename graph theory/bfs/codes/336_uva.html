@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>A Node Too Far</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>336 - A Node Too Far (Uva) Online Judge code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int n , m , marker , cases ,num;
+vector < int > graph [ 40 ];
+map < int , int > mp;
+queue < int > qu;
+int level [ 40 ];
+bool visited [ 40 ];
+int bfs( int source , int dis );
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    while( cin>>n && n )
+    {
+        marker = 0;
+        mp.clear();
+        for ( int i = 0 ; i <= 30; i++ )
+            graph [ i ].clear();
+
+        ///Taking input of edges.
+        int a , b , c;
+        for ( int i = 1 ; i <= n; i++ )
+        {
+            cin>>a>>b;
+
+            if ( mp.find( a ) == mp.end() )mp [ a ] = ++marker;
+
+            if ( mp.find( b ) == mp.end() )mp [ b ] = ++marker;
+
+            a = mp [ a ];
+            b = mp [ b ];
+
+            graph [ a ].push_back( b );
+            graph [ b ].push_back( a );
+        }
+
+        num = mp.size(); //Saving the number of nodes in graph
+        
+        while( cin>>a>>b && ( a || b ) )
+        {
+            int x = a;
+            a = mp [ a ];
+            c = bfs( a , b );
+            cout<<"Case "<<++cases<<": "<< c <<"nodes not reachable from node "<< x << " with TTL = "<< b <<".\n" ;
+        }
+    }
+    return 0;
+}
+int bfs( int source , int dis )
+{
+    int reachable = 1; ///Initially source node is reachable
+
+    memset( visited , 0 , sizeof visited );
+    qu.push( source ); ///Pushing source node to the queue
+    level [ source ] = 0;///Marking the level of the source node
+    visited [ source ] = 1;///Marking source node as visited
+
+    while( !qu.empty() )
+    {
+        int a = qu.front();
+        qu.pop();
+        int sz = graph [ a ].size();
+        for ( int i = 0 ; i < sz; i++ )
+        {
+            int b = graph [ a ] [ i ];
+            if ( !visited [ b ] && level [ a ] + 1 <= dis )
+            {
+                reachable++; ///Increasing the number of reachable node
+
+                qu.push( b );
+                level [ b ] = level [ a ] + 1;
+                visited [ b ] = 1;
+            }
+        }
+    }
+
+    //returning the number of unreachable nodes.
+    return num - reachable;
+}
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

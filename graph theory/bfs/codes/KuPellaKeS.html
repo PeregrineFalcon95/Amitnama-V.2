@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>KuPellaKeS</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>10968 - KuPellaKeS (Uva) Online Judge code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int n, m;
+string s, s2, s3, s4;
+int degree [ 1010 ] , visited [ 1010 ] , level [ 1010 ];
+vector < int > graph [ 1010 ];
+queue < int > qu;
+void brain();
+int bfs( int a , int b);
+int main()
+{
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    while( cin>>n>>m && n )
+    {
+        int a , b , c;
+        ///Clearing graph
+        for ( int i = 0; i <= n; i++ )
+        {
+            visited [ i ] = 0;
+            graph [ i ].clear();
+        }
+        ///Taking input of graph
+        while( m-- )
+        {
+            cin>>a>>b;
+            graph [ a ].push_back( b );
+            graph [ b ].push_back( a );
+        }
+
+        ///Finding two odd degree node, and checking if there any node with degree 1
+        a = b = -1;
+        for ( int i = 1 ; i <= n; i++ )
+        {
+
+            degree [ i ] = graph [ i ].size();
+            if ( degree [ i ] < 2 )
+            {
+                cout<<"Poor Koorosh\n";
+                a = -2;
+                break;
+            }
+            if ( degree [ i ]&1 && a == -1 )
+            {
+                a = i;
+            }
+            else if ( degree [ i ]&1 && b == -1 )
+            {
+                b = i;
+            }
+        }
+
+        if ( a == -2 )continue;
+
+        ///Calling for bfs
+        c = bfs( a , b );
+        if ( c == -1 )cout<<"Poor Koorosh\n";
+        else cout<< c<<"\n";
+    }
+}
+int bfs( int a , int b )
+{
+    if ( a == -1 || b == -1  )return 0;
+
+    memset( level , -1, sizeof level );
+    while( !qu.empty() )qu.pop();
+
+    qu.push( a );
+    visited [ a ] = 1;
+    level [ a ] = 0;
+
+    while( !qu.empty() )
+    {
+        a = qu.front();
+        qu.pop();
+        int sz = graph [ a ].size();
+        for ( int i = 0 ; i < sz; i++ )
+        {
+            int d = graph [ a ] [ i ];
+            ///Checking for visited and if degree more than 2
+            if ( !visited [ d ] && degree [ d ] > 2 )
+            {
+                visited [ d ] = 1;
+                qu.push( d );
+                level [ d ] = level [ a ] + 1;
+                ///Shortest path eka answer found. Returning the answer.
+                if ( d == b )return level [ d ];
+            }
+        }
+    }
+
+    ///No valid path found so returning impossible.
+    return -1;
+}
+
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

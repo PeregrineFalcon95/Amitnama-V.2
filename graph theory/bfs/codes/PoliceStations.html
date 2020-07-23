@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Police Stations</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>Police Stations - Codeforces code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define mxs 300010
+int n, m , k , d;
+vector < int > v;
+vector < int > graph [ mxs ];
+vector < pair < int , int > > edges;
+int parent [ mxs ] , dis [ mxs ];
+queue < int > qu;
+bool visited [ mxs ];
+void brain();
+void bfs();
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    cin>>n>>k>>d;
+    for ( int i = 1 ; i <= n; i++ )dis [ i ] = INT_MAX;
+
+    int a , b;
+    for ( int i = 1 ; i <= k; i++ )
+    {
+        cin>>a;
+
+        ///Pushing source to queue, updating info
+        qu.push( a );
+        dis [ a ] = 0;
+        parent [ a ] = a;
+        visited [ a ] = 1;
+    }
+
+    ///Input edges and marking order
+    for ( int i = 1 ; i < n; i++ )
+    {
+        cin>>a>>b;
+        graph [ a ].push_back ( b );
+        graph [ b ].push_back ( a );
+        edges.push_back( { a , b } );
+    }
+
+    ///Calling bfs
+    bfs();
+
+    v.clear();
+    for ( int i = 0 ; i < n-1; i++ )
+    {
+        a = edges [ i ].first;
+        b = edges [ i ].second;
+        if ( parent [ b ] == a || parent [ a ] == b )continue;
+        v.push_back( i + 1 );
+    }
+
+    ///Output
+    cout<< v.size()<<"\n";
+    a = v.size();
+    for( int i = 0 ; i < a; i++  )cout<< v [ i ]<<" ";
+}
+void bfs( )
+{
+    while( !qu.empty() )
+    {
+        int a = qu.front();
+        qu.pop();
+        int sz = graph [ a ].size();
+        for ( int i = 0 ; i < sz; i++ )
+        {
+            int b = graph [ a ] [ i ];
+            if ( !visited [ b ] )
+            {
+                dis [ b ] = dis [ a ] + 1;
+                qu.push( b );
+                parent [ b ] = a;
+                visited [ b ]  = 1;
+            }
+        }
+    }
+}
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

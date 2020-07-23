@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prime Numbers and Prime Checking বাংলা</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+	
+</head>
+<body class="sorir">
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="Prime_Numbers_and_Prime_checking.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Prime Numbers and Prime checking বাংলায়।</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							
+							
+							<!--
+							<p>This text contains <sup>superscript</sup> text.</p>
+							<p>This text contains <sub>superscript</sub> text.</p>
+							-->
+							
+
+							<p class="card-text-bangla">
+								 <span class="make_bold">প্রাইম নাম্বার কি?</span> <br>
+								 একটি সংখ্যা <span class="make_bold">n</span> কে প্রাইম নাম্বার বলা হয় যদি ঐ সংখ্যাটি 1 এর চেয়ে বড় হয় এবং 1 এবং <span class="make_bold">n</span> ছাড়া আর কোন পজিটিভ নাম্বার দিয়ে বিভাজ্য না হয়। <br>1 নিজে একটি প্রাইম নাম্বার না।  <br>প্রথম প্রাইম নাম্বারটি হচ্ছে 2. একমাত্র জোড় প্রাইম নাম্বার হচ্ছে 2. কারন বাকীসব জোড় সংখ্যাকে 2 দ্বারা ভাগ করা যায়। <br> 3, 5, 7 হচ্ছে প্রাইম নাম্বার। কারন তাদের 1 এবং নিজেকে দিয়ে ছাড়া আর কোন নাম্বার দিয়ে ভাগ করা যায় না। 4, 6 কিন্তু প্রাইম নাম্বার না। কারন 4 কে 2 দিয়ে আর 6 কে 2 এবং 3 দিয়ে ভাগ করা যায়। <br> <br>
+								 <span class="make_bold">প্রাইম নাম্বারের সর্বমোট সংখ্যা কতো?</span> <br> 
+								 প্রাইম নাম্বারের সংখ্যা অসীম। গণিতবিদ <span class="make-italic">Euclid</span> প্রমান করে দেখান যে প্রাইম নাম্বারের সংখ্যা সসীম হতে পারে না। <br> ধরি, কেউ একজন দাবি করলো P<sub>n</sub> সংখ্যক প্রাইম নাম্বার আছে। <br> এখন সেই P<sub>n</sub> সংখ্যক প্রাইম নাম্বারকে গুণ করে সাথে 1 যোগ করি। ধরি নতুন নাম্বারটি হচ্ছে <span class="make_bold">X. <br><br>  <span class="make_bold">X</span> = P<sub>1</sub> * P<sub>2</sub> * P<sub>3</sub> * …………… * P<sub>n-1</sub> * P<sub>n</sub> + 1. </span> <br> <br> <span class="make_bold">X-1</span> কে কিন্তু সেই প্রতিটি প্রাইম নাম্বার দিয়ে নিঃশেষে ভাগ করা যাবে। কিন্তু <span class="make_bold">X</span> কে সেই P<sub>n</sub> সংখ্যক প্রাইম নাম্বারের কোন নাম্বার দিয়েই নিঃশেষে ভাগ করা যাবে না। ঐ সকল নাম্বার দিয়ে ভাগ করলে ভাগশেষ থাকবে 1. সেক্ষেত্রে <span class="make_bold">X</span> হচ্ছে একটি প্রাইম নাম্বার। সেক্ষেত্রে বলা যায় কেউ কখনো দাবি করতে পারবে না যে প্রাইম নাম্বার সসীম। <br> এইভাবে গুণ করলে কি সবসময় প্রাইম পাওয়া যাবে? <br> আমরা 13 পর্যন্ত সকল প্রাইম নাম্বার গুণ করে 1 যোগ করে দেখি তোঃ <br> <br> <span class="make_bold">2 * 3 * 5 * 7 * 11 * 13 + 1 = 30031 </span> <br> <br>কিন্তু 30031 = 59 * 509. এটি একটি প্রাইম নাম্বার না। <br> উপরের প্রমাণ করা হয়েছে যে প্রাইম নাম্বার সসীম হতে পারে না। সেটি বলা হয়নি যে প্রথম থেকে সকল প্রাইম গুণ করে 1 যোগ করলে সবসময় প্রাইম নাম্বার পাওয়া যাবে। <br> <br> <span class="make_bold">Co-Prime</span> কি? <br> দুই বা ততোধিক নাম্বারের সেট যাদের মধ্যে 1 ছাড়া আর কোন কমন ডিভিজর নেই তাদের <span class="make-italic">Co-Prime</span> বলা হয়। <br> উদাহরণ স্বরূপ আমরা 21 আর 22 এর দিকে খেয়াল করি। 21 কে 1, 3, 7, 21 দ্বারা নিঃশেষে ভাগ করা যায়। আর 22 কে 1, 2, 11, 22 দ্বারা নিঃশেষে ভাগ করা যায়। এই দুটি নাম্বারের মধ্যে 1 ছাড়া কমন কোন ডিভিজর নেই। তারা <span class="make-italic">Co-Prime</span> নাম্বার। <br> কিন্তু 21 আর 27 <span class="make-italic">Co-Prime</span> নয়। 21 কে 1, 3, 7, 21 দ্বারা নিঃশেষে ভাগ করা যায়। আর 27 কে 1, 3, 9, 27 দ্বারা নিঃশেষে ভাগ করা যায়। 21 আর 27 এর মধ্যে 1 ব্যতীত আরেকটি কমন ডিভিজর রয়েছে। তা হচ্ছে 3. তাই তারা <span class="make-italic">Co-Prime</span> নয়। <br><br> <span class="make-italic">Co-Prime</span> এর কিছু প্রোপার্টিঃ <br><br> 1 সকল নাম্বারের সাথেই <span class="make-italic">Co-Prime</span>. <br><br> সকল প্রাইম নাম্বার পরস্পরের সাথে <span class="make-italic">Co-Prime</span>. কারন কোন প্রাইম নাম্বারের 1 এবং ঐ নাম্বার নিজে ছাড়া আর কোন ডিভিজর নেই। <br><br> পাশাপাশি দুটি নাম্বার সবসময় <span class="make-italic">Co-Prime</span> হয়। কারন প্রথম নাম্বারটিকে যে নাম্বার গুলো দিয়ে নিঃশেষে ভাগ করা যাবে পরের নাম্বারটিকে সে নাম্বার দিয়ে নিঃশেষে ভাগ করা যাবে না। কারন সেখানে ভাগশেষ হিসেবে 1 থাকবে। <br> <br> দুটি <span class="make-italic">Co-Prime</span> নাম্বারের যোগফল তাদের গুণফলের সাথে <span class="make-italic">Co-Prime</span> হবে। 5 এবং 6 এর যোগফল 11 এবং গুণফল 30. এখানে 11 এবং 30 <span class="make-italic">Co-Prime</span>. <br><br>
+
+								 <span class="make_bold">আমরা কিভাবে চেক করবো যে একটি নাম্বার প্রাইম কিনা?</span> <br> <br>
+
+								 যেহেতু প্রাইম নাম্বার 1 এবং ঐ নাম্বার ব্যতীত আর কোন নাম্বার দিয়ে নিঃশেষে বিভাজ্য নয় সেহেতু একটি নাম্বার <span class="make_bold">n</span> এর জন্য 2 থেকে <span class="make_bold">n</span>-1 পর্যন্ত প্রতিটি নাম্বার দিয়ে ভাগ করে দেখতে পারি যে ঐ নাম্বারটি <span class="make_bold">n</span> কে নিঃশেষে ভাগ করে কিনা। <br> <br></p> <pre> 
+bool IsPrime( int n )
+{
+    for ( int i = 2 ; i < n; i++ )
+    {
+        if ( n % i == 0 )return false;
+    }
+    return true;
+}</pre>
+ 							<p class="card-text-bangla">
+ 								<br><br>
+								আমরা এইভাবে খুব সহজেই চেক করতে পারি একটি নাম্বার প্রাইম কিনা। যদি কোন নাম্বার দিয়ে নিঃশেষে ভাগ করা যায় তাহলে আমরা <span class="make-italic">false return</span> করে দিচ্ছি। <br>আমরা কি এই চেক করার প্রসেসকে আরও দ্রুত করতে পারি?  <br>আমরা জানি 2 ব্যতীত কোন জোড় নাম্বার প্রাইম নয়। তাহলে তো প্রথমেই চেক করতে পারি নাম্বারটি জোড় কিনা। তারপর লুপের ভেতর শুধু বিজোড় নাম্বার দিয়ে চেক করলেই চলবে! <br> আচ্ছা <span class="make_bold">n</span> কে <span class="make_bold">n/2</span> এর চেয়ে বড় কোন নাম্বার নিঃশেষে ভাগ করতে পারে? <br> আমরা কিন্তু <span class="make_bold">n</span>-1 পর্যন্ত লুপ না চালিয়ে <span class="make_bold">n</span> এর অর্ধেক লুপ চালিয়ে চেক করলেই পারি! <br> আমরা কি আরও কম সময়ে চেক করতে পারি একটি নাম্বার প্রাইম কিনা? <br>হ্যাঁ আমরা পারি। <br>আমরা 64 এর সবগুলো ডিভিজর বের করি। <br> 64 এর সবগুলো ডিভিজর হচ্ছে 1,2,4,8,16,32,64. <br>প্রতিটি ডিভিজর এর কিন্তু একটি pair আছে। <br> 1 * 64 = 64 <br>2 * 32 = 64 <br>4 * 16 = 64 <br> 8 * 8 = 64 <br>একটু খেয়াল করলেই দেখতে পারবেন প্রতিটি জোড়ার ছোট নাম্বারটি <span class="make-italic">Square Root of</span> 64 এর চেয়ে ছোট অথবা সমান! <br>আমরা তাহলে 64 এর ডিভিজর চেক করার জন্য <span class="make-italic">Square Root</span> পর্যন্ত লুপ চালালেই পারি! যেকোনো নাম্বার প্রাইম কিনা সেটা বের করার জন্য আমরা <span class="make-italic">Square Root</span> পর্যন্ত লুপ চালিয়ে চেক করলেই পেয়ে যাবো কোন নাম্বার দিয়ে ঐ নাম্বারকে নিঃশেষে ভাগ করা যায় কিনা। কারন প্রতিটি জোড়ার ছোট নাম্বারটি অবশ্যই ঐ নাম্বার এর <span class="make-italic">Square Root</span> এর চেয়ে ছোট অথবা সমান হবে। 64 এর জন্য খেয়াল করে দেখুন। 64 এর <span class="make-italic">square root</span> হচ্ছে 8. আমরা 8 * 8 এর জন্য পাই 64. এখন যদি এর কোন একটি নাম্বার এক বাড়িয়ে দেই, তাহলে 8 * 9 = 72. আমরা পরিষ্কার ভাবে দেখতে পারছি যে নাম্বারটি 64 এর চেয়ে বড়। <br> নিজে কোড করে ফেলার চেষ্টা করুন। <br> </p> <pre>
+bool IsPrime( int n )
+{
+    ///Checking if the number is 2 or an even number
+    if ( n == 2 )return true; 
+    else if ( n % 2 == 0 )return false;
+
+    ///Checking if the number is divisible by the odd number under square root
+    for ( int i = 3 ; i * i <= n; i++ )
+    {
+        if ( n % i == 0 )return false;
+    }
+    return true;
+}</pre>
+                          <p class="card-text-bangla">
+                          	<br> <br>
+                          	আশা করি বুঝতে কোন সমস্যা হয়নি। <br> যেহেতু আপনি এখন প্রাইম চেক করতে পারেন তাহলে নিচের প্রবলেম গুলো ঝটপট সমাধান করে ফেলুন! <br> <br>
+                          	<span class="make_bold">Practice Problems:</span> <br>
+                          	<a href="https://onlinejudge.org/external/102/10235.pdf" target="blank">10235 - Simply Emirp (Uva) Online Judge.</a> <br> 
+                          	<a href="https://onlinejudge.org/external/109/10924.pdf" target="blank">10924 - Prime Words (Uva) Online Judge.</a> <br> <a href="https://codeforces.com/contest/17/problem/A" target="blank">Noldbach problem - Codeforces.</a>
+							</p>
+
+				   		</div>
+					</div>	
+			    </div>
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

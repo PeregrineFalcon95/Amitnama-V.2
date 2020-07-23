@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 4</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Nam" href="../../index.html">AmitNama</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link active" href="#">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link " href="bfs_4_bangla.html">বাংলা</a>
+		       			</li>
+		       		</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials. Part 4</p>
+			</div>
+		</div>
+
+	</header>
+	
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<p class="card-text">
+								<a href="bfs_1.html" target="blank">Learn bfs from here!</a> <br>
+								<a href="bfs_2.html" target="blank">Part 2!</a>
+								<br>
+								<a href="bfs_3.html" target="blank">Part 3!</a>
+								<br> <br>
+								<span class="make_bold">0-1 BFS Tutorial.</span> <br>
+								<span class="make_bold">Problem: </span> You are given a graph. Where each edge has a weight equal to 0 or 1. Now you’ve to find the shortest path for every node from a given source node. <br><br>
+								<span class="make_bold">Solution: </span>Are you thinking of using <a href="#">Dijkstra's</a> algorithm? <br> But you can solve this by modifying bfs algorithm easily! Even much faster than Dijkstra’s algorithm! <br>  While checking the adjacent nodes for a front node of the queue, if the distance is equal to 1 then we push that node in the back of the queue. Because the distance of the new node is +1 than the front node. <br>But what we'll do when the distance of the new node from the front node is equal to 0?
+								<br> From the source node the distance of the new node and the front node are equal!<br>So, we'll push the new node in te front of the queue instead of back. But we can't push a node in the front of the queue. <br> So, we'll use <a href="http://www.cplusplus.com/reference/deque/deque/deque/" target="blank">deque</a> data structure. <br>We usually use priority_queue/set in Dijkstra's algorithm. Here cost of every push is <span class="make_bold">log(n)</span>. But in deque the cost of pushing a node is <span class="make_bold">O(1)</span>. And the deque is always sorted according to the distance of the nodes! 
+								<br> The shortest path of a node is found when the node is discovered in normal bfs. But here it won’t work. One node can be updated several times. So, before pushing a node to the source we’ll check for its distance from the source node. And checking for already visited node method won’t work here. <br><br>
+								We can modify our bfs code like following manner: <br><br> 
+							</p>
+							<pre>
+while( !dq.empty() )
+{
+    int a = dq.front();
+    dq.pop_front();
+    int sz = graph [ a ].size(); ///Size of the graph
+    for ( int i = 0; i < sz ; i++ )
+    {
+        int b = graph [ a ] [ i ].first; ///Adjacent node
+        int c = graph [ a ] [ i ].second; ///Cost of the edge
+        if ( cost [ a ] + c < cost [ b ] )
+        {
+            if ( !c )
+            {
+                ///No cost so pushing in front
+                cost [ b ] = cost [ a ];
+                dq.push_front( b );
+            }
+            else
+            {
+                ///Cost = 1 so pushing in back
+                cost [ b ] = cost [ a ] + c;
+                dq.push_back( b );
+            }
+        }
+    }
+}</pre>
+							<p class="card-text">
+								<br><br>
+							Some problems to practice: <br>
+							<a href="https://www.spoj.com/problems/KATHTHI/" target="blank">KATHTHI - SPOJ</a> <br>
+							<a href="https://codeforces.com/problemset/problem/877/D" target="blank">Olya and Energy Drinks - Codeforces.</a> <br> <a href="http://www.devskill.com/CodingProblems/ViewProblem/60" target="blank">Holloween Party - Devskill</a> <br><br>
+							<span class="make_bold">Number Transformation: </span><br> Many problems that does not look like graph problem, also those problems can be solved by bfs! <br>
+							You've come this far, so solving this won't be a problem for you. <br>
+							<a href="https://onlinejudge.org/external/117/11730.pdf" target="blank">11730 Number Transformation (Uva) Online Judge</a> <br><br>
+							<span class="make_bold">Find all the nodes on any shortest path between a given pair of nodes.</span><br>
+							<span class="make_bold">Problem: </span> You are given an undirected and unweighted graph. There is source node and a target node. There can be multiple shortest paths between these two nodes. For every node, you’ve to check if this node is a part of any of these shortest paths. <br>How can we solve this? <br><br>
+							<span class="make_bold">Solution: </span> We’ve to run two bfs to solve this problem. One from source node and another from target node. Let’s save every nodes distance from source node to an array named <span class="make_bold">dis_s</span>. <br>And every nodes distance from the target node in an array named <span class="make_bold">dis_t</span>. <br>Let’s <span class="make_bold">x</span> be the node for which we’ll check if it is a part of any shortest path.<br>What we've to do now? <br>Very simple! <br> We’ve to add the distance of node <span class="make_bold">x</span> from the source node with the distance of node <span class="make_bold">x</span> from the target node! If the value is equal to the length of the shortest path from source to target, then node <span class="make_bold">x</span> is a part some shortest path! <br> <br>
+							</p>
+							<pre>
+if( dis_s [ x ] + dis_t [ x ] == dis_s [ t ] )</pre>
+ 							<p class="card-text">
+ 								<br><br>
+ 							<span class="make_bold">Caravans - Timus.</span> <br>
+ 							<a href="https://acm.timus.ru/problem.aspx?space=1&num=2034" target="blank">2034 - Caravans - Timus</a> Please read the problem. <br>
+ 							<span class="make_bold">Problem: </span> You’re given a graph. A caravan will travel from source node <span class="make_bold">s</span> to target node <span class="make_bold">f</span>. They’ll always use the shortest path. Some robbers are at node r. They’ll attack the caravan. When the caravan will travel through a shortest path, the robbers will attack on a node which is the closest to the robber’s node <span class="make_bold">r</span>. <br>For all possible shortest path find the maximum distance the robbers have to travel in the worst case.  <br> <br>
+ 							<span class="make_bold">Solution: </span> To solve this problem we’ve to know which nodes are part of any shortest path. We know how to do that! We need the distance of every node from source node and the distance of every node from target node. Let’s save the information’s in two arrays. <br>We’ll also need the distance of each node from target node. Let’s find this too using another breadth first search. <br>  <br> Let’s take a look at the sample test case. Node 4 and node 5 have a distance equal to 2 from source node. No matter whatever shortest path caravan use to reach the target node, they have to use one of node 4 and 5. So if the robbers want to reach any node of distance 2 from source node, in the worst case they have to reach node 5. <br>And the cost will be 3. <br> Let’s find out the maximum possible answer for each distance from source node. <br> Can you solve this problem now? <br> The minimum value of all the possible distances is the answer!<br>Please read again if it is not clear to you. <br> <br>Let's see the coding part for more clearity: <br> Let’s find out the distance of each node from the source node and save them in an array named <span class="make_bold">dis_s</span>. And for target node, an array named <span class="make_bold">dis_f</span>. And for node <span class="make_bold">r</span> an array named <span class="make_bold">dis_r</span>. <br>We'll use a map named <span class="make_bold">mp</span> to save the answer of each possible distances. <br> <br>
+ 							</p>
+ 							<pre>
+ map < int , int > mp;</pre>
+ 							<p class="card-text">
+ 								<br><br>Now for every node we'll check if it is a part of any shortest path. <br><br>
+ 							</p>
+ 							<pre>
+sfor ( int i = 1 ; i <= n; i++ )
+{
+    if ( dis_s [ i ] + dis_f [ i ] == dis_s [ f ] )
+    {
+        ///This node belongs to some shortest path
+	    ///Rest of the code
+    }
+}</pre>
+							<p class="card-text">
+								<br><br>Now we’ve to check if we’ve already saved any distance for the level of our current node. If we have not, then save the distance of this node from node r. <br><br>
+							</p>
+							<pre>
+///Rest of the code
+if ( mp.find( dis_s [ i ] ) == mp.end() )
+{
+	mp [ dis_s [ i ] ] = dis_r [ i ];
+}</pre>
+							<p class="card-text">
+								<br><br>If we've already saved any value for this level, we'll update the value by comparing. <br><br>
+							</p>
+							<pre>
+else
+{
+    ///Updating the max distance for this level 
+    mp [ dis_s [ i ] ] = max( mp [ dis_s [ i ] ] , dis_r [ i ] );
+}</pre>
+							<p class="card-text">
+								<br><br> I hope that you can solve this by yourself now. <br> We're using 3 bfs. Do we have to write 3 bfs code? We can write a function for bfs and call this every time! Try to do this by yourself. If you need any help you can see the following code.<br><br>
+								<a href="codes/Caravans_timus.html" target="blank">Full code with C++. </a> <br> <br> You know how to check if a node is a aprt of any shortest path. Can you solve this if you've to find this for an edge? <br> Think! <br> <br>
+								<span class="make_bold">Connected Components? - Codeforces</span> <br>
+								<a href="https://codeforces.com/problemset/problem/920/E" target="blank">Connected Components? - Codeforces </a> Please read this problem. <br>
+
+								<span class="make_bold">Problem: </span>
+								There is a graph with <span class="make_bold">n</span> nodes. You’re told which nodes don’t have any edge between them. You’ve to find the number of components and size of each component. Can you solve this?<br> <br>
+								<span class="make_bold">Solution: </span>  You’re given which nodes don’t have any connections between them. Let’s store this in a 2D set named <span class="make_bold">graph</span>. Then insert every nodes in a set named <span class="make_bold">nvis</span>. Purpose of this set is to check which nodes are not visited yet.  <br> Let’s iterate over every node and check if this node is visited already. If our current node is not visited yet, let’s run a modified version of breadth first search from this node. <br> For every front node of bfs, let’s traverse the set named <span class="make_bold">nvis</span>. Suppose current node is <span class="make_bold">x</span> in <span class="make_bold">nvis</span>. Let’s check if <span class="make_bold">x</span> is present in the <span class="make_bold">graph</span> for the front node. We can check this using count function. If it is possible to give an edge between the front node and <span class="make_bold">x</span>, let’s push <span class="make_bold">x</span> to the queue and erase <span class="make_bold">x</span> from <span class="make_bold">nvis</span>. <br> Number of nodes we visit in a bfs is the size of our current component. <br>We are iterating the whole nvis for each front node. So what is the time complexity? Think! <br><br> How many times a node can be checked in worst case? <br>Easy! The number of nodes which don’t have any connections between them! <br>There are <span class="make_bold">m</span> such restrictions. So total time complexity can be  <span class="make-italic make_bold">O(m log n)</span> in the worst case.
+ 
+								<br> <br>
+								<a href="codes/ConnectedComponents.html" target="blank">Full code with C++.</a> <br><br>
+								Can you find every nodes for each component? <br><br>
+								<span class="make_bold">Practice Problems: </span> <br> <a href="https://codeforces.com/problemset/problem/190/E" target="blank"> Counter Attack - Codeforces. </a> <br> <a href="https://codeforces.com/contest/653/problem/E" target="blank">Bear and Forgotten Tree 2 - Codeforces.</a>
+							</p>
+							
+				   		</div>
+					</div>	
+			    </div>
+			
+		</div>
+		
+
+	</main>
+	
+	
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer__" href="../../About Me/about_me.html">About Me</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

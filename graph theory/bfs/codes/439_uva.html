@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Knight Moves</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>439 - Knight Moves (Uva) Online Judge code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+///Direction array
+int dx[]={-2,-2,-1,1,-1,1,2,2};
+int dy[]={1,-1,-2,-2,2,2,-1,1};
+string s , s2;
+int source_row , source_col, target_row , target_col;
+queue < pair < int , int > > qu;
+int level [ 10 ] [ 10 ];
+int bfs();
+bool check(int i, int j)
+{
+    return !( i < 1 || j < 1 || i > 8 || j > 8 );
+}
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
+    while( cin>>s>>s2 )
+    {
+        source_row = s [ 0 ] - 'a' + 1;
+        source_col = s [ 1 ] - '0';
+
+        target_row = s2 [ 0 ] - 'a' + 1;
+        target_col = s2 [ 1 ] - '0';
+
+        int ans = bfs();
+
+        cout<<"To get from "<< s <<" to "<< s2 <<" takes "<< ans <<" knight moves.\n";
+    }
+    return 0;
+}
+int bfs()
+{
+    memset( level , -1 , sizeof level );
+
+    qu.push( { source_row , source_col } );
+    level [ source_row ] [ source_col ] = 0;
+
+    int row , col , a , b;
+    while( !qu.empty() )
+    {
+        row = qu.front().first;
+        col = qu.front().second;
+        qu.pop();
+        for ( int i = 0 ; i < 8; i++ )
+        {
+            a = dx [ i ] + row;
+            b = dy [ i ] + col;
+
+            ///Checking if valid move and unvisited
+            if ( check( a , b ) && level [ a ] [ b ] == -1 )
+            {
+                level [ a ][ b ] = level [ row ] [ col ] + 1;
+                qu.push( { a , b } );
+            }
+        }
+    }
+    ///Returning the shortest path.
+    return level [ target_row ] [ target_col ];
+}
+
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

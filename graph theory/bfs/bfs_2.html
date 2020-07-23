@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 2</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Nam" href="../../index.html">AmitNama</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link active" href="#">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link " href="bfs_2_bangla.html">বাংলা</a>
+		       			</li>
+		       		</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials. Part 2</p>
+			</div>
+		</div>
+
+	</header>
+	
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<p class="card-text">
+								<a href="bfs_1.html" target="blank">Learn bfs from here!</a>
+								<br>
+								Now we know <a href="bfs_1.html" target="blank">Breadth-first Search</a>. Let’s start solving problems using it. <br>To have a clear understanding about bfs one should solve Bi-coloring problem.
+								<br><br>
+								<span class="make_bold">Bi-Coloring</span><br>
+								<a href="https://onlinejudge.org/external/100/10004.pdf" target="blank">Online Judge (Uva) 10004 – Bicoloring</a>
+								Please read this problem.<br>
+								You’re given a graph with <span class="make_bold">n</span> nodes and <span class="make_bold">L</span> edges. You’ve to color all the nodes using only two colors. You’ve to color those nodes in such a way that no two adjacent nodes has the same color! We’ve to tell that if we can color the given graph in this way. In other words, we have to tell this graph is bi-colorable or not. <br>Please before moving below try to solve it yourself. <br><br>
+								<span class="make_bold">Solution:</span><br>
+								If you understood bfs clearly you can easily solve this problem. Let’s color this graph using white and black color. <br>Assume we are checking for all the adjacent nodes <span class="make-italic">b</span> of node <span class="make-italic">a</span>. <br>We can find those nodes <span class="make-italic">b</span> in two states:<br><br>
+								1 - We haven't visited this node yet.<br> 2 - We've visited this node before.<br><br>
+								What can we do for the first situation? <br>If the color of node  <span class="make-italic">a</span> is white, then we will color node <span class="make-italic">b</span> with black. If the color of node  <span class="make-italic">a</span> is black, then we will color node <span class="make-italic">b</span> with white.
+								We can’t change color of node <span class="make-italic">b</span> in the second situation. Because we already colored node <span class="make-italic">b</span> with a color. So, we’ve to check if node <span class="make-italic">a</span> and node <span class="make-italic">b</span> is colored with same color! If they have the same color then bi-coloring is not possible. Because no two adjacent nodes can have same color. 
+								<br>
+								How can we change our bfs code to solve this problem? Please try to do this yourself before moving below. <br><br>
+								We can solve this problem without using a <span class="make-italic">visited array</span>! We have to color the nodes using two colors. For marking unvisited nodes we can use a third color. In this code <span class="make-italic">character ‘n’</span> is the third color. First we’ve checked if node <span class="make-italic">b</span> is colored with <span class="make-italic">‘n’</span>. In other word if node <span class="make-italic">b</span> is unvisited. If node <span class="make-italic">b</span> is unvisited, we are coloring node <span class="make-italic">b</span> as we need. <br>
+								In the next condition we are checking if we’ve already visited this node. If it’s visited then we are checking if they are in same color. If they have the same color then we are returning false. 
+								 <br> Our code will look like following: <br>
+								 <br>
+							</p>
+							<pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+    for ( int i = 0 ; i < sz; i++ )
+    {
+        b = graph [ a ] [ i ];
+        if ( color [ b ] == 'n' )
+        {
+            qu.push( b );
+            ///Marking the child with opposite color
+            if( color [ a ] == 'b' )color [ b ] = 'w';
+            else color [ b ] = 'b';
+        }
+        else if ( color [ b ] == color [ a ] )
+        {
+            ///Adjacent nodes have same color. So bi-coloring not possible.
+            return false;
+        }
+    }
+}</pre>
+							<p class="card-text">
+								<br>
+							<a href="codes/10004_uva.html" target="blank">Complete code with C++.</a><br><br>
+							Now we’ve solved bi-coloring will we stop thinking about this? <br>
+							Answer: Absolutely not! If you think more you will find some interesting ideas! <br><br>
+							<span class="make_bold">1</span> - If the graph contains cycle(s) with odd length then bi-coloring is not possible for this graph.<br> <br><span class="make_bold">2</span> - We are creating two sets of nodes by coloring the nodes. One set contains the nodes colored in white. Another set contains nodes colored in black. No two nodes of the same set won’t connected by any edge. Because then two adjacent nodes will have the same color. <br><br><span class="make_bold">3</span> - If we look at the nodes of a same component we will see that the level of the nodes can be divided into two groups. Even and Odd levels. If a node of even level colored in white then all the nodes of even levels are also colored white. Then odd level nodes are colored in black. <br>And if an even level node is colored in black. Then all the even level nodes are colored in black also. Then all the odd level nodes will be colored in white. <br>
+ 							<br><span class="make_bold">4</span> - Using the previous observation we can solve this problem without coloring! Please try this yourself first. <br>For two different nodes if the distance from the source node is even and those nodes are adjacent then bi-coloring is not possible! Same goes for the odd level nodes.
+							<br><br>How can we write the code for this?<br>Our bfs code will be as following:<br><br>
+							</p>
+							<pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+    for ( int i = 0 ; i < sz; i++ )
+    {
+        b = graph [ a ] [ i ];
+        if ( !level [ b ] )
+        {
+            qu.push( b );
+            level [ b ] = level [ a ] + 1;
+        }
+        else if ( level [ b ] == level [ a ] )return 1;
+    }
+}</pre>
+							<p class="card-text">
+								<br>
+								<a href="codes/10004_uva_level.html" target="blank">Full code with C++.</a> <br><br>
+								Think more! You may find more interesting things!!<br>Now I am finishing wrting for bi-coloring.
+								<br><br>
+								Now we will start to solve the next problem. <br><br>
+
+								<!--       A node too far part          -->
+								<span class="make_bold">A Node Too Far.</span><br>
+								<a href="http://uva.onlinejudge.org/external/3/336.pdf" target="blank">Online Judge (Uva) 336 - A Node Too Far.</a> Please read this problem.<br><br>
+								Don’t be afraid by reading the problem description! <br> Actually it is a simple problem which can be easily solved using bfs.<br> You are given an undirected graph containing <span class="make-italic">NC</span> edges. There can be maximum of 30 edges. <br>You’ve to answer some queries. For each query, you are given a node number <span class="make-italic">a</span> and an integer <span class="make-italic">b</span>. You’ve to tell that how many nodes are unreachable if you can use maximum of <span class="make-italic">b</span> edges. In other words, how many nodes have distance more than <span class="make-italic">b</span> from source node <span class="make-italic">a</span>. Before moving below please try to solve it yourself. <br><br>
+								<span class="make_bold">Solution:</span><br> There can be maximum of 30 edges. But we don’t know how many queries are there. Let’s <span class="make-italic">Q</span> be the number of queries. If we run bfs once for each query then our maximum complexity can be: <span class="make_bold make-italic">O( Q*30 )</span>. <br> For each query we will run a bfs to find out how many nodes we are there within the distance of b from source node a. <br>And our answer will be:
+								<br><span class="make_bold make-italic">(Total number of nodes in the graph - Total number of visited nodes)</span><br><br>Very simple solution! <br> But we have not solved this problem completely. <br> There can be maximum of 30 nodes. But there have not any range for the numbering of the nodes. Suppose there is a node with the number 123456789. We can’t have any array that large to mark nodes visited or save the levels. <br>How can we solve this? <br> <br> We can <a href="#">compress</a> the values! <br> If you don't know how to compress please learn it from <a href="#">here</a>. <br>Hope that you won’t have any problem to solve this problem now.<br><br>
+								<a href="codes/336_uva.html" target="blank">Full code with C++</a> <br><br>
+								<span class="make_bold">We Ship Cheap.</span><br>
+								<a href="https://onlinejudge.org/external/7/762.pdf">Online Judge (Uva) 762 - We Ship Cheap.</a> Please read this problem.<br><br>
+								A shipping company named <span class="make-italic">We Ship Cheap</span> delivers products. They always uses the cheapest path to deliver products. You are given a <span class="make-italic">source</span> and a <span class="make-italic">target</span> city. You’ve to print the shortest path from <span class="make-talic">source</span> to <span class="make-italic">target</span> city.  If there are no path you’ve to print this otherwise. <br>Before moving below please try to solve this yourself.
+								<br><br> <span class="make_bold">Solution:</span><br>
+								You know how to print a path and how to <a href="#">compress</a>. So, it’s look like an easy problem for you. You’re given the nodes as strings. So, now you can compress those strings into integers or you can create graph of string type. But here we’ll solve this by compressing strings. We’ll run a breadth-first search from source node. Then we will check if we’ve visited the target node. If we have not visited the target node we will output No route. Otherwise we’ll print the path. We’ve already learned to print the path. So it won’t be a problem for us. <br>
+								But we’ve to be careful about few things. What is the maximum number of nodes there can be? Each node will consists of two uppercase English letter. So, there can be <span class="make_bold">26*26</span> nodes. One of the reason of getting wrong answer verdict in this problem is, they haven’t specified if the <span class="make-italic">source</span> node and the <span class="make-italic">target</span> node will be present in the input graph. Now we’ve to check if the <span class="make-italic">source</span> and <span class="make-italic">target</span> nodes are presented in the input graph. When we’ll solve a problem we’ve to be careful about all possible cases. <br> If you have not solved this problem already you can solve this now! <br><br>
+								<a href="codes/762_uva.html" target="blank">Full code with C++.</a> <br><br>
+								<span class="make_bold">Breadth First Search in 2-D Grids. (Knight Moves.)</span><br>
+								<a href="https://onlinejudge.org/external/4/p439.pdf" target="blank">Online Judge (Uva) 439 - Knight Moves.</a> Please read this problem. <br><br>
+								We’ve to solve this problem for a Knight in a chess board. <br>
+								You’re given a knights current position and target position. You’ve to find the number of moves required to reach the target cell. You’ve to minimize the number of moves. <br> A chess board consist of <span class="make_bold">8*8</span> grid. There are 8 rows and 8 columns. Previously we ran bfs of simple graphs. But how can we run bfs in 2D-Grid? First try yourself to solve this. <br>	<br><span class="make_bold">Solution:</span><br> You’re given the co-ordinate of the knight with row and column. We will assume this cell is the source node. But how can we store a position of a grid in the queue? <br>It’s very simple! We’ll use pair or structure. <br> <br>
+							</p>
+							<pre>
+queue < pair < int , int > > qu;</pre>
+							<p class="card-text">
+								<br> The first element will be row and the second element will be column. A knight can move in 8 directions. We’ll check the number of valid move from his current position using a <a href="#">Direction array</a>. If you can’t use Direction array than you can learn it from <a href="#">here</a>. <br>And we’ll use another 2-D array for saving levels of the nodes.<br>We don’t need to create a graph. While checking for valid moves, we’ll jump to the valid cells of the grid within bfs. <br>Now solve this problem if you have not solved it yet!<br><br>
+								<a href="codes/439_uva.html" target="blank">Complete code with C++.</a> <br> <br>
+
+								Some problems for practice: <br>
+								<a href="https://onlinejudge.org/external/5/p567.pdf" target="blank">567 - Risk - Online Judge(Uva).</a> <br> <a href="https://onlinejudge.org/external/106/p10653.pdf" target="blank">10653 - Bombs! NO they are Mines!! - Online Judge(Uva).</a><br> <a href="https://codeforces.com/contest/893/problem/C" target="blank">Rumor - Codeforces.</a> <br> <a href="https://codeforces.com/contest/931/problem/D" target="blank">Peculiar apple-tree - Codeforces</a> <br>
+								<a href="https://www.spoj.com/problems/SPIKES/" target="blank">Spiky Mazes - Spoj</a> <br> <a href="http://onlinejudge.org/external/113/11396.pdf" target="blank"> 11396 - Claw Decomposition - (Uva) Online Judge.</a> <br>
+								<a href="http://onlinejudge.org/external/110/11080.pdf" target="blank"> 11080 - Place the Guards (Uva) Online Judge.</a> <br>
+
+								<a href="https://onlinejudge.org/external/9/924.pdf" target="blank">924 - Spreading the News (Uva) Online Judge.</a> <br>
+								<a href="https://onlinejudge.org/external/4/429.pdf" target="blank">429 - Word Transformation (Uva) Online Judge.</a> <br>
+								<a href="https://onlinejudge.org/external/100/10009.pdf" target="blank">10009 All Roads Lead Where? (Uva) Online Judge.</a>
+
+								<br><br>
+								<span class="make_bold"> <a href="bfs_3.html">Start Reading 3rd Part!</a> </span>
+							</p>
+							
+				   		</div>
+					</div>	
+			    </div>
+			
+		</div>
+		
+
+	</main>
+	
+	
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer__" href="../../About Me/about_me.html">About Me</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

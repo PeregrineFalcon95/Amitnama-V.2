@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 2 বাংলা</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	
+</head>
+<body class="sorir">
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="bfs_2.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials বাংলায়। Part 2</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<!--
+							<p>This text contains <sup>superscript</sup> text.</p>
+							<p>This text contains <sub>superscript</sub> text.</p>
+							-->
+							
+							<p class="card-text-bangla">
+								<a href="bfs_1_bangla.html" target="blank">Bfs না পারলে এখান থেকে শিখে ফেলুন!</a>
+								<br>
+								আমাদের যেহেতু <a href="bfs_1_bangla.html" target="blank">বিএফএস</a> শেখা হয়ে গিয়েছে চলুন এটি ব্যবহার করে প্রবলেম সল্ভ করা শুরু করি। <br><span class="make-italic">Bfs</span> সম্পর্কে পরিষ্কার ধারণা পেতে হলে বাইকালারিং প্রবলেম সল্ভ করা উচিত।
+								<br><br>
+								<span class="make_bold">বাইকালারিংঃ</span><br>
+								<a href="https://onlinejudge.org/external/100/10004.pdf" target="blank">Online Judge (Uva) 10004 – Bicoloring</a>
+								প্রবলেমটি ঝটপট করে পরে ফেলুন।<br>
+
+								আমাদের একটি গ্রাফ দেওয়া আছে। যেখানে <span class="make_bold">n</span> সংখ্যক নোড আছে আর <span class="make_bold">L</span> সংখ্যক <span class="make-italic">edge</span> আছে।<br>আমাদের প্রতিটি নোডকে রঙ করতে হবে শুধুমাত্র দুইটি রঙ ব্যবহার করে। এমন ভাবে রঙ করতে হবে যেন সরাসরি <span class="make-italic">connected</span> দুইটি নোড একই রঙ এর না হয়!
+								 আমাদের বলতে হবে ইনপুট দেওয়া গ্রাফটিকে দুইটি রঙ ব্যবহার করে রঙ করা যাবে নাকি যাবে না?<br>নিজে নিজে যথেষ্ট সময় ধরে চেষ্টা করেও না সমাধান করতে পারলেই কেবল নিচের অংশটুকু দেখুন।<br><br>
+								 <span class="make_bold">সমাধানঃ</span><br>
+								 বিএফএস ভালোভাবে বুঝে থাকলে খুব সহজেই প্রবলেমটি সল্ভ করতে পারবেন। ধরি আমরা সাদা এবং কালো দুটি রং দিয়ে গ্রাফকে রং করবো।<br> 
+								 ধরি আমরা নোড <span class="make-italic">a</span> এর সকল <span class="make-italic">adjacent</span> নোড <span class="make-italic">b</span> চেক করছি। তখন <span class="make-italic">adjacent</span> নোডগুলো দুটি অবস্তায় থাকতে পারে - <br>
+								 1 - নোডটি আগে ভিজিট করা হয়নি।<br> 2 - নোডটি আগেই ভিজিট করা হয়েছে। <br><br>
+								 প্রথম ক্ষেত্রে আমরা কি করতে পারি? <br>নোড <span class="make-italic">a</span> এর রং যদি সাদা হয়, তাহলে নোড <span class="make-italic">b</span> কে কালো রং করবো। আর নোড <span class="make-italic">a</span> এর রং যদি কালো হয়, তাহলে নোড <span class="make-italic">b</span> কে সাদা রং করবো। 
+								 <br> দ্বিতীয় ক্ষেত্রে কিন্তু আমরা নোড <span class="make-italic">b</span> এর রং বদলাতে পারবো না। কারন ইতিমধ্যেই <span class="make-italic">b</span> কে রং করা হয়েছে। তাহলে আমাদের এখন চেক করতে হবে যে নোড <span class="make-italic">b</span> এবং নোড <span class="make-italic">a</span> কে একই রং করা হয়েছে কিনা! যদি একই রং হয় তাহলে বাইকালারিং সম্ভব নয়। কারন পাশাপাশি দুটি নোড এর রং আলাদা হচ্ছে না। <br>
+								 তাহলে আমাদের বিএফএস এর কোড টা কিভাবে পরিবর্তন করবো? নিজে যথেষ্ট পরিমাণ চেষ্টা করেও না পারলেই তবে নিচের অংশটুকু দেখুন। <br><br>
+								 আমাদের কিন্তু চাইলে এখন <span class="make-italic">visited array</span> ব্যবহার না করেও বিএফএস করতে পারি। আমাদের দুটি রং করতে হবে। যেসব নোড এখনো ভিজিট করা হয়নি তাদের মার্ক করতে আমরা তৃতীয় আরেকটি রং ব্যবহার করতে পারি। এই কোড এ সেটি হচ্ছে <span class="make-italic">character ‘n’</span>. প্রথমেই আমরা চেক করছি যে নতুন নোড <span class="make-italic">b</span> এর রং <span class="make-italic">‘n’</span> কিনা। যদি তা হয় তাহলে নোডটি এখনো ভিজিট করা হয়নি। তারপর আমরা আমাদের প্রয়োজন মতো রং করে নিচ্ছি। <br>পরের কন্ডিশনে চেক করছি নোডটি ইতিমধ্যেই ভিজিট করা হয়েছে কিনা। যদি ভিজিট করা হয় তাহলে চেক করছি পাশাপাশি দুটি নোড এর কালার সেম কিনা, যদি সেম হয় আমরা <span class="make-italic">false return</span> করে দিচ্ছি। 
+								 <br> আমাদের কোড হবে এই রকমঃ
+								 <br><br>
+							</p>
+							<pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+    for ( int i = 0 ; i < sz; i++ )
+    {
+        b = graph [ a ] [ i ];
+        if ( color [ b ] == 'n' )
+        {
+            qu.push( b );
+            ///Marking the child with opposite color
+            if( color [ a ] == 'b' )color [ b ] = 'w';
+            else color [ b ] = 'b';
+        }
+        else if ( color [ b ] == color [ a ] )
+        {
+            ///Adjacent nodes have same color. So bi-coloring not possible.
+            return false;
+        }
+    }
+}</pre>
+							<p class="card-text-bangla">
+								<br>
+							<a href="codes/10004_uva.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a><br><br>
+							আমাদের <span class="make-italic">bi-coloring</span> সমাধান করা হয়ে গিয়েছে! <br>
+							যেহেতু আমাদের সমস্যাটি সমাধান করা হয়ে গিয়েছে, সেহেতু আমরা কি এটি নিয়ে চিন্তা করা বন্ধ করে দিবো? <br>
+							উত্তর: অবশ্যই না। আপনি যদি ভালো ভাবে ভেবে দেখেন আরও কৌতূহলোদ্দীপক কিছু ব্যপার খোঁজে পেতে পারেন। <br><br>
+							<span class="make_bold">1</span> - গ্রাফটিতে যদি <span class="make-italic">odd length</span>  এর কোন সাইকেল থাকে তাহলে বাইকালারিং করা সম্ভব নয়।<br> <br><span class="make_bold">2</span> - আমরা কিন্তু রং করার মাধ্যমে নোড এর দুটি সেট তৈরি করছি। একটি সেট এর সব নোড এর রং হবে সাদা। আরেকটি সেট এর সব নোড এর রং হবে কালো। একই সেট এর দুটি নোড কিন্তু কোন <span class="make-italic">edge</span> দিয়ে সংযুক্ত থাকবে না। কারন তাহলে দুটি একই রং এর নোড পাশাপাশি হয়ে যাবে। <br><br><span class="make_bold">3</span> - আমরা যদি একই <span class="make-italic">component</span> এর নোডগুলোর লেভেল এর দিকে খেয়াল করি। তাহলে দেখতে পারবো সব লেভেল কে আমরা দুটি ভাগে ভাগ করতে পারি। <span class="make-italic">Even</span> এবং <span class="make-italic">Odd</span>. যদি <span class="make-italic">even</span> লেভেল এর কোন নোড এর রং সাদা হয়, তাহলে <span class="make-italic">even</span> লেভেল এর বাকি সব নোড এর রং অবশ্যই সাদা হবে। আর তখন <span class="make-italic">odd</span> লেভেল এর সব নোড এর রং কালো হবে। <br>আর যদি <span class="make-italic">even</span> লেভেল এর কোন নোড এর রং কালো হয়, তাহলে <span class="make-italic">even</span> লেভেল এর সব নোড এর রং কালো হবে আর <span class="make-italic">odd</span> লেভেল এর সব রং সাদা হবে। <br><br><span class="make_bold">4</span> - আগের <span class="make-italic">observation</span> ব্যবহার করে কিন্তু আমরা এখন গ্রাফটি রং না করেও <span class="make-italic">solve</span> করতে পারি! একটু চেষ্টা করে দেখুন তো। <br>আমাদের বিএফএস এর <span class="make-italic">source</span> নোড থেকে যদি দুটি নোড এর লেভেল <span class="make-italic">even</span> হয় এবং সে দুটি নোড <span class="make-italic">adjacent</span> হয় তাহলে কিন্তু বাইকালারিং সম্ভব না। একই ব্যপার <span class="make-italic">odd</span> লেভেল এর জন্যও প্রযোজ্য। <br><br> আমরা এই অংশের কোড কিভাবে করতে পারি? <br>তাহলে আমাদের বিএফএস এর কোড হবে নিম্নরূপ: <br><br>
+							</p>
+							<pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+    for ( int i = 0 ; i < sz; i++ )
+    {
+        b = graph [ a ] [ i ];
+        if ( !level [ b ] )
+        {
+            qu.push( b );
+            level [ b ] = level [ a ] + 1;
+        }
+        else if ( level [ b ] == level [ a ] )return 1;
+    }
+}</pre>
+							<p class="card-text-bangla">
+								<br>
+								<a href="codes/10004_uva_level.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
+								আরও ভেবে দেখুন মজার আরও কিছু খুজে বের করে ফেলতে পারেন! <br>বাইকালারিং নিয়ে লেখা এখানেই সমাপ্ত।
+								<br><br>
+								আমরা এখন পরবর্তী প্রবলেম সল্ভ করা শুরু করবো। <br><br>
+								<span class="make_bold">A Node Too Far.</span><br>
+								<!--       A node too far part          -->
+								<a href="http://uva.onlinejudge.org/external/3/336.pdf" target="blank">Online Judge (Uva) 336 - A Node Too Far.</a> প্রবলেমটি ঝটপট করে পরে ফেলুন। <br><br>
+								প্রবলেম পড়ে ঘাবড়ে যাবেন না। প্রবলেমটি আসলে বিএফএস এর একটি সহজ প্রবলেম। <br> আমাদের <span class="make_bold">NC</span> সংখ্যক <span class="make-italic">edges</span> দিয়ে গঠিত একটি গ্রাফ দেওয়া আছে। এই গ্রাফে সর্বোচ্চ 30 টি নোড থাকতে পারে। আর কিছু কুয়েরি দেওয়া আছে। প্রতিটি কুয়েরিতে একটি নোড <span class="make-italic">a</span> দেওয়া থাকবে আর একটি ইন্টিজার <span class="make-italic">b</span> দেওয়া থাকবে। আমাদের বলতে হবে নোড <span class="make-italic">a</span> থেকে সর্বোচ্চ <span class="make-italic">b</span> সংখ্যক <span class="make-italic">edge</span> ব্যবহার করেও মোট কতগুলো নোড এ যেতে পারবো না। প্রথমে নিজে চেষ্টা করুন সমাধান করার। <br><br>
+								<span class="make_bold">সমাধানঃ</span><br> আমাদের কাছে নোড আছে সর্বোচ্চ 30 টি। আমাদের বলা নেই কতগুলো কুয়েরি থাকতে পারে। ধরি, মোট কুয়েরি এর সংখ্যা <span class="make-italic">Q</span>. আমরা প্রতি কুয়েরি তে যদি একবার বিএফএস চালাই তাহলে আমাদের কোডের সর্বোচ্চ কমপ্লেক্সিটি হবেঃ <span class="make_bold make-italic">O( Q*30 )</span>. <br> প্রতি কুয়েরিতে আমরা বিএফএস চালিয়ে দেখবো সর্বোচ্চ <span class="make-italic">b</span> দূরত্বে কতোগুলো নোড আমরা ভিজিট করতে পারি। <br> তাহলে আমাদের উত্তর হবেঃ<br><span class="make_bold make-italic">(মোট নোড সংখ্যা - মোট visited নোড সংখ্যা)</span><br><br>খুবই সহজ সমাধান! <br> প্রবলেমটি কিন্তু এখনো সম্পূর্ণ ভাবে সমাধান করা হয়নি। <br> একটু ভালোভাবে খেয়াল করলেই দেখতে পারবেন যে বলা আছে নোড হতে পারে সর্বোচ্চ 30 টি। কিন্তু নির্দিষ্ট করে বলা নেই যে নোড এর ভ্যালু সর্বোচ্চ কতো হতে পারে। ধরুন একটি নোড দেওয়া হল যার মান 123456789. আমরা কিন্তু এতো বড় <span class="make-italic">array</span> নিতে পারবো না নোড <span class="make-italic">visited</span> কিনা চেক করার জন্য বা <span class="make-italic">level</span> সেভ করে রাখার জন্য। তাহলে কিভাবে সমাধান করবো? <br> আমরা আমাদের ভ্যালুগুলো <a href="#">কমপ্রেস</a> করে নিতে পারি! <br> <span class="make-italic">Array</span> কিভাবে কমপ্রেস করতে হয় সেটি না পারলে <a href="#">এখান</a> থেকে দেখে আসুন। <br>আশা করি এখন আর এই প্রবলেম এর সমাধান করতে সমস্যা হবে না। <br><br>
+								<a href="codes/336_uva.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
+								<span class="make_bold">We Ship Cheap.</span> <br>
+								<a href="https://onlinejudge.org/external/7/762.pdf">Online Judge (Uva) 762 - We Ship Cheap.</a> প্রবলেমটি ঝটপট করে পরে ফেলুন।<br><br>
+								প্রবলেমটিতে বলা হয়েছে <span class="make-italic">We Ship Cheap</span> নামে একটি শিপিং কোম্পানি প্রোডাক্ট ডেলিভারি দেয়। তারা সবসময় সবচেয়ে সস্তা রাস্তাটাই ব্যবহার করে। আপনাকে একটি <span class="make-italic">source</span> এবং <span class="make-italic">target</span>  শহর দেওয়া হবে। আপনাকে <span class="make-italic">source</span> থেকে <span class="make-italic">target</span> এ যাওয়ার <span class="make-italic">Shortest Path</span> টি প্রিন্ট করতে হবে। আর যদি <span class="make-italic">source</span> থেকে <span class="make-italic">target</span> এ যাওয়া না যায় তাহলে বলতে হবে কোন রাস্তা নেই। <br> চেষ্টা করুন সমাধান করার। <br><br> <span class="make_bold">সমাধানঃ</span><br>
+								প্রবলেমটি আপাত দৃষ্টিতে সহজ মনে হচ্ছে। আমাদের নোডগুলো স্ট্রিং আকারে দেওয়া আছে। তাই আমরা স্ট্রিং গুলোকে <a href="#">কমপ্রেস</a> করে ইন্টিজার এ নিয়ে নিতে পারি। অথবা স্ট্রিং টাইপের গ্রাফ ব্যবহার করতে পারি। আমরা এখানে কমপ্রেস করে সমাধান করবো। <br>
+								আমরা <span class="make-italic">source</span> থেকে বিএফএস চালাবো। তারপর চেক করবো <span class="make-italic">target</span> নোড ভিজিট করা হয়েছে কিনা। যদি ভিজিট করা না হয় তাহলে বলে দিবো আমাদের কোন রাস্তা নেই। আর যদি রাস্তা থাকে তাহলে সে রাস্তাটি প্রিন্ট করবো। আমরা ইতিমধ্যেই শিখেছি কিভাবে রাস্তা প্রিন্ট করতে হয়। তাই সেটি করতে সমস্যা হওয়ার কথা নয়। <br>
+								কিন্তু আমাদের আরও কিছু ব্যপার খেয়াল রাখতে হবে। আমাদের মোট নোড এর সংখ্যা সর্বোচ্চ কতো হতে পারে? বলা হয়েছে নোড হবে দুটি আপারকেস লেটার। তারমানে সর্বোচ্চ <span class="make_bold">26*26</span> টি নোড হতে পারে। এই প্রবলেম এ রং আনসার ভারডিক্ট পাওয়ার বড় একটি কারন আছে। প্রবলেম এ কিন্তু বলা নেই যে <span class="make-italic">source</span> এবং <span class="make-italic">target</span> সবসময় ইনপুট দেওয়া গ্রাফে থাকবে। তাই আমাদের চেক করতে হবে যে সোর্স এবং টার্গেট ইনপুট দেওয়া গ্রাফে আছে কিনা। যদি না থাকে তাহলে সেটিকেও কমপ্রেস করে নিতে হবে। আমরা যখন একটি সমস্যার সমাধান করবো তখন সব ধরণের <span class="make-italic">situation</span> কথা মাথায় রাখতে হবে। <br> এখনো যদি না সমাধান করে থাকেন ঝটপট সমাধান করে ফেলুন! <br><br>
+								<a href="codes/762_uva.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে। </a> <br><br> 
+								<span class="make_bold">Breadth First Search in 2-D Grids. (Knight Moves.)</span><br>
+								<a href="https://onlinejudge.org/external/4/p439.pdf" target="blank">Online Judge (Uva) 439 - Knight Moves.</a> প্রবলেমটি ঝটপট করে পরে ফেলুন। <br><br>
+								আমাদের একটি দাবা খেলার বোর্ড এর <span class="make-italic">Knight</span> যাকে আমরা অনেকেই ঘোড়া বলে থাকি তার মুভ এর জন্য সমস্যার সমাধান করতে হবে।<br>
+								একটি <span class="make-italic">Knight</span> এর বর্তমান পজিশন আর তার টার্গেট পজিশন দেওয়া আছে। আমাদের বলতে হবে সে সর্বনিম্ন কতগুলো মুভ এর মাধ্যমে টার্গেট পজিশন এ যেতে পারবে।<br> দাবা খেলার বোর্ড হচ্ছে <span class="make_bold">8*8</span> এর গ্রিড। যেখানে 8 টি <span class="make-italic">row</span> আছে। এবং প্রতি <span class="make-italic">row</span> তে 8 টি <span class="make-italic">column</span> আছে। আমরা আগের প্রবলেম গুলোয় ইনপুট দেওয়া গ্রাফে বিএফএস চালিয়েছি। কিন্তু গ্রিড এ কিভাবে চালাবো? চেষ্টা করে দেখুন তো পারেন কিনা? <br>	<br><span class="make_bold">সমাধানঃ</span><br> আমাদের <span class="make-italic">Knight</span> এর বর্তমান <span class="make-italic">co-ordinate</span> দেওয়া থাকবে <span class="make-italic">row</span> এবং <span class="make-italic">column</span> এর মাধ্যমে। ধরে নিবো গ্রিড এর সে পজিশনটি <span class="make-italic">source</span> নোড। আমরা কিভাবে নোড এর তথ্য সংরক্ষণ করবো কিউ তে? সহজ! <span class="make-italic">Pair</span> বা <span class="make-italic">Structure</span> ব্যবহার করে। <br> <br>
+							</p>
+							<pre>
+queue < pair < int , int > > qu;</pre>
+							<p class="card-text-bangla">
+								<br> এখানে <span class="make-italic">first element</span> হিসেবে থাকবে <span class="make-italic">row</span> এবং <span class="make-italic">second element</span> হিসেবে থাকবে <span class="make-italic">column</span>. <br>একটি <span class="make-italic">knight</span> 8 দিকে মুভ করতে পারে। আমরা <a href="#">Direction array</a> ব্যবহার করে দেখে নিবো তার বর্তমান পজিশন থেকে কতো গুলো ভ্যালিড মুভ করা যায়। <span class="make-italic">Direction array</span> এর ব্যবহার না জানলে <a href="#">এখান</a> থেকে শিখে নিতে পারেন।<br> আর লেভেল সেভ করার জন্য আরেকটি গ্রিড <span class="make-italic">array</span> ব্যবহার করবো। <br>তাহলে কি দাঁড়ালো? আমাদের কোন গ্রাফ তৈরি করার দরকার নেই। বিএফএস চালানোর সময় আমরা ভ্যালিড মুভ চেক করার মাধ্যমে এক নোড থেকে আরেক নোড এ মুভ করবো। <br>এখন ঝটপট প্রবলেমটি সল্ভ করে ফেলুন! <br><br>
+								<a href="codes/439_uva.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে। </a> <br> <br>
+								প্র্যাকটিস করার জন্য কিছু প্রব্লেমঃ <br>
+								<a href="https://onlinejudge.org/external/5/p567.pdf" target="blank">567 - Risk - Online Judge(Uva).</a> <br> <a href="https://onlinejudge.org/external/106/p10653.pdf" target="blank">10653 - Bombs! NO they are Mines!! - Online Judge(Uva).</a><br> <a href="https://codeforces.com/contest/893/problem/C" target="blank">Rumor - Codeforces.</a> <br> <a href="https://codeforces.com/contest/931/problem/D" target="blank">Peculiar apple-tree - Codeforces</a>
+								<br>
+								<a href="https://www.spoj.com/problems/SPIKES/" target="blank">Spiky Mazes</a> <br><a href="http://onlinejudge.org/external/113/11396.pdf" target="blank"> 11396 - Claw Decomposition - (Uva) Online Judge.</a> <br>
+								<a href="http://onlinejudge.org/external/110/11080.pdf" target="blank"> 11080 - Place the Guards (Uva) Online Judge.</a> <br>
+
+								<a href="https://onlinejudge.org/external/9/924.pdf" target="blank">924 - Spreading the News (Uva) Online Judge.</a> <br>
+								<a href="https://onlinejudge.org/external/4/429.pdf" target="blank">429 - Word Transformation (Uva) Online Judge.</a> <br>
+								<a href="https://onlinejudge.org/external/100/10009.pdf" target="blank">10009 All Roads Lead Where? (Uva) Online Judge.</a>
+								<br><br>
+								<span class="make_bold"> <a href="bfs_3.html">৩য় পর্ব শুরু করুন!</a> </span>
+							</p>
+				   		</div>
+					</div>	
+			    </div>
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Caravans</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>2034. Caravans - Timus code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define mxs (int)( 1e5 + 10 )
+int n , m , s , f , r;
+bool visited [ mxs ];
+vector < int > graph [ mxs ];
+queue < int > qu;
+void brain();
+vector < int > bfs( int source );
+int main()
+{
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    int a , b;
+    cin>>n>>m;
+    while( m-- )
+    {
+        cin>>a>>b;
+        graph [ a ].push_back( b );
+        graph [ b ].push_back( a );
+    }
+    cin>>s>>f>>r;
+
+    ///Calculating the distance from node s
+    vector < int > dis_s;
+    dis_s = bfs( s );
+
+    ///Calculating distance from node f
+    vector < int > dis_f;
+    dis_f = bfs( f );
+
+    ///Calculating distance from node r
+    vector < int > dis_r;
+    dis_r = bfs( r );
+
+    map < int , int > mp;
+    map < int , int >::iterator it;
+
+
+    for ( int i = 1 ; i <= n; i++ )
+    {
+        if ( dis_s [ i ] + dis_f [ i ] == dis_s [ f ] )
+        {
+            ///This node belongs to a shortest path
+            if ( mp.find( dis_s [ i ] ) == mp.end() )
+            {
+                mp [ dis_s [ i ] ] = dis_r [ i ];
+            }
+            else
+            {
+                ///Updating the max distance for this level 
+                mp [ dis_s [ i ] ] = max( mp [ dis_s [ i ] ] , dis_r [ i ] );
+            }
+        }
+    }
+
+    int ans = INT_MAX;
+    for ( it = mp.begin(); it != mp.end(); it++ )
+    {
+        ans = min( ans , it->second );
+    }
+    cout<< ans;
+}
+vector < int > bfs( int source )
+{
+    memset( visited , 0 , sizeof visited );
+
+    vector < int > dis(n+1,-1); ///Vector to save the distance
+    qu.push( source );
+    visited [ source ] = 1;
+    dis [ source ] = 0;
+
+    while( !qu.empty() )
+    {
+        int a = qu.front();
+        qu.pop();
+
+        int sz = graph [ a ].size();
+        for ( int i = 0; i < sz; i++ )
+        {
+            int b = graph [ a ] [ i ];
+            if ( !visited [ b ] )
+            {
+                visited [ b ] = 1;
+                dis [ b ] = dis [ a ]+1;
+                qu.push( b );
+            }
+        }
+    }
+
+    return dis;
+}
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

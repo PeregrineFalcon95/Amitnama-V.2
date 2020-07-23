@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mixed - 1 বাংলা</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="mixed_1.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Mixed Problem solving Series for beginners Part 1. বাংলায়।</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+			<div class="col-10 offset-1 mt-20">
+				<div class="card">
+				    <div class="card-body">
+						<h3 class="card-title">Mixed বাংলায়। Part 1</h3>
+						<h4 class="problem-title">Jolly Jumpers – Online Judge (Uva) - 10038  Problem Tutorial and Solution.</h4>
+						
+						<p class="card-text">
+						<br>
+						<a href="https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=979" target="blank">Problem Link Online Judge (Uva) 10038</a>
+						</p>
+
+						<p class="card-text-bangla">
+						<br>
+						একটি n সাইজের array দেওয়া থাকবে। তাহলে adjacent value গুলোর absolute difference হবে সর্বমোট n-1 টি। সেই সংখ্যা গুলোর মধ্যে যদি 1 থেকে n-1 পর্যন্ত প্রতিটি value একবার করে উপস্থিত থাকে তাহলে সে sequence  টি jolly jumper আর যদি না থাকে তাহলে সেটি jolly jumper নয়। আমাদের বের করতে হবে input এ দেওয়া array টি jolly jumper  নাকি jolly jumper নয়। <br>Solution পড়ার আগে পর্যাপ্ত পরিমানে চিন্তা করার অনুরোধ রইলো।
+						<br>
+						<br>
+					    </p>
+						<p class="make_bold">Solution:</p>
+						<p class="card-text-bangla">
+						<br>
+						Time Limit - 3 seconds. <br> n এর value হতে পারে সর্বোচ্চ 3000. Adjacent value গুলোর মধ্যে absolute difference বের করতে আমাদের একবার loop চালানোই যথেষ্ট। কিন্তু আমরা জানবো কিভাবে যে 1 থেকে n-1 এর মধ্যে সবগুলো value একবার করে আছে কিনা? n এর value কিন্তু সর্বোচ্চ 3000 হতে পারে। একটি array তেও কি 1 থেকে n-1 পর্যন্ত সবগুলো index থাকে না? এখন একটু ভাবুন কিভাবে এই তথ্য ব্যবহার করে প্রবলেমটি সল্ভ করা যায়। অনেকক্ষণ চেষ্টা করেও যদি না পারেন, তবেই নিচের অংশ দেখুন। <br><br>একটি boolean array নেই “marker” নামে 3001 সাইজের। প্রতি test case এর শুরুতে ঐ array এর সব index এর মান 0 করে দেই। আর “ar” নামক একটি input array নেই। ধরি, val = দুইটি adjacent value এর মধ্যে absolute difference. এখন প্রতিবার val দিয়ে marker [ val ] = 1 করে রাখি। আমাদের কিন্তু সতর্ক থাকতে হবে যে val এর মান n-1 এর চেয়ে বড় হয়ে যাচ্ছে কিনা। কারন যদি val এর মান আমাদের marker নামক array এর সাইজের চেয়ে বড় হয়ে যায় তাহলে valid কোন index থাকবে না। আর তখন runtime error verdict বোনাস হিসেবে পাওয়ার সম্ভাবনা শতভাগ।  তাহলে  আমরা এই অংশের কোড এইভাবে করতে পারি:
+						<br>
+						<br>
+						</p>
+						<pre >
+for ( int i = 2 ; i <= n; i++ )
+{
+    int val = abs( ar [ i ] - ar [ i - 1 ] );
+    if( val < n )marker [ val ] = 1;
+}</pre>
+						<p class="card-text-bangla">
+							<br>
+							তাহলে এখন আমাদের কি করতে হবে? একটি loop চালিয়ে দেখতে হবে 1 থেকে n-1 পর্যন্ত সবগুলো index এর মান “marker” নামক array তে 1  আছে কিনা। যদি কোন index এ 1 ব্যতীত 0 থাকে তাহলে সে sequence  টি jolly jumper  নয়।
+							<br>
+							<br>
+						</p>
+						<pre>
+int temp = 0;
+for ( int i = 1 ; i < n ; i++ )
+{
+    if ( !marker [ i ] )
+    {
+        temp = 1;
+        break;
+    }
+}
+
+if ( !temp )cout<<"Jolly\n";
+else cout<<"Not jolly\n";</pre>
+						<p class="card-text-bangla">
+						<br>
+						<a href="codes/uva_10038.html" target="blank">সম্পূর্ণ C++ কোড</a>
+						<br>
+						ভেবে দেখুন তো এই প্রবলেমটি input নেওয়া সহ শুধু মাত্র একটি loop ব্যবহার করে solve করা যায় না?
+						</p>
+			   		</div>
+				</div>	
+		    </div>
+
+		    
+			
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

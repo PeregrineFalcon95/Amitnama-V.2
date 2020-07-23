@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>We Ship Cheap</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>762 - We Ship Cheap (Uva) Online Judge code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+string s , s2;
+int n , m , marker , cases ,num;
+vector < int > graph [ 700 ];
+map < string , int > mp;
+map < int , string > mp2;
+bool visited [ 700 ];
+int parent [ 700 ];
+void bfs( int source , int target );
+int main()
+{
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
+
+    while( cin>>n )
+    {
+        if ( marker )cout<<"\n";
+        marker = 0;
+        mp.clear();
+        mp2.clear();
+
+        ///Clearing the graph , visited array and parent array
+        for ( int i = 0 ; i < 700; i++ )
+        {
+            visited [ i ] = 0;
+            graph [ i ].clear();
+            parent [ i ] = -1;
+        }
+
+        int a , b , c;
+        ///Taking input of edges.
+        while( n-- )
+        {
+            cin>>s>>s2;
+            ///Compressing the values
+            if ( mp.find( s ) == mp.end() ) mp [ s ] = ++marker , mp2 [ marker ] = s;
+            if ( mp.find( s2 ) == mp.end() )mp [ s2 ] = ++marker , mp2 [ marker ] = s2;
+
+            a = mp [ s ];
+            b = mp [ s2 ];
+
+            graph [ a ].push_back( b );
+            graph [ b ].push_back( a );
+        }
+
+        cin>>s>>s2;
+
+        if ( mp.find( s ) == mp.end() ) mp [ s ] = ++marker , mp2 [ marker ] = s;
+        if ( mp.find( s2 ) == mp.end() )mp [ s2 ] = ++marker , mp2 [ marker ] = s2;
+
+        int source ,target;
+        source = mp [ s ];
+        target = mp [ s2 ];
+
+        bfs( source , target );
+
+        ///Container to save the path
+        vector < pair < string , string > > path;
+
+        if ( !visited [ target ] )cout<<"No route\n";
+        else
+        {
+            for ( int i = target; i != source; i = parent [ i ] )
+            {
+                path.push_back( { mp2 [ parent [ i ] ], mp2 [ i ] } );
+            }
+
+            while( !path.empty() )
+            {
+                cout<< path.back().first<<" "<< path.back().second<<"\n";
+                path.pop_back();
+            }
+        }
+
+    }
+    return 0;
+}
+void bfs( int source , int target )
+{
+    queue < int > qu;
+    qu.push( source );
+    visited [ source ] = 1;
+    parent [ source ] = source;
+
+    int a , b;
+    while( !qu.empty() )
+    {
+        a = qu.front();
+        qu.pop();
+        int sz = graph [ a ].size();
+        for ( int i = 0 ; i < sz; i++ )
+        {
+            b = graph [ a ] [ i ];
+            if ( !visited [ b ] )
+            {
+                qu.push( b );
+                parent [ b ] = a;
+                visited [ b ] = 1;
+
+                ///Found the target node, exit the function.
+                if ( b == target )return;
+            }
+        }
+    }
+}
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>

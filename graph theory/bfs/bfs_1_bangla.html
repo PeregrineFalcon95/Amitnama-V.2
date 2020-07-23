@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part - 1 বাংলা</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	
+</head>
+<body class="sorir">
+
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			   
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="bfs_1.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials বাংলায়। Part - 1</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Introduction to Breadth First Search (BFS).</h3>
+							
+							<!--
+							<p>This text contains <sup>superscript</sup> text.</p>
+							<p>This text contains <sub>superscript</sub> text.</p>
+							-->
+							
+
+							<p class="card-text-bangla">
+								<span class="make-italic" >Graph traversal</span> এর সবচেয়ে বেসিক এবং অনেক গুরুত্বপূর্ণ <span class="make-italic" >Algorithm</span> গুলোর মধ্যে একটি হচ্ছে<span class="make-italic" > Breadth – First Search</span> বা <span class="make-italic" >BFS</span>. <br>
+								<span class="make-italic" >Bfs</span> ব্যবহার করে অনেক ধরনের <span class="make-italic" >Problem solve</span> করা যায়। <span class="make-italic" >Bfs</span> শেখার পর আমরা বেশকিছু সমস্যা সমাধানের মাধ্যমে <span class="make-italic" >bfs</span> এর অনেক ধরনের ব্যবহার দেখবো।
+								এই <span class="make-italic" >searching</span> টেকনিক <a href="https://en.wikipedia.org/wiki/Directed_graph" target="blank">directed</a> এবং <a href="https://en.wikipedia.org/wiki/Bidirected_graph" target="blank">undirected</a> উভয় ধরণের গ্রাফেই কাজ করে। কিন্তু গ্রাফটি হতে হবে <span class="make-italic" >unweighted</span>. এটি একটি <span class="make-italic" >single source shortest path (SSSP) algorithm</span>. <br>একটি অ্যালগরিদম বোঝার সবচেয়ে ভালো উপায় হচ্ছে পড়ার সাথে সাথে পুরো প্রসেসটা ইম্যাজিন করা।
+								<br><br>
+								<span class="make_bold">সমস্যাঃ</span> একটি <span class="make-italic" >undirected, unweighted</span> এবং <span class="make-italic" >connected</span> গ্রাফ দেওয়া আছে। এবং একটি source <span class="make_bold">s</span> উল্লেখ করা আছে। প্রতিটি নোড এর জন্য আমাদের বলতে হবে নোড <span class="make_bold">s</span> থেকে ঐ নোড এ সর্বনিম্ন কতগুলো <span class="make-italic" >edge</span> ব্যবহার করে আসতে পারি। মানে, নোড <span class="make_bold">s</span> থেকে ঐ নোড এর <span class="make-italic" >shortest path</span> এর <span class="make-italic" >length</span> কতো? <br>
+								চলুন নিচের গ্রাফটির জন্য সমাধান করি। এই গ্রাফের জন্য <span class="make-italic" >source</span> <span class="make_bold">s</span> = 1.
+								<br> <br>
+								<div class="row col-xs-8 offset-xs-1 col-lg-6 offset-lg-3 ">
+									<img src="images/image-1-bfs.png" class="rounded" alt="Graph" width="90%" height="90%">	
+								</div>
+							</p>
+							<p class="card-text-bangla">
+								<br>
+								চলুন দেখি কিভাবে এই সমস্যার সমাধান করতে পারি। এটি একটি <span class="make-italic" >unweighted</span> গ্রাফ। আমাদের যেহেতু <span class="make-italic" >shortest path</span> এর <span class="make-italic" >edge</span> এর সংখ্যা বের করতে হবে, তাই আমরা প্রতিটি <span class="make-italic" >edge</span> এর <span class="make-italic" >weight</span> ধরে নিবো 1. প্রথমে আমরা আইডিয়া আলোচনা করবো তারপর কোডিং পার্ট এ যাবো। সমাধানটি বোঝার সুবিধার্থে চলুন একটি <span class="make-italic" >Ring of Fire</span> তৈরি করি নিচের চিত্রটির মতো। 
+								<br><br>
+								<div class="row col-xs-8 offset-xs-1 col-lg-6 offset-lg-3 ">
+									<img src="images/image-2-bfs.png" class="rounded" alt="Circle" width="90%" height="90%">	
+								</div>
+							</p>
+							<p class="card-text-bangla">
+								<br>
+								এই <span class="make-italic" >Ring of Fire</span> এর কেন্দ্র হচ্ছে <span class="make_bold">s</span>. কেন্দ্র থেকে আগুনের সুত্রপাত হবে। কেন্দ্রের <span class="make-italic" >level = 0</span>. এখানে <span class="make-italic" >level</span> দিয়ে বোঝানো হচ্ছে কেন্দ্র থেকে ঐ সার্কেল এর দূরত্ব। <span class="make_bold">s</span> থেকে আগুন ধীরে ধীরে <span class="make-italic" >level 1</span> এ ছড়াবে। <span class="make-italic" >level 1</span> আগুনে প্রজ্বলিত হয়ে আগুন ছড়াবে <span class="make-italic" >level 2</span> তে। <span class="make-italic" >level 2</span> প্রজ্বলিত হওয়ার পর ছড়াবে <span class="make-italic" >level 3</span> তে। <br>প্রথমেই <span class="make_bold">s</span> এর স্থানে <span class="make-italic" >source 1</span> কে বসাই। নোড 1 যেহেতু <span class="make-italic" >source</span> সেহেতু 1 এর <span class="make-italic" >level</span>  হচ্ছে 0. নোড 1 থেকে সরাসরি যতগুলো নোড এ যাওয়া যায়, তাদের <span class="make-italic" >level 1</span> এর <span class="make-italic" >ring</span> বসাবো। নোড 1 থেকে প্রথমে যাওয়া যায় নোড 2 তে, তারপর যাওয়া যায় নোড 6 এ, এরপর নোড 7 এ। আমরা 2, 6, 7 এ যেকোন অর্ডারে যেতে পারি। <br> আমরা নোড 2, 6, 7 কে পর্যায়ক্রমে <span class="make-italic" >level 1</span> এ বসাই। <span class="make-italic" >level 1</span> এ নোডগুলো বসানোর পর আমাদের <span class="make-italic" >Ring of Fire</span> দেখতে হবে এইরকমঃ 
+								<br><br>
+								<div class="row col-xs-8 offset-xs-1 col-lg-6 offset-lg-3 ">
+									<img src="images/image-3-bfs.png" clas="rounded" alt="Circle" width="90%" height="90%">	
+								</div>
+							</p>
+							<p class="card-text-bangla">
+								<br>
+								নোড 1 বা <span class="make-italic" >level 0</span> কে নিয়ে আমাদের কাজ শেষ। এখন <span class="make-italic" >level 1</span> এর নোড গুলো নিয়ে কাজ শুরু করবো। <br><span class="make-italic" >level 1</span> এর নোড 2 থেকে যাওয়া যায় নোড 3 এ। আমরা নোড 3 কে <span class="make-italic" >level 2</span> এর <span class="make-italic" >Ring</span> এ বসাই। নোড 2 থেকে আরও যাওয়া যায় নোড 1 এ। কিন্তু 1 কে ইতিমধ্যেই আমরা <span class="make-italic" >Ring of Fire</span> এ বসিয়েছি, তাই আর বসাবো না। একটি নোড কে ইতিমধ্যে বসানো হয়ে গেলে সে নোডটিকে আর বসাবো না। কারন এখন যদি 1 কে <span class="make-italic" >level 2</span> তে বসাই তাহলে কেন্দ্র থেকে 1 এর দূরত্ব হয়ে যাবে 2. কিন্তু 1 ইতিমধ্যেই কেন্দ্রে আছে। <br>এখন কাজ করবো নোড 6 নিয়ে। নোড 6 থেকে যাওয়া যায় নোড 1, 4, 9 এ। কিন্তু 1 কে আমরা ইতিমধ্যেই বসিয়েছি। নোড 4 আর 9 কে বসিয়ে দেই <span class="make-italic" >level 2</span> তে। এখন কাজ করবো নোড 7 নিয়ে। নোড 7 থেকে যাওয়া যায় নোড 1 এবং 8 এ। ব্যবহৃত নোড 1 কে বাদ দিয়ে নোড 8 কে বসিয়ে দেই <span class="make-italic" >level 2</span> তে। <span class="make-italic" >level 1</span> এর সব নোড নিয়ে কাজ করা আমাদের শেষ। <br>আমাদের <span class="make-italic" >Ring of Fire</span> দেখতে এখন এইরকমঃ 
+								<br><br>
+								<div class="row col-xs-8 offset-xs-1 col-lg-6 offset-lg-3 ">
+									<img src="images/image-4-bfs.png" class="rounded" alt="Circle" width="90%" height="90%">	
+								</div>
+							</p>
+							<p class="card-text-bangla">
+								<br>
+								আমদের ইতিমধ্যেই <span class="make-italic" >level 0</span> আর <span class="make-italic" >level 1</span> নিয়ে কাজ  শেষ করেছি। এখন কাজ করবো <span class="make-italic" >level 2</span> নিয়ে। <br><span class="make-italic" >level 2</span> থেকে সরাসরি যতো নোড এ যাওয়া যায় তাদেরকে <span class="make-italic" >level 3</span> তে বসাবো। <span class="make-italic" >level 2</span> তে আছে নোড 3. নোড 3 থেকে যাওয়া যায় নোড 4 এ। 4 কে যদি আমরা <span class="make-italic" >level 3</span> তে বসাই তাহলে কিন্তু কেন্দ্র থেকে নোড 4 এর দূরত্ব বেড়ে যাচ্ছে। কারন 4 ইতিমধ্যেই কেন্দ্র থেকে 2 দুরত্তে আছে। তাই আমরা 4 কে বসাবো না। এমনিভাবে নোড 2 ও <span class="make-italic" >Ring of Fire</span> এ আছে। <br>এখন কাজ করবো নোড 4 নিয়ে। নোড 4 থেকে সরাসরি যাওয়া যায় নতুন নোড 5 এ। নোড 5 কে আমরা <span class="make-italic" >level 3</span> তে বসিয়ে দেই। <span class="make-italic" >level 2</span> এর নোড 9 থেকে নতুন করে যাওয়া যায় নোড 10 এ। নোড 10 কে আমরা বসিয়ে দেই <span class="make-italic" >level 3</span> তে। নোড 8 থেকে নতুন কোন নোড এ যাওয়া যায় না।
+							<br><br>
+								<div class="row col-xs-8 offset-xs-1 col-lg-6 offset-lg-3 ">
+									<img src="images/image-5-bfs.png" class="rounded "alt="Circle" width="90%" height="90%">	
+								</div>
+							</p>
+							<p class="card-text-bangla">
+								<br>
+								এরই সাথে আমাদের <span class="make-italic" >graph traversal</span> এর সমাপ্তি হল। প্রতি নোড যে <span class="make-italic" >level</span> এ আছে, ঐ <span class="make-italic" >level</span> ই কিন্তু কেন্দ্র বা <span class="make-italic" > source</span> থেকে ঐ নোড এ যাওয়ার <span class="make-italic" >shortest path</span> এর <span class="make-italic" >length.</span> তাহলে আমরা পেলাম <span class="make-italic" >source 1</span> থেকে আমরা সর্বনিম্ন একটি <span class="make-italic" >edge</span> অতিক্রম করে যেতে পারি নোড 2, 6, 7 এ। সর্বনিম্ন দুটি <span class="make-italic" >edge</span> অতিক্রম করে যেতে পারি নোড 3, 4, 8, 9 এ। সর্বনিম্ন তিনটি <span class="make-italic" >edge</span> অতিক্রম করে যেতে পারি নোড 5 এবং 10 এ। <br><br>
+								আমাদের <span class="make-italic" >source</span> <span class="make_bold">s</span> থেকে সব নোড এর <span class="make-italic" >shortest path</span> বের করতে হবে। তাই আমরা <span class="make-italic" >source</span> <span class="make_bold">s</span> থেকে যাত্রা শুরু করছি। প্রথমেই <span class="make_bold">s</span> এর সবচেয়ে কাছের নোড গুলোকে নিয়ে নিচ্ছি। তাদের <span class="make-italic" >level 1</span> এ বসাচ্ছি। তারমানে ঐ নোডগুলোতে এর চেয়ে কম <span class="make-italic" >edge</span> পার করে যাওয়া সম্ভব না। তারপর <span class="make-italic" >level 1</span> এর নোডগুলো থেকে সবচেয়ে কাছের অব্যবহৃত নোড গুলো <span class="make-italic" >level 2</span> তে বসাচ্ছি। <span class="make-italic" >level 2</span> এর নোডগুলো তে 2 টি edge এর কম ব্যবহার করে যাওয়া সম্ভব না। কারন যদি যাওয়া যেতো তাহলে তারা ইতিমধ্যে <span class="make-italic" >level 1</span> এ বসানো থাকতো। আমরা এই <span class="make-italic" >process</span> ততক্ষণ পর্যন্ত চালাতে থাকবো যতক্ষণ না <span class="make-italic" >reachable</span> সব নোড ব্যবহৃত হয়ে যায়। <br><br>আমরা কিভাবে <span class="make-italic" >shortest path</span> বের করলাম পরিষ্কার ভাবে বুঝতে পেরেছেন? না বুঝে থাকলে আবার পড়ুন। আপনি কি উপরের <span class="make-italic" >idea</span> এর কোড নিজে নিজে করতে পারবেন? একটু চেষ্টা করে দেখুন। 
+								<br>
+								<br>
+								<span class="make_bold">কোডিং পার্ট </span> – <br>আমরা উপরের গ্রাফটিই ব্যবহার করবো কোড বোঝার জন্য। আমরা শুরু করছি <span class="make-italic" >source</span> নোড 1 থেকে। নোড 1 এর কাজ শেষ হওয়ার পর কাজ করছি নোড 2, 6, 7 নিয়ে। এই নোডগুলোর কাজ শেষ হওয়ার পর কাজ করছি তার পরের <span class="make-italic" >level</span> এর নোড 3, 4, 8, 9 নিয়ে। এই নোডগুলোর কাজ শেষ হওয়ার পর কাজ করছি তারপরের <span class="make-italic" >level</span> এর নোড 5, 10 নিয়ে। লক্ষ্য করলে দেখতে পারবেন আমরা একটি অর্ডার মেনে কাজ করছি। যে নোডকে রিং এ আগে বসাচ্ছি, সে নোড এর কাজ আগে শেষ করছি। <br>
+								তাই আমরা  <span class="make-italic" ><a href="http://www.cplusplus.com/reference/queue/queue/" target="blank">queue</a> data structure</span> ব্যবহার করবো। <br>
+								Queue কাজ করে  <span class="make-italic" >First in first out</span> অর্ডার এ। যে নোডকে যতো আগে <span class="make-italic" >queue</span> তে রাখবো, সে নোডকে আমরা ততো আগে <span class="make-italic" >queue</span> এর সামনে পাবো। আমরা <span class="make-italic" >queue</span> টিকে <span class="make-italic" >Ring</span> এর <span class="make-italic" >container</span> হিসেবে ব্যবহার করবো।
+								<br>
+								আমরা <span class="make-italic" >bfs</span> এর কোড করার সময় এখন একটি অতিরিক্ত তথ্য রাখবো। তা হচ্ছে <span class="make-italic" >graph traversal</span> এর সময় কোন নোড থেকে কোন নোড এ যাচ্ছি। অন্যকথায় আমরা প্রতিটি নোড এর জন্য তার <span class="make-italic" >parent</span> নোড এর নাম্বার সেভ করে রাখবো।  
+								<br>
+								তাহলে প্রথমে দরকার একটি <span class="make-italic" >vector</span> যেখানে গ্রাফ সেভ করে রাখবো। 
+								<br><br>
+							</p>
+								<pre>
+vector < int > graph [ 12 ];</pre>
+							<p class="card-text-bangla">
+								<br>
+								তারপর  আমাদের দুইটি  <span class="make-italic" >integer array</span> দরকার একটি parent সেভ করে রাখার জন্য আরেকটি  <span class="make-italic" >level</span> সেভ করে রাখার জন্য।
+								<br><br>
+							</p>
+								<pre>
+int level [ 12 ] , parent [ 12 ];</pre>
+							<p class="card-text-bangla">
+								<br>
+								 একটি নোড আগে ব্যবহার করা হয়েছে কিনা চেক করার জন্য একটি  <span class="make-italic" >boolean array</span> দরকার । 
+								<br> <br>
+							</p>
+								<pre>
+bool visited [ 12 ];</pre>
+							<p class="card-text-bangla">
+								<br>
+								 <span class="make-italic" >Bfs algorithm</span> প্রসেস করার জন্য একটি   <span class="make-italic" >queue</span> দরকার । 
+								<br><br>
+							</p>
+								<pre>
+queue < int > qu;</pre>
+							<p class="card-text-bangla">
+								<br>
+								এখন গ্রাফটি ইনপুট নেওয়ার পালা:
+								<br><br>
+							</p>
+								<pre>
+int n , m , a , b;
+cin>>n>>m;  ///n is the number of nodes , m is the number of bi-directed edges
+for ( int i = 1 ; i <= m; i++ )
+{
+    cin>>a>>b;      ///Input edges
+    graph [ a ].push_back( b );
+    graph [ b ].push_back( a );
+}</pre> 
+							<p class="card-text-bangla">
+								<br>
+								এখন  <span class="make-italic" >source</span> নোড 1 কে  <span class="make-italic" >qu</span> তে পুশ করে তার লেভেল 0 করে দেই তারপর তাকে  <span class="make-italic" >visited</span> হিসেবে মার্ক করে রাখি। নোড 1 যেহেতু  <span class="make-italic" >source</span> নোড তাই তার কোন  <span class="make-italic" >parent</span> নেই। তাই আমরা নোড 1 এর  <span class="make-italic" >parent</span> হিসেবে 1 কেই সেভ করে রাখি।
+								<br><br>
+							</p>
+								<pre>
+qu.push( 1 ); ///Taking source node to the queue
+visited [ 1 ] = 1; ///Marking source node as visited
+level [ 1 ] = 0; ///Level of source node = 0
+parent [ 1 ] = 1;</pre>
+							<p class="card-text-bangla">
+								<br>
+								 <span class="make-italic" >Algorithm</span> এর প্রসেস ততক্ষণ পর্যন্ত চলবে যতক্ষণ পর্যন্ত সব নোড এর কাজ শেষ না হয়। কাজ তখনই শেষ হবে যখন আমাদের  <span class="make-italic" >qu</span> টি খালি হয়ে যায়। এই কাজটি আমরা করতে পারি একটি  <span class="make-italic" >while loop</span> এর মাধ্যমে। 
+								<br>
+								 <span class="make-italic" >while loop</span> এর মধ্যে প্রতিবার আমরা qu এর ফ্রন্ট নোডটি নিবো এবং সেই নোডটিকে  <span class="make-italic" >qu</span> থেকে  <span class="make-italic" >pop</span> করে দিবো।  <span class="make-italic" >sz</span> নামক  <span class="make-italic" >variable</span> এ নিচ্ছি ঐ নোড এর  <span class="make-italic" >adjacent</span> নোড এর সংখ্যা। তারপর একটি লুপ চালিয়ে দেখছি তার সবগুলো  <span class="make-italic" >adjacent</span> নোড এর মধ্যে কোন গুলো এখনো অব্যবহৃত রয়েছে। 
+								<br>
+								যে নোডগুলো এখনো অব্যবহৃত রয়েছে, তাদের আমরা qu তে  <span class="make-italic" >push</span> করছি, আর  <span class="make-italic" >visited array</span> তে ব্যবহৃত হিসিবে  <span class="make-italic" >mark</span> করছি। সেই নোড এর  <span class="make-italic" >level</span> তার  <span class="make-italic" >parent</span> নোড এর চেয়ে এক বাড়িয়ে দিচ্ছি।  তারপর সেই নোড এর  <span class="make-italic" >parent</span> এর নাম আমরা  <span class="make-italic" >parent array</span> তে সেভ করে রাখছি। 
+								<br><br>
+							</p>
+								<pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+
+    for ( int i = 0; i < sz; i++ ) ///Iterating child nodes.
+    {
+        b = graph [ a ] [ i ];
+        if ( !visited [ b ] ) ///Checking if already visited.
+        {
+            qu.push( b );
+            visited [ b ] = 1;
+            level [ b ] = level [ a ] + 1;
+            parent [ b ] = a;
+        }
+    }
+}</pre>
+							<p class="card-text-bangla">
+								<br>
+								আমাদের কাজ শেষ! 
+								বোঝার সুবিধার্থে পুরো প্রসেসটি একবার সিমুলেট করে দেখতে পারেন।
+								<br>
+								এখন একটি লুপ চালিয়ে  <span class="make-italic" >level array</span> টি প্রিন্ট করে দেখতে পারি source নোড 1 থেকে কোন নোড এর  <span class="make-italic" >shortest path</span> কতো! 
+								<br>
+								আমাদের যদি বলা হয় কোন নির্দিষ্ট একটি নোড এর দূরত্ব বের করতে তাহলে কিন্তু আমরা বিএফএস এর মধ্যে সে নোডটিকে পাওয়া মাত্রই বিএফএস থামিয়ে দিতে পারি! সেক্ষেত্রে কিন্তু বিএফএস অপারেশন অনেক কম চলতে পারে!
+								<br> <br>
+								এখন আমাদের যদি বলা হয় যে নোড 1 থেকে নোড 5 এ যাওয়ার  <span class="make-italic" >shortest path</span> টি প্রিন্ট করতে, তাহলে সেটি আমরা কিভাবে করতে পারি? 
+								<br>
+								 <span class="make-italic" >Parent array</span> টি ব্যবহার করে কি আমরা তা সহজেই বের করতে পারি না? একটু নিজে চেষ্টা করে দেখুন। 
+								<br>
+								দুইটি নোড এর মধ্যে তখনই রাস্তা থাকবে যখন দুইটি নোড একই  <span class="make-italic" >component</span> এর অংশ হবে। এটি আমরা একটি  <span class="make-italic" >if condition</span> দিয়ে চেক করে দেখতে পারি। 
+								<br><br>
+							</p>
+								<pre>
+if ( !visited [ target ] )
+		cout<<"No path found from"<< source<< " to "<< target<<"\n";</pre>
+							<p class="card-text-bangla">
+								<br>
+								আমাদের  <span class="make-italic" >source</span> থেকে  <span class="make-italic" >target</span> এ যাওয়ার  <span class="make-italic" >path</span> বের করতে হবে। আমাদের  <span class="make-italic" >parent array</span> তে সেভ আছে কোন নোড এর  <span class="make-italic" >parent</span> কোন নোড। তাই আমরা একটু উল্টো ভাবে চিন্তা করি। আমরা  <span class="make-italic" >target</span> নোড থেকে  <span class="make-italic" >path</span> ট্র্যাক করা শুরু করবো।  <span class="make-italic" >target</span> নোড থেকে যাবো তার  <span class="make-italic">parent</span> নোড এ। সে নোড থেকে যাবো তার  <span class="make-italic" >parent </span> নোড এ। এইভাবে যেতেই থাকবো যতক্ষণ না পর্যন্ত আমরা  <span class="make-italic" >source</span> নোড এ গিয়ে না পৌছাই। 
+								<br>
+								একটি  <span class="make-italic" >vector</span> ব্যবহার করবো  <span class="make-italic" >path</span> সেভ করে রাখার জন্য।  লুপ শুরু করবো  <span class="make-italic" >target</span> থেকে।  <span class="make-italic" >i</span> নামক  <span class="make-italic" >variable</span> এ  <span class="make-italic" >target</span> রাখবো। প্রতিবার  <span class="make-italic" >i</span> কে  <span class="make-italic" >path</span> নামক  <span class="make-italic" >vector</span> এ  <span class="make-italic" >push</span> করে  <span class="make-italic" >i</span> এর  <span class="make-italic" >value update</span> করে দিবো তার  <span class="make-italic" >parent</span> দিয়ে। ততোক্ষণ পর্যন্ত লুপ চলবে যতক্ষণ পর্যন্ত আমরা  <span class="make-italic" >source</span> এ গিয়ে না পৌছাই।
+								<br><br>
+							</p>
+								<pre>
+///Traversing from target to source
+for (int i = target; i != source; i = parent [ i ] )
+    path.push_back( i );
+
+path.push_back( source );
+
+///We have the path in reversed order. So, we are reversing the path.
+reverse( path.begin(), path.end() );
+
+cout<<"Path from source to target : ";
+for ( int i = 0 ; i < path.size(); i++ )
+    cout<< path [ i ] <<" ";</pre>
+							<p class="card-text-bangla">
+								<br>
+								আমাদের অ্যালগোরিদম এর টাইম কমপ্লেক্সিটি কতো?
+								<br>
+								প্রতিটি নোড এ যাচ্ছি একবার এবং প্রতিটি edge এ যাচ্ছি একবার। তাই সবমিলিয়ে টাইম কমপ্লেক্সিটি হচ্ছে <span class="make_bold make-italic" >O(n+m)</span> যেখানে <span class="make-italic">n</span> হচ্ছে নোড এর সংখ্যা এবং <span class="make-italic">m</span> হচ্ছে <span class="make-italic">edge</span> এর সংখ্যা।. 
+								<br> <br>
+								<a href="codes/bfs_code.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে। </a> <br><br>
+								পরের পর্বগুলোতে থাকবে  <span class="make-italic" >Breadth First Search</span> এর বেশকিছু  <span class="make-italic" >allpication</span> এর বিবরণ এবং সেসব ব্যবহার করে  <span class="make-italic" >problem solve</span> করা।
+								<br><br>
+								<a href="bfs_2_bangla.html"><span class="make_bold">Start reading Part 2!</span></a> 
+							</p>
+
+				   		</div>
+					</div>	
+			    </div>
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

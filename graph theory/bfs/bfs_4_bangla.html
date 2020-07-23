@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFS Part 4 বাংলা</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="sorir">
+	<header class = "page-header" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+			<div class="container shadow p-2 mb-5 bg-white rounded">
+			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
+			
+			    <div class="faka-jayga">
+			        <ul class="nav nav-pills">
+		         		<li class="nav-item">
+		           			<a class="nav-link " href="bfs_4.html">English</a>
+		         		</li>
+		       			<li class="nav-item">
+		         			<a class="nav-link active " href="#">বাংলা</a>
+		       			</li>
+		       		</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container intro ">
+			<div class="col-12">
+				<p class="intro-graph">Breadth First Search (BFS) tutorials বাংলায়। Part 4</p>
+			</div>
+		</div>
+
+	</header>
+
+	<main>
+		<!-- Blog Lists -->
+		<div class="container">
+				<div class="col-10 offset-1 mt-20">
+					<div class="card">
+					    <div class="card-body">
+							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
+							<!--
+							<p>This text contains <sup>superscript</sup> text.</p>
+							<p>This text contains <sub>superscript</sub> text.</p>
+							-->
+							
+							<p class="card-text-bangla">
+								<a href="bfs_1_bangla.html" target="blank">Bfs না পারলে এখান থেকে শিখে ফেলুন!</a> <br>
+								<a href="bfs_2_bangla.html" target="blank">Part 2!</a>
+								<br>
+								<a href="bfs_3_bangla.html" target="blank">Part 3!</a><br><br>
+								<span class="make_bold">0-1 BFS Tutorial.</span> <br>
+								<span class="make_bold">সমস্যাঃ </span>আপনাকে একটি গ্রাফ দেওয়া আছে। যেখানে প্রতিটি <span class="make-italic">edge</span> এর <span class="make-italic">weight</span> হচ্ছে 0 অথবা 1. আপনাকে একটি সোর্স নোড থেকে <span class="make-italic">connected</span> সকল নোড এর <span class="make-italic">shortest path</span> বের করতে হবে। <br><br>
+								<span class="make_bold">সমাধানঃ </span> কি ভাবছেন? <a href="#">Dijkstra's</a> algorithm ব্যবহার করবেন? <br> আপনি কিন্তু বিএফএস একটু মডিফাই করেই এই সমস্যার সমাধান করতে পারেন <span class="make-italic">Dijkstra</span> এর চেয়ে অনেক কম কমপ্লেক্সিটিতেই! <br> <span class="make-italic">Graph traverse</span> করার সময় কিউ এর ফ্রন্ট নোড থেকে তার <span class="make-italic">adjacent</span> নোড এর দূরত্ব 1 হলে আমরা নতুন নোডকে কিউ এর পেছনে পুশ করি। কারন নতুন নোড এর দূরত্ব ফ্রন্ট নোড থেকে এক বেশী। <br>আর যখন ফ্রন্ট নোড থেকে নতুন নোড এর দূরত্ব 0 হবে তখন কি করবো?
+								<br>সোর্স নোড থেকে আমাদের ফ্রন্ট নোড আর নতুন নোড এর দূরত্ব কিন্তু এখন সমান! <br>তাই আমরা নতুন নোড কে কিউ এর পেছনে না পুশ করে তাকে কিউ এর সামনে পুশ করবো। কিন্তু কিউকে তো কোন নোড কে সামনের দিকে পুশ করা যাবে না। <br> আমরা এখানে তাই <a href="http://www.cplusplus.com/reference/deque/deque/deque/" target="blank">deque</a> <span class="make-italic">data structure</span> ব্যবহার করবো। <br><span class="make-italic">Dijkstra's algorithm</span> এ <span class="make-italic">priority_queue/set</span> এ প্রতি পুশ এ টাইম কমপ্লেক্সিটি যেতো <span class="make_bold">log(n)</span> কিন্তু আমাদের <span class="make-italic">deque</span> ব্যবহার করার কারনে সে কমপ্লেক্সিটি কমে হয়ে যাচ্ছে <span class="make_bold">O(1)</span>. 
+								<br> আমরা বিএফএস এ একটি নোড খুজে পেলেই কিন্তু সে নোড এর জন্য <span class="make-italic">shortest path</span> পেয়ে যাই। এখানে কিন্তু সেটি কাজ করবে না। এখানে একটি নোড একাধিক বার আপডেট হতে পারে। আমাদের প্রতিটি নোড কিউতে পুশ করার আগে <span class="make-italic">cost</span> চেক নিবো। একটি নোড ইতিমধ্যে ভিজিট করা হয়েছে কিনা সে চেক করার মেথড এখানে কাজ করবে না।<br><br>
+								তাহলে বিএফএস এর কোড এইভাবে মডিফাই করতে হবেঃ <br><br> 
+							</p>
+							<pre>
+while( !dq.empty() )
+{
+    int a = dq.front();
+    dq.pop_front();
+    int sz = graph [ a ].size(); ///Size of the graph
+    for ( int i = 0; i < sz ; i++ )
+    {
+        int b = graph [ a ] [ i ].first; ///Adjacent node
+        int c = graph [ a ] [ i ].second; ///Cost of the edge
+        if ( cost [ a ] + c < cost [ b ] )
+        {
+            if ( !c )
+            {
+                ///No cost so pushing in front
+                cost [ b ] = cost [ a ];
+                dq.push_front( b );
+            }
+            else
+            {
+                ///Cost = 1 so pushing in back
+                cost [ b ] = cost [ a ] + c;
+                dq.push_back( b );
+            }
+        }
+    }
+}</pre>
+							<p class="card-text-bangla">
+								<br><br>
+							প্র্যাকটিস করার জন্য প্রবলেমঃ <br>
+							<a href="https://www.spoj.com/problems/KATHTHI/" target="blank">KATHTHI - SPOJ</a> <br>
+							<a href="https://codeforces.com/problemset/problem/877/D" target="blank">Olya and Energy Drinks - Codeforces.</a> <br> <a href="http://www.devskill.com/CodingProblems/ViewProblem/60" target="blank">Holloween Party - Devskill</a> <br> <br>
+
+							<span class="make_bold">Number Transformation: </span><br>
+							বিএফএস দিয়ে শুধুমাত্র ইনপুট দেওয়া গ্রাফের প্রবলেমই সমাধান করা যায় না, আপাতদৃষ্টিতে যেসব প্রবলেমকে গ্রাফ বলে মনে হয় না সেগুলোও সমাধান করা যায়। নিচের প্রবলেমটি ঝটপট সমাধান করে ফেলুন। এতোদূর আশার পরে এই সমস্যার সমাধান করা আপনার জন্য কঠিন কিছু হবে না আশা করি। <br>
+							<a href="https://onlinejudge.org/external/117/11730.pdf" target="blank">11730 - Number Transformation (Uva) Online Judge</a> <br><br>
+							<span class="make_bold">Find all the nodes on any shortest path between a given pair of nodes.</span><br>
+							<span class="make_bold">সমস্যাঃ</span> আপনাকে <span class="make-italic">undirected</span> এবং <span class="make-italic">unweighted</span> একটি গ্রাফ দেওয়া আছে এবং একটি সোর্স এবং টার্গেট বলা আছে। দুটি নোড এর মধ্যে কিন্তু একাধিক <span class="make-italic">shortest path</span> থাকতে পারে। আপনাকে প্রতিটি নোড এর জন্য চেক করতে হবে সে নোডটি কোন <span class="make-italic">shortest path</span> এর অংশ কিনা। কিভাবে সমাধান করা যেতে পারে? <br><br>
+							<span class="make_bold">সমাধানঃ </span> আমাদের এক্ষেত্রে দুটি বিএফএস চালাতে হবে। একটি সোর্স থেকে সব নোড এর সর্বনিম্ন দূরত্ব বের করার জন্য। আরেকটি টার্গেট থেকে সব নোড এর সর্বনিম্ন দূরত্ব খোঁজে বের করার জন্য। ধরি <span class="make_bold">dis_s</span> নামক অ্যারেতে আমরা সোর্স নোড থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। আর <span class="make_bold">dis_t</span> নামক অ্যারেতে টার্গেট নোড থেকে সব নোড এর দূরত্ব বের করে রেখেছি।  <br> ধরি এখন নোড <span class="make_bold">x</span> এর জন্য চেক করছি যে এই নোড কোন <span class="make-italic">shortest path</span> এর অংশ কিনা। <br>তাহলে আমাদের কি করতে হবে? <br>খুবই সহজ! <br> সোর্স থেকে নোড <span class="make_bold">x</span> এর দূরত্ব এর সাথে টার্গেট থেকে নোড <span class="make_bold">x</span> এর দূরত্ব যোগ করে দেখতে হবে যে যোগফল সোর্স থেকে টার্গেট এর দূরত্বের সমান কিনা! <br> <br>
+							</p>
+							<pre>
+if( dis_s [ x ] + dis_t [ x ] == dis_s [ t ] )</pre>
+ 							<p class="card-text-bangla">
+ 								<br><br>
+ 							<span class="make_bold">Caravans - Timus.</span> <br>
+ 							<a href="https://acm.timus.ru/problem.aspx?space=1&num=2034" target="blank">2034 - Caravans - Timus</a> প্রবলেমটি পড়ে ফেলুন। <br>
+ 							<span class="make_bold">সমস্যাঃ </span> আমাদের একটি গ্রাফ দেওয়া আছে। একটি <span class="make-italic">caravan</span> সোর্স নোড <span class="make_bold">s</span> থেকে টার্গেট নোড <span class="make_bold">f</span> এ যাবে। তারা সবসময় <span class="make-italic">shortest path</span> ব্যবহার করবে। <br>একটি ডাকাতদল নোড <span class="make_bold">r</span> এ আছে। ডাকাতদল <span class="make-italic">caravan</span> টিকে রাস্তায় আক্রমণ করবে। <br> <span class="make-italic">Caravan</span> কোন নির্দিষ্ট একটি পথে যাওয়ার সময় সেই পথের যে নোডটি ডাকাত দলের সবচেয়ে কাছে, তারা সে নোড এ আক্রমণ করবে। <br>এখন <span class="make-italic">all possible</span> পাথের সবচেয়ে কাছের নোডগুলোর দূরত্বের মাঝে সর্বোচ্চ দূরত্ব খুজে বের করতে হবে। (For all possible shortest path find the maximum distance the robbers have to travel in the worst case.) <br> <br>
+ 							<span class="make_bold">সমাধানঃ </span> আমি সমস্যা এর শেষ লাইন লিখতে গিয়ে ক্লান্ত হয়ে গিয়েছি! কিন্তু এর চেয়ে সহজ কোন লাইন খুজে পাইনি! <br> এই সমস্যা সমাধান করার জন্য আমাদের জানতে হবে কোন কোন নোড <span class="make-italic">all possible shortest path </span> এর অংশ। সেটি আমরা ইতিমধ্যেই শিখে ফেলেছি। আমাদের দরকার সোর্স থেকে সব নোড এর দূরত্ব আর টার্গেট থেকে সব নোড এর দূরত্ব। দুটি বিএফএস চালিয়ে দুটি অ্যারেতে দূরত্ব সেভ করে রাখি। আমাদের কিন্তু টার্গেট থেকেও সব নোড এর দূরত্ব বের করতে হবে। আমরা আরেকটি বিএফএস ব্যবহার করে সেটিও বের করে রাখি। <br>  <br> স্যাম্পল টেস্ট কেসটি খেয়াল করুন। সোর্স থেকে নোড 4 এবং নোড 5 এর দূরত্ব 2. আমরা যে <span class="make-italic">shortest path</span> দিয়েই যাই না কেন আমাদের কিন্তু নোড 4 অথবা 5 দিয়ে যেতেই হবে। তাহলে আমরা যদি শুধুমাত্র 2 দূরত্বের নোড এ পৌছতে চাই নোড <span class="make_bold">r</span> অথবা নোড 3 থেকে তাহলে আমাদের উত্তর হবে নোড 5. কারন 2 দূরত্বের জন্য নোড 5 এর দূরত্ব নোড 3 থেকে সবচেয়ে বেশী! <br>চলুন আমরা নোড <span class="make_bold">s</span> থেকে প্রতিটি লেভেল এর জন্য নোড <span class="make_bold">r</span> থেকে সবচেয়ে দুরের নোডটিকে বের করে রাখি। <br> এই তথ্য ব্যবহার করে কি আমরা সমাধান করতে পারবো? <br> এখন সব লেভেল এর জন্য সবচেয়ে ছোট দূরত্বই হবে আমাদের উত্তর! <br>যদি আপনি এখনো ঠিক মতো বুঝে না থাকেন তাহলে আবার পড়ুন। <br> <br>আরও পরিষ্কারের জন্য কোডিং পার্টটা দেখে নেইঃ <br> ধরি আমরা বিএফএস চালিয়ে <span class="make_bold">dis_s, dis_f, dis_r</span> নামক অ্যারেতে যথাক্রমে সোর্স, টার্গেট আর নোড <span class="make_bold">r</span> থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। <br>আমরা <span class="make_bold">mp</span> নামক একটি map ব্যবহার করবো প্রতিটি লেভেল এর ম্যাক্সিমাম দূরত্ব সেভ করে রাখার জন্য। <br> <br>
+ 							</p>
+ 							<pre> 
+ map < int , int > mp;</pre>
+ 							<p class="card-text-bangla">
+ 								<br><br>এখন প্রতিটি নোড এর জন্য চেক করবো সেটি কোন <span class="make-italic">shortest path</span> এর অংশ কিনা। <br><br>
+ 							</p>
+ 							<pre>
+for ( int i = 1 ; i <= n; i++ )
+{
+    if ( dis_s [ i ] + dis_f [ i ] == dis_s [ f ] )
+    {
+        ///This node belongs to some shortest path
+	    ///Rest of the code
+    }
+}</pre>
+							<p class="card-text-bangla">
+								<br><br>এখন আমাদের দেখতে হবে আমরা এই লেভেল এর জন্য ইতিমধ্যেই কোন দূরত্ব সেভ করে রেখেছি কিনা। যদি সেভ না করে থাকি তাহলে সোর্স থেকে এই দূরত্বের জন্য নোড r থেকে এই নোড এর দূরত্ব সেভ করে রাখবো। <br><br>
+							</p>
+							<pre>
+///Rest of the code
+if ( mp.find( dis_s [ i ] ) == mp.end() )
+{
+	mp [ dis_s [ i ] ] = dis_r [ i ];
+}</pre>
+							<p class="card-text-bangla">
+								<br><br>আর যদি এই দূরত্বের জন্য সেভ করে থাকি তাহলে আমরা সেই দূরত্ব আপডেট করে নিবো। <br><br>
+							</p>
+							<pre>
+else
+{
+    ///Updating the max distance for this level 
+    mp [ dis_s [ i ] ] = max( mp [ dis_s [ i ] ] , dis_r [ i ] );
+}</pre>
+							<p class="card-text-bangla">
+								<br><br>
+								আশা করি এখন আর সমাধান করতে কোন সমস্যা হবে না। আমরা কিন্তু তিনটি বিএফএস ব্যবহার করেছি। আমাদের কি তিন বার আলাদা আলাদা বিএফএস কোড লেখার দরকার আছে? আমরা একটি বিএফএস এর ফাংসান লিখে সেটি বারে বারে কল করতে পারি না? চেষ্টা করুন। যদি সাহায্য দরকার হয় তাহলে নিচের সম্পূর্ণ কোডটি দেখতে পারেন। <br><br>
+								<a href="codes/Caravans_timus.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br> <br> প্রতিটি নোড এর জন্য আপনি চেক করতে পারেন সে নোডটি কোন shortest path এর অংশ কিনা। আপনি কি প্রতিটি edge এর জন্য চেক করতে পারবেন যে এই edge কোন  shortest path এর অংশ কিনা? <br> চিন্তা করে দেখুন! উত্তর খুবই সহজ!! <br>
+								<br>
+								<span class="make_bold">Connected Components? - Codeforces</span> <br>
+								<a href="https://codeforces.com/problemset/problem/920/E" target="blank">Connected Components? - Codeforces </a> প্রবলেমটি পড়ে ফেলুন।<br>
+								<span class="make_bold">সমস্যাঃ </span> একটি গ্রাফ আছে <span class="make_bold">n</span> সংখ্যক নোড দিয়ে তৈরি। আপনাকে বলা আছে কোন কোন নোড এর মধ্যে কোন <span class="make-italic">edge</span> নেই। আপনাকে খুজে বের করতে হবে সেই গ্রাফে সর্ব মোট কতো গুলো <span class="make-italic">component</span> আছে। আর কোন <span class="make-italic">component</span> এর সাইজ কতো? <br> ভেবে দেখুন!<br> <br>
+								<span class="make_bold">সমাধানঃ </span>  কোন নোড এর সাথে কোন নোড এর কোন <span class="make-italic">edge</span> নেই সেটি আমরা একটি <span class="make-italic">graph</span> নামক 2D <span class="make-italic">set</span> এ <span class="make-italic">store</span> করে রাখি। তারপর প্রতিটি নোড কে <span class="make_bold">nvis</span> নামক আরেকটি <span class="make-italic">set</span> এ <span class="make-italic">insert</span> করে নেই। এই সেট এর কাজ হচ্ছে কোন কোন নোড এখনো ভিজিট করা হয়নি সে হিসাব রাখা।  <br> প্রতিটি নোড চেক করি যে এটি ভিজিট করা হয়েছে কিনা। যেগুলো এখনো ভিজিট করা হয়নি সেগুলো থেকে একবার করে একটু মডিফাই করে বিএফএস চালাই। <br> প্রতিবার বিএফএস এর এর ফ্রন্ট নোড এর জন্য আমরা <span class="make_bold">nvis</span> নামক <span class="make-italic">set</span> টি <span class="make-italic">traverse</span> করি। ধরি বর্তমান নোড হচ্ছে <span class="make_bold">x</span>. আমরা <span class="make_bold">x</span> এর জন্য চেক করি <span class="make_bold">x</span> এর সাথে ফ্রন্ট নোড এর কোন নিষেধাজ্ঞা আছে কিনা। সেটি আমরা <span class="make-italic">set</span> এর <span class="make-italic">count function</span> ব্যবহার করে চেক করতে পারি <span class="make_bold">graph</span> এ ফ্রন্ট নোড এর জন্য। যদি <span class="make_bold">x</span> এর সাথে ফ্রন্ট নোড এর <span class="make-italic">edge</span> দেওয়া সম্ভব হয় তাহলে <span class="make_bold">x</span> কে কিউ তে পুশ করে নেই। আর <span class="make_bold">nvis</span> নামক <span class="make-italic">set</span> থেকে <span class="make_bold">x</span> কে <span class="make-italic">erase</span> করে দেই। <br> তাহলে প্রতিবার বিএফএস চালানোর সময় মোট নতুন সংখ্যক নোড এর সংখ্যাই আমাদের বর্তমান <span class="make-italic">component</span> এর সাইজ! <br> আমরা কিন্তু প্রতিবার ফ্রন্ট নোড এর জন্য পুরো <span class="make-italic">nvis</span> <span class="make-italic">traverse</span> করছি। তাহলে আমাদের টাইম কমপ্লেক্সিটি কতো? ভেবে দেখুন। <br><br> <span class="make-italic">Worst case</span> এ একটি নোডকে আমাদের সর্বোচ্চ কতোবার চেক করতে হতে পারে? <br> সহজ! যতো গুলো নোড এর জন্য বলা আছে তাদের মধ্যে কোন <span class="make-italic">edge</span> নেই ততোবার! <br> সব নোড মিলিয়ে বলা আছে <span class="make_bold">m</span> সংখ্যক নিষেধাজ্ঞা আছে। তাহলে মোট কমপ্লেক্সিটি হতে পারে সর্বোচ্চ <span class="make-italic make_bold">O(m log n)</span>.
+ 
+								<br> <br>
+								<a href="codes/ConnectedComponents.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
+								এখন যদি আমাদের বলা হয় প্রতিটি কম্পোনেন্ট এর সবগুলো নোড ও খোঁজে বের করতে হবে আশা করি সেটিও পারবেন। <br> <br>
+								<span class="make_bold">প্র্যাকটিস প্রবলেমঃ </span> <br> <a href="https://codeforces.com/problemset/problem/190/E" target="blank"> Counter Attack - Codeforces. </a> <br> <a href="https://codeforces.com/contest/653/problem/E" target="blank">Bear and Forgotten Tree 2 - Codeforces.</a>  
+							</p>
+				   		</div>
+					</div>	
+			    </div>
+			
+
+
+
+		</div>
+	</main>
+
+	<footer class="bg-light footer-last">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center align-items-center">
+					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="../../css/bootstrap.min.js" ></script>
+	
+</body>
+</html>

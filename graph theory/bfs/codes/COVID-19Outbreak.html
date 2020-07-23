@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>COVID-19 Outbreak</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../css//style.css"> -->
+</head>
+<body>
+    <div class="container">
+    <h2>COVID-19 Outbreak - Toph code in C++</h2>
+    <pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long int
+#define inf ( ll  )( 1e10 + 10 )
+#define mxs (int)( 1e6 + 10 )
+ll n ,  z;
+vector < pair < ll , ll > > graph [ mxs ];
+bool visited [ mxs ];
+ll level [ mxs ] , flow [ mxs ] ;
+queue < ll > qu;
+vector < ll > sorted ;
+void brain();
+int main()
+{
+    //freopen("Input.txt","r",stdin);
+    //freopen("Output.txt","w",stdout);
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    brain();
+    return 0;
+}
+void brain()
+{
+    ll a , b , c;
+    cin>>n>>z;
+    ///Taking input of the graph
+    for ( ll i = 1 ; i < n; i++ )
+    {
+        cin>>a>>b>>c;
+        graph [ a ].push_back( { b , c } );
+        graph [ b ].push_back( { a , c } );
+    }
+
+    ///Saving all nodes limits
+    for ( ll i = 1 ; i <= n; i++ )cin>>flow [ i ];
+
+    ///Running bfs from source
+    qu.push( z );
+    visited [ z ] = 1;
+    sorted.push_back( z );
+
+    while( !qu.empty() )
+    {
+        a = qu.front();
+        qu.pop();
+
+        ll sz = graph [ a ].size();
+        for ( ll i = 0 ; i < sz; i++ )
+        {
+            b = graph [ a ] [ i ].first;
+            if ( !visited [ b ] )
+            {
+                visited [ b ] = 1;
+                qu.push( b );
+                level [ b ] = level [ a ] + 1;
+                sorted.push_back( b );
+            }
+        }
+    }
+
+
+    memset( visited , 0 , sizeof visited );
+    while( !sorted.empty() )
+    {
+        qu.push( sorted.back() );
+        sorted.pop_back();
+    }
+
+    while( !qu.empty() )
+    {
+        a = qu.front();
+        qu.pop();
+
+        ll sz = graph [ a ].size();
+        for ( ll i = 0 ; i < sz; i++ )
+        {
+            b = graph [ a ] [ i ].first;
+            c = graph [ a ] [ i ].second;
+            flow [ b ] += min( flow [ a ] , c );
+        }
+    }
+
+    cout<< flow [ z ];
+}
+
+
+    </pre>    
+    </div>
+	
+	
+</body>
+</html>
