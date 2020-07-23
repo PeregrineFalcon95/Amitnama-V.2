@@ -90,15 +90,15 @@ table {
 */
 @font-face{
     font-family: "Playfair";
-    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 @font-face{
     font-family: "Dosis";
-    src: url(../fonts/Dosis-VariableFont_wght.ttf);
+    src: url(../../fonts/Dosis-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: "SolaimanLipi_bangla";
-    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+    src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
 
 
@@ -110,7 +110,7 @@ body
 {
     font-family: "Playfair";
     background-color: black;
-    background-image: url(../images/6.jpg);
+    background-image: url(../../images/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -156,9 +156,6 @@ nav .current
     padding: 20px;
     height: auto;   
     margin-top: 100px;
-    /*background: aliceblue;*/
-    /*background: #DCDCDC;*/
-    /*background: #e0d0d0;*/
     background: #F8f8f8;
     font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
 }
@@ -241,7 +238,7 @@ nav .current
 
 footer 
 {
-    padding-top: 20px;
+    padding-top: 30px;
     height: auto;
     text-align: center; 
 }
