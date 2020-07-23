@@ -90,12 +90,16 @@ table {
 */
 @font-face{
     font-family: "Playfair";
-    src: url(fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 @font-face{
     font-family: "Dosis";
-    src: url(fonts/Dosis-VariableFont_wght.ttf);
+    src: url(../fonts/Dosis-VariableFont_wght.ttf);
 }
+@font-face {
+    font-family: "SolaimanLipi_bangla";
+    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+
 
 
 
@@ -104,7 +108,7 @@ body
 {
     font-family: "Playfair";
     background-color: black;
-    background-image: url(images/6.jpg);
+    background-image: url(../images/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -131,6 +135,7 @@ nav a
     text-align: center;
     flex-basis: 20%;
 }
+
 nav .current
 {
     height: 100%;
@@ -140,42 +145,58 @@ nav .current
     border-radius: 8px;
 }
 
-
-.sidebar
+.container
 {
-    width: 75%;
+    width: 71%;
     overflow: hidden;
+    margin: auto;
+    padding: 20px;
+    height: auto;   
     margin-top: 100px;
-    margin-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 40px;
-    box-sizing: border-box;
-    height: auto;
-    font-size: 110%;
-    background: rgba(36, 27, 27 ,.5);
-    background-position: center;
-    text-align: center;
+    /*background: aliceblue;*/
+    background: #F8f8f8;
+    font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
 }
-.sidebar a
+
+@media all and ( min-width: 1080px)
 {
-    display: block;
-    padding: 10px 30px;
-    color: rgb(250, 229, 229);
-    text-decoration: none;
-    letter-spacing: 2px;
+    .sidebar
+    {
+        position: fixed;
+        width: 13%;
+        top: 100px;
+        left: 0;
+        height: auto;
+        background: rgba(36, 27, 27 ,.5);
+        font-size: 90%;
+    }
+    .sidebar a
+    {
+        display: block;
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+    .sidebar a:hover
+    {
+        margin-left: 20px;
+        transition: 0.4s;
+        color: #fff;
+    }
+    .blogName
+    {
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        font-family: "SolaimanLipi_bangla";
+        font-size: 150%;
+        font-weight: bold;
+    }
 }
-.sidebar a:hover
+
+@media all and (min-width: 1px) and (max-width: 1079px) 
 {
-    margin-left: 20px;
-    transition: 0.4s;
-    color: #fff;
-}
-.blogName
-{
-    color: rgb(250, 229, 229);
-    font-size: 160%;
-    font-weight: bold;
+    .sidebar { display: none; }
 }
 
 footer
