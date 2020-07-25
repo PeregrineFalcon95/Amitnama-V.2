@@ -1,0 +1,242 @@
+/*============ CSS RESET ==============*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*============ END OF CSS RESET ==============*/
+
+
+/*====================FONTS====================*/
+
+/*
+@font-face {
+    font-family: "Angeline_Vintage";
+    src: url(../fonts/Angeline_Vintage.ttf) format('truetype');}
+@font-face {
+    font-family: "DancingScript-Regular";
+    src: url(../fonts/DancingScript-Regular.ttf)format('truetype'); }
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url(../fonts/Montserrat-Bold.ttf)format('truetype'); }
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url(../fonts/Roboto-Regular.ttf)format('truetype'); }
+@font-face {
+    font-family: "Roboto-Italic";
+    src: url(../fonts/Roboto-Italic.ttf)format('truetype'); }
+@font-face {
+    font-family: "Ekushey_Godhuli-Normal_bangla";
+    src: url(../fonts/Ekushey_Godhuli-Normal.ttf)format('truetype'); }
+  
+@font-face {
+    font-family: "NikoshBAN_bangla";
+    src: url(../fonts/NikoshBAN.ttf)format('truetype'); }
+@font-face {
+    font-family: "SolaimanLipi_bangla";
+    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+@font-face {
+    font-family: "AbhayaLibre";
+    src: url(../fonts/AbhayaLibre-Regular.ttf)format('truetype'); }   
+@font-face {
+    font-family: "Hack-Regular";
+    src: url(../fonts/Hack-Regular.ttf)format('truetype'); }
+*/
+@font-face{
+    font-family: "Playfair";
+    src: url(../../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+}
+@font-face{
+    font-family: "Dosis";
+    src: url(../../fonts/Dosis-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: "SolaimanLipi_bangla";
+    src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+
+
+
+
+/*==================END OF FONTS======================*/
+body 
+{
+    font-family: "Playfair";
+    background-color: black;
+    background-image: url(../../images/6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+nav
+{
+    position: fixed;
+    top: 15px;
+    width: 100%;
+    height: 45px;
+    background: rgba(36, 27, 27 ,.5);
+    font-size: 0;
+    display: inline-flex;
+    justify-content: space-around;
+}
+nav a
+{
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+    line-height: 50px;
+    position: relative;
+    text-align: center;
+    flex-basis: 20%;
+}
+
+nav .current
+{
+    height: 100%;
+    top: 0;
+    background: rgb(29, 39, 37);
+    width: 100px;
+    border-radius: 8px;
+}
+
+.container
+{
+    border-radius: 8px;
+    width: 71%;
+    overflow: hidden;
+    margin: auto;
+    padding: 20px;
+    height: auto;   
+    margin-top: 100px;
+    background: #F8f8f8;
+    font-family:  "SolaimanLipi_bangla";
+    /*font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;*/
+}
+
+@media all and ( min-width: 1080px)
+{
+    .sidebar
+    {
+        position: fixed;
+        width: 13%;
+        top: 100px;
+        left: 0;
+        height: auto;
+        background: rgba(36, 27, 27 ,.5);
+        font-size: 90%;
+    }
+    .sidebar a
+    {
+        display: block;
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+    .sidebar a:hover
+    {
+        margin-left: 20px;
+        transition: 0.4s;
+        color: #fff;
+    }
+    .blogName
+    {
+        padding: 10px 20px;
+        color: rgb(250, 229, 229);
+        font-family: "SolaimanLipi_bangla";
+        font-size: 150%;
+        font-weight: bold;
+    }
+}
+
+@media all and (min-width: 1px) and (max-width: 1079px) 
+{
+    .sidebar { display: none; }
+}
+
+.card
+{
+    background: #DCDCDC;
+    width: 80%;
+    margin: 30px auto;
+    padding: 30px;
+    height: auto;
+    box-sizing: border-box;
+    border: black;
+    border-width: 100px;
+    border-radius: 8px;
+    font-family: "SolaimanLipi_bangla";
+}
+.card a
+{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+.card-title
+{
+    font-size: 180%;
+    text-align: center;
+}
+.card-text
+{
+    line-height: 120%;
+    padding-top: 15px;
+    font-size: 100%;
+}
+.heading
+{
+    font-size: 200%;
+    text-align: center;
+}
+footer
+{
+    padding-top: 30px;
+    text-align: center;
+}
