@@ -5,10 +5,10 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+html, body, div, strong, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
@@ -100,7 +100,9 @@ table {
     font-family: "SolaimanLipi_bangla";
     src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
-
+@font-face {
+    font-family: "Hack-Regular";
+    src: url(../../fonts/Hack-Regular.ttf)format('truetype'); }
 
 
 
@@ -220,16 +222,46 @@ nav .current
     text-align: center;
     text-decoration: none;
 }
-.card img
+@media all and ( min-width: 1080px)
 {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 350px;
-    height: 350px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 40%;
+        height: 40%;
+    }
+}
+@media all and ( max-width: 1079px)
+{
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 70%;
+        height: 70%;
+    }
+}
+pre { 
+    white-space: pre-wrap; 
+    word-break: break-word;
+    font-family: Hack-Regular;
+    height: auto;
+    width: auto;
+    background-color: #CAC7C7 ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    line-height: 20px;
+    box-sizing: border-box;
 }
 .card strong
 {

@@ -33,7 +33,185 @@
         
         <div class="card">
             <p class="card-title">Introduction to Breadth First Search (BFS).</p>
-            <p class="card-text"></p>
+            
+            <p class="card-text">
+                Graph traversal এর সবচেয়ে বেসিক এবং অনেক গুরুত্বপূর্ণ Algorithm গুলোর মধ্যে একটি হচ্ছে Breadth – First Search বা BFS. <br>
+                Bfs ব্যবহার করে অনেক ধরনের Problem solve করা যায়। Bfs শেখার পর আমরা বেশকিছু সমস্যা সমাধানের মাধ্যমে bfs এর অনেক ধরনের ব্যবহার দেখবো।
+                এই searching টেকনিক <a href="https://en.wikipedia.org/wiki/Directed_graph" target="blank">directed</a> এবং <a href="https://en.wikipedia.org/wiki/Bidirected_graph" target="blank">undirected</a> উভয় ধরণের গ্রাফেই কাজ করে। কিন্তু গ্রাফটি হতে হবে unweighted. এটি একটি single source shortest path (SSSP) algorithm. <br>একটি অ্যালগরিদম বোঝার সবচেয়ে ভালো উপায় হচ্ছে পড়ার সাথে সাথে পুরো প্রসেসটা ইম্যাজিন করা।
+                <br><br>
+                <strong>সমস্যাঃ</strong> একটি undirected, unweighted, এবং connected গ্রাফ দেওয়া আছে। এবং একটি source <strong>s</strong> উল্লেখ করা আছে। প্রতিটি নোড এর জন্য আমাদের বলতে হবে নোড <strong>s</strong> থেকে ঐ নোড এ সর্বনিম্ন কতগুলো edge ব্যবহার করে আসতে পারি। মানে, নোড <strong>s</strong> থেকে ঐ নোড এর shortest path এর length কতো? <br>
+                চলুন নিচের গ্রাফটির জন্য সমাধান করি। এই গ্রাফের জন্য source <strong>s</strong> = 1.
+                <br> <br>
+                    <img src="images/image-1-bfs.png" alt="Graph image for bfs algorithm" >	
+            </p>
+            <p class="card-text">
+                <br>
+                চলুন দেখি কিভাবে এই সমস্যার সমাধান করতে পারি। এটি একটি unweighted গ্রাফ। আমাদের যেহেতু shortest path এর edge এর সংখ্যা বের করতে হবে, তাই আমরা প্রতিটি edge এর weight ধরে নিবো 1. প্রথমে আমরা আইডিয়া আলোচনা করবো তারপর কোডিং পার্ট এ যাবো। সমাধানটি বোঝার সুবিধার্থে চলুন একটি Ring of Fire তৈরি করি নিচের চিত্রটির মতো। 
+                <br><br>
+                <img src="images/image-2-bfs.png"  alt="Graph image for bfs algorithm" >
+            </p>
+            <p class="card-text">
+                <br>
+                এই Ring of Fire এর কেন্দ্র হচ্ছে <strong>s</strong>. কেন্দ্র থেকে আগুনের সুত্রপাত হবে। কেন্দ্রের level = 0. এখানে level দিয়ে বোঝানো হচ্ছে কেন্দ্র থেকে ঐ সার্কেল এর দূরত্ব। <strong>s</strong> থেকে আগুন ধীরে ধীরে level 1 এ ছড়াবে। level 1 আগুনে প্রজ্বলিত হয়ে আগুন ছড়াবে level 2 তে। level 2 প্রজ্বলিত হওয়ার পর ছড়াবে level 3 তে। <br>প্রথমেই <strong>s</strong> এর স্থানে source 1 কে বসাই। নোড 1 যেহেতু source সেহেতু 1 এর level হচ্ছে 0. নোড 1 থেকে সরাসরি যতগুলো নোড এ যাওয়া যায়, তাদের level 1 এর ring বসাবো। নোড 1 থেকে প্রথমে যাওয়া যায় নোড 2 তে, তারপর যাওয়া যায় নোড 6 এ, এরপর নোড 7 এ। আমরা 2, 6, 7 এ যেকোন অর্ডারে যেতে পারি। <br> আমরা নোড 2, 6, 7 কে পর্যায়ক্রমে level 1 এ বসাই। level 1 এ নোডগুলো বসানোর পর আমাদের Ring of Fire দেখতে হবে এইরকমঃ 
+                <br><br>
+                <img src="images/image-3-bfs.png"  alt="Graph image for bfs algorithm">
+            </p>
+            <p class="card-text">
+                <br>
+                নোড 1 বা level 0 কে নিয়ে আমাদের কাজ শেষ। এখন level 1 এর নোড গুলো নিয়ে কাজ শুরু করবো। <br>level 1 এর নোড 2 থেকে যাওয়া যায় নোড 3 এ। আমরা নোড 3 কে level 2 এর Ring এ বসাই। নোড 2 থেকে আরও যাওয়া যায় নোড 1 এ। কিন্তু 1 কে ইতিমধ্যেই আমরা Ring of Fire এ বসিয়েছি, তাই আর বসাবো না। একটি নোড কে ইতিমধ্যে বসানো হয়ে গেলে সে নোডটিকে আর বসাবো না। কারন এখন যদি 1 কে level 2 তে বসাই তাহলে কেন্দ্র থেকে 1 এর দূরত্ব হয়ে যাবে 2. কিন্তু 1 ইতিমধ্যেই কেন্দ্রে আছে। <br>এখন কাজ করবো নোড 6 নিয়ে। নোড 6 থেকে যাওয়া যায় নোড 1, 4, 9 এ। কিন্তু 1 কে আমরা ইতিমধ্যেই বসিয়েছি। নোড 4 আর 9 কে বসিয়ে দেই level 2 তে। এখন কাজ করবো নোড 7 নিয়ে। নোড 7 থেকে যাওয়া যায় নোড 1 এবং 8 এ। ব্যবহৃত নোড 1 কে বাদ দিয়ে নোড 8 কে বসিয়ে দেই level 2 তে। level 1 এর সব নোড নিয়ে কাজ করা আমাদের শেষ। <br>আমাদের Ring of Fire দেখতে এখন এইরকমঃ 
+                <br><br>
+                <img src="images/image-4-bfs.png" alt="Graph image for bfs algorithm" >	                
+            </p>
+            <p class="card-text">
+                <br>
+                আমদের ইতিমধ্যেই level 0 আর level 1 নিয়ে কাজ  শেষ করেছি। এখন কাজ করবো level 2 নিয়ে। <br>level 2 থেকে সরাসরি যতো নোড এ যাওয়া যায় তাদেরকে level 3 তে বসাবো। level 2 তে আছে নোড 3. নোড 3 থেকে যাওয়া যায় নোড 4 এ। 4 কে যদি আমরা level 3 তে বসাই তাহলে কিন্তু কেন্দ্র থেকে নোড 4 এর দূরত্ব বেড়ে যাচ্ছে। কারন 4 ইতিমধ্যেই কেন্দ্র থেকে 2 দুরত্তে আছে। তাই আমরা 4 কে বসাবো না। এমনিভাবে নোড 2 ও Ring of Fire এ আছে। <br>এখন কাজ করবো নোড 4 নিয়ে। নোড 4 থেকে সরাসরি যাওয়া যায় নতুন নোড 5 এ। নোড 5 কে আমরা level 3 তে বসিয়ে দেই। level 2 এর নোড 9 থেকে নতুন করে যাওয়া যায় নোড 10 এ। নোড 10 কে আমরা বসিয়ে দেই level 3 তে। নোড 8 থেকে নতুন কোন নোড এ যাওয়া যায় না।
+            <br><br>
+                <img src="images/image-5-bfs.png" alt="Graph image for bfs algorithm">	
+            </p>
+            <p class="card-text">
+            <br>
+            এরই সাথে আমাদের graph traversal এর সমাপ্তি হল। প্রতি নোড যে level এ আছে, ঐ level ই কিন্তু কেন্দ্র বা  source থেকে ঐ নোড এ যাওয়ার shortest path এর length. তাহলে আমরা পেলাম source 1 থেকে আমরা সর্বনিম্ন একটি edge অতিক্রম করে যেতে পারি নোড 2, 6, 7 এ। সর্বনিম্ন দুটি edge অতিক্রম করে যেতে পারি নোড 3, 4, 8, 9 এ। সর্বনিম্ন তিনটি edge অতিক্রম করে যেতে পারি নোড 5 এবং 10 এ। <br><br>
+            আমাদের source <strong>s</strong> থেকে সব নোড এর shortest path বের করতে হবে। তাই আমরা source <strong>s</strong> থেকে যাত্রা শুরু করছি। প্রথমেই <strong>s</strong> এর সবচেয়ে কাছের নোড গুলোকে নিয়ে নিচ্ছি। তাদের level 1 এ বসাচ্ছি। তারমানে ঐ নোডগুলোতে এর চেয়ে কম edge পার করে যাওয়া সম্ভব না। তারপর level 1 এর নোডগুলো থেকে সবচেয়ে কাছের অব্যবহৃত নোড গুলো level 2 তে বসাচ্ছি। level 2 এর নোডগুলো তে 2 টি edge এর কম ব্যবহার করে যাওয়া সম্ভব না। কারন যদি যাওয়া যেতো তাহলে তারা ইতিমধ্যে level 1 এ বসানো থাকতো। আমরা এই process ততক্ষণ পর্যন্ত চালাতে থাকবো যতক্ষণ না reachable সব নোড ব্যবহৃত হয়ে যায়। <br><br>আমরা কিভাবে shortest path বের করলাম পরিষ্কার ভাবে বুঝতে পেরেছেন? না বুঝে থাকলে আবার পড়ুন। আপনি কি উপরের idea এর কোড নিজে নিজে করতে পারবেন? একটু চেষ্টা করে দেখুন। 
+            <br><br>
+            <strong>কোডিং পার্ট: </strong> <br>আমরা উপরের গ্রাফটিই ব্যবহার করবো কোড বোঝার জন্য। আমরা শুরু করছি source নোড 1 থেকে। নোড 1 এর কাজ শেষ হওয়ার পর কাজ করছি নোড 2, 6, 7 নিয়ে। এই নোডগুলোর কাজ শেষ হওয়ার পর কাজ করছি তার পরের level এর নোড 3, 4, 8, 9 নিয়ে। এই নোডগুলোর কাজ শেষ হওয়ার পর কাজ করছি তারপরের level এর নোড 5, 10 নিয়ে। লক্ষ্য করলে দেখতে পারবেন আমরা একটি অর্ডার মেনে কাজ করছি। যে নোডকে রিং এ আগে বসাচ্ছি, সে নোড এর কাজ আগে শেষ করছি। <br>
+            তাই আমরা  <strong><a href="http://www.cplusplus.com/reference/queue/queue/" target="blank">queue</a></strong> data structure ব্যবহার করবো। <br>
+            Queue কাজ করে  First in first out অর্ডার এ। যে নোডকে যতো আগে queue তে রাখবো, সে নোডকে আমরা ততো আগে queue এর সামনে পাবো। আমরা queue টিকে Ring এর container হিসেবে ব্যবহার করবো।
+            <br>
+            আমরা bfs এর কোড করার সময় এখন একটি অতিরিক্ত তথ্য রাখবো। তা হচ্ছে graph traversal এর সময় কোন নোড থেকে কোন নোড এ যাচ্ছি। অন্যকথায় আমরা প্রতিটি নোড এর জন্য তার parent নোড এর নাম্বার সেভ করে রাখবো।  
+            <br>
+            তাহলে প্রথমে দরকার একটি <strong><a href="http://www.cplusplus.com/reference/vector/vector/" target="blank">vector</a></strong> যেখানে গ্রাফ সেভ করে রাখবো। 
+            <br><br>
+            </p>
+            <pre>
+vector < int > graph [ 12 ];</pre>
+            <p class="card-text">
+            <br>
+            তারপর  আমাদের দুইটি  integer array দরকার একটি parent সেভ করে রাখার জন্য আরেকটি  level সেভ করে রাখার জন্য।
+            <br><br>
+            </p>
+            <pre>
+int level [ 12 ] , parent [ 12 ];</pre>
+            <p class="card-text">
+            <br>
+            একটি নোড আগে ব্যবহার করা হয়েছে কিনা চেক করার জন্য একটি  boolean array দরকার । 
+            <br> <br>
+            </p>
+            <pre>
+bool visited [ 12 ];</pre>
+            <p class="card-text">
+            <br>
+            Bfs algorithm প্রসেস করার জন্য একটি queue দরকার । 
+            <br><br>
+            </p>
+            <pre>
+queue < int > qu;</pre>
+            <p class="card-text">
+            <br>
+            এখন গ্রাফটি ইনপুট নেওয়ার পালা:
+            <br><br>
+            </p>
+            <pre>
+int n , m , a , b;
+cin>>n>>m;  ///n = number of nodes , m = number of edges
+for ( int i = 1 ; i <= m; i++ )
+{
+    cin>>a>>b;      ///Input edges
+    graph [ a ].push_back( b );
+    graph [ b ].push_back( a );
+}</pre> 
+            <p class="card-text">
+            <br>
+            এখন  source নোড 1 কে  qu তে পুশ করে তার লেভেল 0 করে দেই তারপর তাকে visited হিসেবে মার্ক করে রাখি। নোড 1 যেহেতু  source নোড তাই তার কোন  parent নেই। তাই আমরা নোড 1 এর parent হিসেবে 1 কেই সেভ করে রাখি।
+            <br><br>
+            </p>
+            <pre>
+qu.push( 1 ); ///Taking source node to the queue
+visited [ 1 ] = 1; ///Marking source node as visited
+level [ 1 ] = 0; ///Level of source node = 0
+parent [ 1 ] = 1;</pre>
+            <p class="card-text">
+            <br>
+            Algorithm এর প্রসেস ততক্ষণ পর্যন্ত চলবে যতক্ষণ পর্যন্ত সব নোড এর কাজ শেষ না হয়। কাজ তখনই শেষ হবে যখন আমাদের  qu টি খালি হয়ে যায়। এই কাজটি আমরা করতে পারি একটি  while loop এর মাধ্যমে। 
+            <br>
+            while loop এর মধ্যে প্রতিবার আমরা qu এর ফ্রন্ট নোডটি নিবো এবং সেই নোডটিকে qu থেকে pop করে দিবো। sz নামক  variable এ নিচ্ছি ঐ নোড এর  adjacent নোড এর সংখ্যা। তারপর একটি লুপ চালিয়ে দেখছি তার সবগুলো  adjacent নোড এর মধ্যে কোন গুলো এখনো অব্যবহৃত রয়েছে। 
+            <br>
+            যে নোডগুলো এখনো অব্যবহৃত রয়েছে, তাদের আমরা qu তে  push করছি, আর visited array তে ব্যবহৃত হিসিবে mark করছি। সেই নোড এর  level তার parent নোড এর চেয়ে এক বাড়িয়ে দিচ্ছি।  তারপর সেই নোড এর parent এর নাম আমরা  parent array তে সেভ করে রাখছি। 
+            <br><br>
+            </p>
+            <pre>
+while( !qu.empty() )
+{
+    a = qu.front();
+    qu.pop();
+    int sz = graph [ a ].size();
+
+    for ( int i = 0; i < sz; i++ ) ///Iterating child nodes.
+    {
+        b = graph [ a ] [ i ];
+        if ( !visited [ b ] ) ///Checking if already visited.
+        {
+            qu.push( b );
+            visited [ b ] = 1;
+            level [ b ] = level [ a ] + 1;
+            parent [ b ] = a;
+        }
+    }
+}</pre>
+            <p class="card-text">
+            <br>
+            আমাদের কাজ শেষ! 
+            বোঝার সুবিধার্থে পুরো প্রসেসটি একবার সিমুলেট করে দেখতে পারেন।
+            <br>
+            এখন একটি লুপ চালিয়ে  level array টি প্রিন্ট করে দেখতে পারি source নোড 1 থেকে কোন নোড এর  shortest path কতো! 
+            <br>
+            আমাদের যদি বলা হয় কোন নির্দিষ্ট একটি নোড এর দূরত্ব বের করতে তাহলে কিন্তু আমরা বিএফএস এর মধ্যে সে নোডটিকে পাওয়া মাত্রই বিএফএস থামিয়ে দিতে পারি! সেক্ষেত্রে কিন্তু বিএফএস অপারেশন অনেক কম চলতে পারে!
+            <br> <br>
+            এখন আমাদের যদি বলা হয় যে নোড 1 থেকে নোড 5 এ যাওয়ার shortest path টি প্রিন্ট করতে, তাহলে সেটি আমরা কিভাবে করতে পারি? 
+            <br>
+            Parent array টি ব্যবহার করে কি আমরা তা সহজেই বের করতে পারি না? একটু নিজে চেষ্টা করে দেখুন। 
+            <br>
+            দুইটি নোড এর মধ্যে তখনই রাস্তা থাকবে যখন দুইটি নোড একই component এর অংশ হবে। এটি আমরা একটি  if condition দিয়ে চেক করে দেখতে পারি। 
+            <br><br>
+            </p>
+                <pre>
+if ( !visited [ target ] )
+cout<<"No path found from"<< source<< " to "<< target<<"\n";</pre>
+            <p class="card-text">
+            <br>
+            আমাদের  source থেকে  target এ যাওয়ার path বের করতে হবে। আমাদের  parent array তে সেভ আছে কোন নোড এর  parent কোন নোড। তাই আমরা একটু উল্টো ভাবে চিন্তা করি। আমরা target নোড থেকে  path ট্র্যাক করা শুরু করবো। Target নোড থেকে যাবো তার  parent নোড এ। সে নোড থেকে যাবো তার parent নোড এ। এইভাবে যেতেই থাকবো যতক্ষণ না পর্যন্ত আমরা  source নোড এ গিয়ে না পৌছাই। 
+            <br>
+            একটি  vector ব্যবহার করবো  path সেভ করে রাখার জন্য।  লুপ শুরু করবো  target থেকে।  i নামক variable এ target রাখবো। প্রতিবার  i কে path নামক vector এ push করে  i এর value update করে দিবো তার parent দিয়ে। ততোক্ষণ পর্যন্ত লুপ চলবে যতক্ষণ পর্যন্ত আমরা source এ গিয়ে না পৌছাই।
+            <br><br>
+            </p>
+            <pre>
+///Traversing from target to source
+
+for (int i = target; i != source; i = parent [ i ] )
+    path.push_back( i );
+
+path.push_back( source );
+
+///We have the path in reversed order. So, we are reversing the path.
+reverse( path.begin(), path.end() );
+
+cout<<"Path from source to target : ";
+
+for ( int i = 0 ; i < path.size(); i++ )
+    cout<< path [ i ] <<" ";</pre>
+            <p class="card-text">
+            <br>
+            আমাদের অ্যালগোরিদম এর টাইম কমপ্লেক্সিটি কতো?
+            <br>
+            প্রতিটি নোড এ যাচ্ছি একবার এবং প্রতিটি edge এ যাচ্ছি একবার। তাই সবমিলিয়ে টাইম কমপ্লেক্সিটি হচ্ছে <strong>O(n+m)</strong> যেখানে <strong>n</strong> হচ্ছে নোড এর সংখ্যা এবং <strong>m</strong> হচ্ছে edge এর সংখ্যা।. 
+            <br> <br>
+            <a href="codes/bfs_code.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে। </a> <br><br>
+            পরের পর্বগুলোতে থাকবে  Breadth First Search এর বেশকিছু  allpication এর বিবরণ এবং সেসব ব্যবহার করে  problem solve করা।
+            <br><br>
+            <a href="bfs_2_bangla.html"><strong>Start reading Part 2! <br></strong></a>
+            <a href="bfs_3_bangla.html"><strong>Start reading Part 3! <br></strong></a> 
+            <a href="bfs_4_bangla.html"><strong>Start reading Part 4! <br></strong></a>
+            </p>
+
         </div>
 
         
