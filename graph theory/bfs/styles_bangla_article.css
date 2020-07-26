@@ -203,7 +203,7 @@ nav .current
 .card
 {
     background: #DCDCDC;
-    width: 80%;
+    width: 95%;
     margin: 30px auto;
     padding: 30px;
     height: auto;
@@ -215,13 +215,21 @@ nav .current
 }
 .card a
 {
-    color: black;
+    color:rgb(66, 66, 182);
     text-align: center;
     text-decoration: none;
 }
+.card img
+{
+    
+}
+.card strong
+{
+    font-weight: bold;
+}
 .card-title
 {
-    font-size: 180%;
+    font-size: 150%;
     text-align: center;
 }
 .card-text
