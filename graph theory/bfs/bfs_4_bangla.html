@@ -1,63 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>BFS Part 4 বাংলা</title>
-	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Author: Amit Sarker. First we will learn 0-1 BFS. You will be given some practice problems to solve. We will learn to find all the nodes on any shortest path between a given pair of nodes. Then we will solve Caravans - problem from Timus online judge. Then we will learn to solve a much more complex application of bfs. Finding the nodes of every components without an actual graph! We will solve Connected Components? problem from Codeforces. Everything will be in  বাংলা।">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Breadth First Search (bfs) algorithm tutorials AmitNama programming blog bangla</title>
+    <link rel="stylesheet" href="styles_bangla_article.css">
 </head>
-<body class="sorir">
-	<header class = "page-header" >
-		<nav class="navbar navbar-expand-lg navbar-light bg-light ">
-			<div class="container shadow p-2 mb-5 bg-white rounded">
-			 	<a class="navbar-brand Blog-Name" href="../../index_bangla.html">অমিতনামা</a>
-			
-			    <div class="faka-jayga">
-			        <ul class="nav nav-pills">
-		         		<li class="nav-item">
-		           			<a class="nav-link " href="bfs_4.html">English</a>
-		         		</li>
-		       			<li class="nav-item">
-		         			<a class="nav-link active " href="#">বাংলা</a>
-		       			</li>
-		       		</ul>
-				</div>
-			</div>
-		</nav>
+<body>
+    <nav>
+        <a href="../../index_bangla.html">HOME</a>
+        <a href="bfs_4.html" >English</a>
+        <a href="#" class="current">বাংলা</a>
+        <a href="../../about me/about_me_bangla.html">About Me</a>  
+    </nav>
+    <div class="sidebar">
+        <p class="blogName">অমিতনামা</p>
+        <a href="../../beginner/beginner_index.html">Beginners Section</a>
+        <a href="../graph_theory_index_bangla.html">Graph Theory</a>
+        <a href="#">Data Structure</a>
+        <a href="../../number theory/Number_Theory_index.html">Number Theory</a>
+        <a href="#">Bit Manipulation</a>
+        <a href="#">Dynamic Programming</a>
+        <a href="#">Backtracking</a>
+        <a href="#">Source Code of Videos</a>
 
-		<div class="container intro ">
-			<div class="col-12">
-				<p class="intro-graph">Breadth First Search (BFS) tutorials বাংলায়। Part 4</p>
-			</div>
-		</div>
+    </div>
 
-	</header>
-
-	<main>
-		<!-- Blog Lists -->
-		<div class="container">
-				<div class="col-10 offset-1 mt-20">
-					<div class="card">
-					    <div class="card-body">
-							<h3 class="card-title">Learning applications and solving Problems with BFS.</h3>
-							<!--
-							<p>This text contains <sup>superscript</sup> text.</p>
-							<p>This text contains <sub>superscript</sub> text.</p>
-							-->
-							
-							<p class="card-text-bangla">
-								<a href="bfs_1_bangla.html" target="blank">Bfs না পারলে এখান থেকে শিখে ফেলুন!</a> <br>
-								<a href="bfs_2_bangla.html" target="blank">Part 2!</a>
-								<br>
-								<a href="bfs_3_bangla.html" target="blank">Part 3!</a><br><br>
-								<strong>0-1 BFS Tutorial.</strong> <br>
-								<strong>সমস্যাঃ </strong>আপনাকে একটি গ্রাফ দেওয়া আছে। যেখানে প্রতিটি   edge</strong> এর   weight</strong> হচ্ছে 0 অথবা 1. আপনাকে একটি সোর্স নোড থেকে   connected</strong> সকল নোড এর   shortest path</strong> বের করতে হবে। <br><br>
-								<strong>সমাধানঃ </strong> কি ভাবছেন? <a href="#">Dijkstra's</a> algorithm ব্যবহার করবেন? <br> আপনি কিন্তু বিএফএস একটু মডিফাই করেই এই সমস্যার সমাধান করতে পারেন   Dijkstra</strong> এর চেয়ে অনেক কম কমপ্লেক্সিটিতেই! <br>   Graph traverse</strong> করার সময় কিউ এর ফ্রন্ট নোড থেকে তার   adjacent</strong> নোড এর দূরত্ব 1 হলে আমরা নতুন নোডকে কিউ এর পেছনে পুশ করি। কারন নতুন নোড এর দূরত্ব ফ্রন্ট নোড থেকে এক বেশী। <br>আর যখন ফ্রন্ট নোড থেকে নতুন নোড এর দূরত্ব 0 হবে তখন কি করবো?
-								<br>সোর্স নোড থেকে আমাদের ফ্রন্ট নোড আর নতুন নোড এর দূরত্ব কিন্তু এখন সমান! <br>তাই আমরা নতুন নোড কে কিউ এর পেছনে না পুশ করে তাকে কিউ এর সামনে পুশ করবো। কিন্তু কিউকে তো কোন নোড কে সামনের দিকে পুশ করা যাবে না। <br> আমরা এখানে তাই <a href="http://www.cplusplus.com/reference/deque/deque/deque/" target="blank">deque</a>   data structure</strong> ব্যবহার করবো। <br>  Dijkstra's algorithm</strong> এ   priority_queue/set</strong> এ প্রতি পুশ এ টাইম কমপ্লেক্সিটি যেতো <strong>log(n)</strong> কিন্তু আমাদের   deque</strong> ব্যবহার করার কারনে সে কমপ্লেক্সিটি কমে হয়ে যাচ্ছে <strong>O(1)</strong>. 
-								<br> আমরা বিএফএস এ একটি নোড খুজে পেলেই কিন্তু সে নোড এর জন্য   shortest path</strong> পেয়ে যাই। এখানে কিন্তু সেটি কাজ করবে না। এখানে একটি নোড একাধিক বার আপডেট হতে পারে। আমাদের প্রতিটি নোড কিউতে পুশ করার আগে   cost</strong> চেক নিবো। একটি নোড ইতিমধ্যে ভিজিট করা হয়েছে কিনা সে চেক করার মেথড এখানে কাজ করবে না।<br><br>
-								তাহলে বিএফএস এর কোড এইভাবে মডিফাই করতে হবেঃ <br><br> 
-							</p>
-							<pre>
+    <div class="container">
+        <p class="heading">Breadth First Search (BFS) tutorials. Part: 4</p>
+        
+        <div class="card">
+            <p class="card-title">Learning applications and solving Problems with BFS.</p>
+            <p class="  card-text">
+                <a href="bfs_1_bangla.html" target="blank"><strong>Bfs না পারলে এখান থেকে শিখে ফেলুন!</strong></a> <br>
+                <a href="bfs_2_bangla.html" target="blank"><strong>Part 2!</strong></a>
+                <br>
+                <a href="bfs_3_bangla.html" target="blank"><strong>Part 3!</strong></a><br><br>
+                <strong>0-1 BFS Tutorial.</strong> <br>
+                <strong>সমস্যাঃ </strong>আপনাকে একটি গ্রাফ দেওয়া আছে। যেখানে প্রতিটি  edge এর   weight হচ্ছে 0 অথবা 1. আপনাকে একটি সোর্স নোড থেকে  connected সকল নোড এর   shortest path বের করতে হবে। <br><br>
+                <strong>সমাধানঃ </strong> কি ভাবছেন? <a href="#">Dijkstra's</a> algorithm ব্যবহার করবেন? <br> আপনি কিন্তু বিএফএস একটু মডিফাই করেই এই সমস্যার সমাধান করতে পারেন   Dijkstra এর চেয়ে অনেক কম কমপ্লেক্সিটিতেই! <br>   Graph traverse করার সময় কিউ এর ফ্রন্ট নোড থেকে তার   adjacent নোড এর দূরত্ব 1 হলে আমরা নতুন নোডকে কিউ এর পেছনে পুশ করি। কারন নতুন নোড এর দূরত্ব ফ্রন্ট নোড থেকে এক বেশী। <br>আর যখন ফ্রন্ট নোড থেকে নতুন নোড এর দূরত্ব 0 হবে তখন কি করবো?
+                <br>সোর্স নোড থেকে আমাদের ফ্রন্ট নোড আর নতুন নোড এর দূরত্ব কিন্তু এখন সমান! <br>তাই আমরা নতুন নোড কে কিউ এর পেছনে না পুশ করে তাকে কিউ এর সামনে পুশ করবো। কিন্তু কিউকে তো কোন নোড কে সামনের দিকে পুশ করা যাবে না। <br> আমরা এখানে তাই <a href="http://www.cplusplus.com/reference/deque/deque/deque/" target="blank"><strong>deque</strong></a>   data structure ব্যবহার করবো। <br>  Dijkstra's algorithm এ   priority_queue/set এ প্রতি পুশ এ টাইম কমপ্লেক্সিটি যেতো <strong>log(n)</strong> কিন্তু আমাদের deque ব্যবহার করার কারনে সে কমপ্লেক্সিটি কমে হয়ে যাচ্ছে <strong>O(1)</strong>. 
+                <br> আমরা বিএফএস এ একটি নোড খুজে পেলেই কিন্তু সে নোড এর জন্য   shortest path পেয়ে যাই। এখানে কিন্তু সেটি কাজ করবে না। এখানে একটি নোড একাধিক বার আপডেট হতে পারে। আমাদের প্রতিটি নোড কিউতে পুশ করার আগে cost চেক নিবো। একটি নোড ইতিমধ্যে ভিজিট করা হয়েছে কিনা সে চেক করার মেথড এখানে কাজ করবে না।<br><br>
+                তাহলে বিএফএস এর কোড এইভাবে মডিফাই করতে হবেঃ <br><br> 
+            </p>
+            <pre>
 while( !dq.empty() )
 {
     int a = dq.front();
@@ -84,98 +72,82 @@ while( !dq.empty() )
         }
     }
 }</pre>
-							<p class="card-text-bangla">
-								<br><br>
-							প্র্যাকটিস করার জন্য প্রবলেমঃ <br>
-							<a href="https://www.spoj.com/problems/KATHTHI/" target="blank">KATHTHI - SPOJ</a> <br>
-							<a href="https://codeforces.com/problemset/problem/877/D" target="blank">Olya and Energy Drinks - Codeforces.</a> <br> <a href="http://www.devskill.com/CodingProblems/ViewProblem/60" target="blank">Holloween Party - Devskill</a> <br> <br>
+            <p class="card-text">
+                <br><br>
+            প্র্যাকটিস করার জন্য প্রবলেমঃ <br>
+            <a href="https://www.spoj.com/problems/KATHTHI/" target="blank">KATHTHI - SPOJ</a> <br>
+            <a href="https://codeforces.com/problemset/problem/877/D" target="blank">Olya and Energy Drinks - Codeforces.</a> <br> <a href="http://www.devskill.com/CodingProblems/ViewProblem/60" target="blank">Holloween Party - Devskill</a> <br> <br>
 
-							<strong>Number Transformation: </strong><br>
-							বিএফএস দিয়ে শুধুমাত্র ইনপুট দেওয়া গ্রাফের প্রবলেমই সমাধান করা যায় না, আপাতদৃষ্টিতে যেসব প্রবলেমকে গ্রাফ বলে মনে হয় না সেগুলোও সমাধান করা যায়। নিচের প্রবলেমটি ঝটপট সমাধান করে ফেলুন। এতোদূর আশার পরে এই সমস্যার সমাধান করা আপনার জন্য কঠিন কিছু হবে না আশা করি। <br>
-							<a href="https://onlinejudge.org/external/117/11730.pdf" target="blank">11730 - Number Transformation (Uva) Online Judge</a> <br><br>
-							<strong>Find all the nodes on any shortest path between a given pair of nodes.</strong><br>
-							<strong>সমস্যাঃ</strong> আপনাকে   undirected</strong> এবং   unweighted</strong> একটি গ্রাফ দেওয়া আছে এবং একটি সোর্স এবং টার্গেট বলা আছে। দুটি নোড এর মধ্যে কিন্তু একাধিক   shortest path</strong> থাকতে পারে। আপনাকে প্রতিটি নোড এর জন্য চেক করতে হবে সে নোডটি কোন   shortest path</strong> এর অংশ কিনা। কিভাবে সমাধান করা যেতে পারে? <br><br>
-							<strong>সমাধানঃ </strong> আমাদের এক্ষেত্রে দুটি বিএফএস চালাতে হবে। একটি সোর্স থেকে সব নোড এর সর্বনিম্ন দূরত্ব বের করার জন্য। আরেকটি টার্গেট থেকে সব নোড এর সর্বনিম্ন দূরত্ব খোঁজে বের করার জন্য। ধরি <strong>dis_s</strong> নামক অ্যারেতে আমরা সোর্স নোড থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। আর <strong>dis_t</strong> নামক অ্যারেতে টার্গেট নোড থেকে সব নোড এর দূরত্ব বের করে রেখেছি।  <br> ধরি এখন নোড <strong>x</strong> এর জন্য চেক করছি যে এই নোড কোন   shortest path</strong> এর অংশ কিনা। <br>তাহলে আমাদের কি করতে হবে? <br>খুবই সহজ! <br> সোর্স থেকে নোড <strong>x</strong> এর দূরত্ব এর সাথে টার্গেট থেকে নোড <strong>x</strong> এর দূরত্ব যোগ করে দেখতে হবে যে যোগফল সোর্স থেকে টার্গেট এর দূরত্বের সমান কিনা! <br> <br>
-							</p>
-							<pre>
+            <strong>Number Transformation: </strong><br>
+            বিএফএস দিয়ে শুধুমাত্র ইনপুট দেওয়া গ্রাফের প্রবলেমই সমাধান করা যায় না, আপাতদৃষ্টিতে যেসব প্রবলেমকে গ্রাফ বলে মনে হয় না সেগুলোও সমাধান করা যায়। নিচের প্রবলেমটি ঝটপট সমাধান করে ফেলুন। এতোদূর আশার পরে এই সমস্যার সমাধান করা আপনার জন্য কঠিন কিছু হবে না আশা করি। <br>
+            <a href="https://onlinejudge.org/external/117/11730.pdf" target="blank">11730 - Number Transformation (Uva) Online Judge</a> <br><br>
+            <strong>Find all the nodes on any shortest path between a given pair of nodes.</strong><br>
+            <strong>সমস্যাঃ</strong> আপনাকে   undirected এবং   unweighted একটি গ্রাফ দেওয়া আছে এবং একটি সোর্স এবং টার্গেট বলা আছে। দুটি নোড এর মধ্যে কিন্তু একাধিক   shortest path থাকতে পারে। আপনাকে প্রতিটি নোড এর জন্য চেক করতে হবে সে নোডটি কোন   shortest path এর অংশ কিনা। কিভাবে সমাধান করা যেতে পারে? <br><br>
+            <strong>সমাধানঃ </strong> আমাদের এক্ষেত্রে দুটি বিএফএস চালাতে হবে। একটি সোর্স থেকে সব নোড এর সর্বনিম্ন দূরত্ব বের করার জন্য। আরেকটি টার্গেট থেকে সব নোড এর সর্বনিম্ন দূরত্ব খোঁজে বের করার জন্য। ধরি <strong>dis_s</strong> নামক অ্যারেতে আমরা সোর্স নোড থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। আর <strong>dis_t</strong> নামক অ্যারেতে টার্গেট নোড থেকে সব নোড এর দূরত্ব বের করে রেখেছি।  <br> ধরি এখন নোড <strong>x</strong> এর জন্য চেক করছি যে এই নোড কোন   shortest path এর অংশ কিনা। <br>তাহলে আমাদের কি করতে হবে? <br>খুবই সহজ! <br> সোর্স থেকে নোড <strong>x</strong> এর দূরত্ব এর সাথে টার্গেট থেকে নোড <strong>x</strong> এর দূরত্ব যোগ করে দেখতে হবে যে যোগফল সোর্স থেকে টার্গেট এর দূরত্বের সমান কিনা! <br> <br>
+            </p>
+            <pre>
 if( dis_s [ x ] + dis_t [ x ] == dis_s [ t ] )</pre>
- 							<p class="card-text-bangla">
- 								<br><br>
- 							<strong>Caravans - Timus.</strong> <br>
- 							<a href="https://acm.timus.ru/problem.aspx?space=1&num=2034" target="blank">2034 - Caravans - Timus</a> প্রবলেমটি পড়ে ফেলুন। <br>
- 							<strong>সমস্যাঃ </strong> আমাদের একটি গ্রাফ দেওয়া আছে। একটি   caravan</strong> সোর্স নোড <strong>s</strong> থেকে টার্গেট নোড <strong>f</strong> এ যাবে। তারা সবসময়   shortest path</strong> ব্যবহার করবে। <br>একটি ডাকাতদল নোড <strong>r</strong> এ আছে। ডাকাতদল   caravan</strong> টিকে রাস্তায় আক্রমণ করবে। <br>   Caravan</strong> কোন নির্দিষ্ট একটি পথে যাওয়ার সময় সেই পথের যে নোডটি ডাকাত দলের সবচেয়ে কাছে, তারা সে নোড এ আক্রমণ করবে। <br>এখন   all possible</strong> পাথের সবচেয়ে কাছের নোডগুলোর দূরত্বের মাঝে সর্বোচ্চ দূরত্ব খুজে বের করতে হবে। (For all possible shortest path find the maximum distance the robbers have to travel in the worst case.) <br> <br>
- 							<strong>সমাধানঃ </strong> আমি সমস্যা এর শেষ লাইন লিখতে গিয়ে ক্লান্ত হয়ে গিয়েছি! কিন্তু এর চেয়ে সহজ কোন লাইন খুজে পাইনি! <br> এই সমস্যা সমাধান করার জন্য আমাদের জানতে হবে কোন কোন নোড   all possible shortest path </strong> এর অংশ। সেটি আমরা ইতিমধ্যেই শিখে ফেলেছি। আমাদের দরকার সোর্স থেকে সব নোড এর দূরত্ব আর টার্গেট থেকে সব নোড এর দূরত্ব। দুটি বিএফএস চালিয়ে দুটি অ্যারেতে দূরত্ব সেভ করে রাখি। আমাদের কিন্তু টার্গেট থেকেও সব নোড এর দূরত্ব বের করতে হবে। আমরা আরেকটি বিএফএস ব্যবহার করে সেটিও বের করে রাখি। <br>  <br> স্যাম্পল টেস্ট কেসটি খেয়াল করুন। সোর্স থেকে নোড 4 এবং নোড 5 এর দূরত্ব 2. আমরা যে   shortest path</strong> দিয়েই যাই না কেন আমাদের কিন্তু নোড 4 অথবা 5 দিয়ে যেতেই হবে। তাহলে আমরা যদি শুধুমাত্র 2 দূরত্বের নোড এ পৌছতে চাই নোড <strong>r</strong> অথবা নোড 3 থেকে তাহলে আমাদের উত্তর হবে নোড 5. কারন 2 দূরত্বের জন্য নোড 5 এর দূরত্ব নোড 3 থেকে সবচেয়ে বেশী! <br>চলুন আমরা নোড <strong>s</strong> থেকে প্রতিটি লেভেল এর জন্য নোড <strong>r</strong> থেকে সবচেয়ে দুরের নোডটিকে বের করে রাখি। <br> এই তথ্য ব্যবহার করে কি আমরা সমাধান করতে পারবো? <br> এখন সব লেভেল এর জন্য সবচেয়ে ছোট দূরত্বই হবে আমাদের উত্তর! <br>যদি আপনি এখনো ঠিক মতো বুঝে না থাকেন তাহলে আবার পড়ুন। <br> <br>আরও পরিষ্কারের জন্য কোডিং পার্টটা দেখে নেইঃ <br> ধরি আমরা বিএফএস চালিয়ে <strong>dis_s, dis_f, dis_r</strong> নামক অ্যারেতে যথাক্রমে সোর্স, টার্গেট আর নোড <strong>r</strong> থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। <br>আমরা <strong>mp</strong> নামক একটি map ব্যবহার করবো প্রতিটি লেভেল এর ম্যাক্সিমাম দূরত্ব সেভ করে রাখার জন্য। <br> <br>
- 							</p>
- 							<pre> 
- map < int , int > mp;</pre>
- 							<p class="card-text-bangla">
- 								<br><br>এখন প্রতিটি নোড এর জন্য চেক করবো সেটি কোন   shortest path</strong> এর অংশ কিনা। <br><br>
- 							</p>
- 							<pre>
+             <p class="  card-text">
+                 <br><br>
+             <strong>Caravans - Timus.</strong> <br>
+             <a href="https://acm.timus.ru/problem.aspx?space=1&num=2034" target="blank">2034 - Caravans - Timus</a> প্রবলেমটি পড়ে ফেলুন। <br>
+             <strong>সমস্যাঃ </strong> আমাদের একটি গ্রাফ দেওয়া আছে। একটি  caravan সোর্স নোড <strong>s</strong> থেকে টার্গেট নোড <strong>f</strong> এ যাবে। তারা সবসময়   shortest path ব্যবহার করবে। <br>একটি ডাকাতদল নোড <strong>r</strong> এ আছে। ডাকাতদল   caravan টিকে রাস্তায় আক্রমণ করবে। <br>   Caravan কোন নির্দিষ্ট একটি পথে যাওয়ার সময় সেই পথের যে নোডটি ডাকাত দলের সবচেয়ে কাছে, তারা সে নোড এ আক্রমণ করবে। <br>এখন   all possible পাথের সবচেয়ে কাছের নোডগুলোর দূরত্বের মাঝে সর্বোচ্চ দূরত্ব খুজে বের করতে হবে। (For all possible shortest path find the maximum distance the robbers have to travel in the worst case.) <br> <br>
+             <strong>সমাধানঃ </strong> আমি সমস্যা এর শেষ লাইন লিখতে গিয়ে ক্লান্ত হয়ে গিয়েছি! কিন্তু এর চেয়ে সহজ কোন লাইন খুজে পাইনি! <br> এই সমস্যা সমাধান করার জন্য আমাদের জানতে হবে কোন কোন নোড   all possible shortest path  এর অংশ। সেটি আমরা ইতিমধ্যেই শিখে ফেলেছি। আমাদের দরকার সোর্স থেকে সব নোড এর দূরত্ব আর টার্গেট থেকে সব নোড এর দূরত্ব। দুটি বিএফএস চালিয়ে দুটি অ্যারেতে দূরত্ব সেভ করে রাখি। আমাদের কিন্তু টার্গেট থেকেও সব নোড এর দূরত্ব বের করতে হবে। আমরা আরেকটি বিএফএস ব্যবহার করে সেটিও বের করে রাখি। <br>  <br> স্যাম্পল টেস্ট কেসটি খেয়াল করুন। সোর্স থেকে নোড 4 এবং নোড 5 এর দূরত্ব 2. আমরা যে   shortest path দিয়েই যাই না কেন আমাদের কিন্তু নোড 4 অথবা 5 দিয়ে যেতেই হবে। তাহলে আমরা যদি শুধুমাত্র 2 দূরত্বের নোড এ পৌছতে চাই নোড <strong>r</strong> অথবা নোড 3 থেকে তাহলে আমাদের উত্তর হবে নোড 5. কারন 2 দূরত্বের জন্য নোড 5 এর দূরত্ব নোড 3 থেকে সবচেয়ে বেশী! <br>চলুন আমরা নোড <strong>s</strong> থেকে প্রতিটি লেভেল এর জন্য নোড <strong>r</strong> থেকে সবচেয়ে দুরের নোডটিকে বের করে রাখি। <br> এই তথ্য ব্যবহার করে কি আমরা সমাধান করতে পারবো? <br> এখন সব লেভেল এর জন্য সবচেয়ে ছোট দূরত্বই হবে আমাদের উত্তর! <br>যদি আপনি এখনো ঠিক মতো বুঝে না থাকেন তাহলে আবার পড়ুন। <br> <br>আরও পরিষ্কারের জন্য কোডিং পার্টটা দেখে নেইঃ <br> ধরি আমরা বিএফএস চালিয়ে <strong>dis_s, dis_f, dis_r</strong> নামক অ্যারেতে যথাক্রমে সোর্স, টার্গেট আর নোড <strong>r</strong> থেকে সব নোড এর দূরত্ব সেভ করে রেখেছি। <br>আমরা <strong>mp</strong> নামক একটি map ব্যবহার করবো প্রতিটি লেভেল এর ম্যাক্সিমাম দূরত্ব সেভ করে রাখার জন্য। <br> <br>
+             </p>
+             <pre> 
+map < int , int > mp;</pre>
+             <p class="card-text">
+                 <br><br>এখন প্রতিটি নোড এর জন্য চেক করবো সেটি কোন   shortest path</strong> এর অংশ কিনা। <br><br>
+             </p>
+             <pre>
 for ( int i = 1 ; i <= n; i++ )
 {
     if ( dis_s [ i ] + dis_f [ i ] == dis_s [ f ] )
     {
         ///This node belongs to some shortest path
-	    ///Rest of the code
+        ///Rest of the code
     }
 }</pre>
-							<p class="card-text-bangla">
-								<br><br>এখন আমাদের দেখতে হবে আমরা এই লেভেল এর জন্য ইতিমধ্যেই কোন দূরত্ব সেভ করে রেখেছি কিনা। যদি সেভ না করে থাকি তাহলে সোর্স থেকে এই দূরত্বের জন্য নোড r থেকে এই নোড এর দূরত্ব সেভ করে রাখবো। <br><br>
-							</p>
-							<pre>
+            <p class="card-text">
+                <br><br>এখন আমাদের দেখতে হবে আমরা এই লেভেল এর জন্য ইতিমধ্যেই কোন দূরত্ব সেভ করে রেখেছি কিনা। যদি সেভ না করে থাকি তাহলে সোর্স থেকে এই দূরত্বের জন্য নোড r থেকে এই নোড এর দূরত্ব সেভ করে রাখবো। <br><br>
+            </p>
+            <pre>
 ///Rest of the code
 if ( mp.find( dis_s [ i ] ) == mp.end() )
 {
-	mp [ dis_s [ i ] ] = dis_r [ i ];
+    mp [ dis_s [ i ] ] = dis_r [ i ];
 }</pre>
-							<p class="card-text-bangla">
-								<br><br>আর যদি এই দূরত্বের জন্য সেভ করে থাকি তাহলে আমরা সেই দূরত্ব আপডেট করে নিবো। <br><br>
-							</p>
-							<pre>
+            <p class="card-text">
+                <br><br>আর যদি এই দূরত্বের জন্য সেভ করে থাকি তাহলে আমরা সেই দূরত্ব আপডেট করে নিবো। <br><br>
+            </p>
+            <pre>
 else
 {
     ///Updating the max distance for this level 
     mp [ dis_s [ i ] ] = max( mp [ dis_s [ i ] ] , dis_r [ i ] );
 }</pre>
-							<p class="card-text-bangla">
-								<br><br>
-								আশা করি এখন আর সমাধান করতে কোন সমস্যা হবে না। আমরা কিন্তু তিনটি বিএফএস ব্যবহার করেছি। আমাদের কি তিন বার আলাদা আলাদা বিএফএস কোড লেখার দরকার আছে? আমরা একটি বিএফএস এর ফাংসান লিখে সেটি বারে বারে কল করতে পারি না? চেষ্টা করুন। যদি সাহায্য দরকার হয় তাহলে নিচের সম্পূর্ণ কোডটি দেখতে পারেন। <br><br>
-								<a href="codes/Caravans_timus.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br> <br> প্রতিটি নোড এর জন্য আপনি চেক করতে পারেন সে নোডটি কোন shortest path এর অংশ কিনা। আপনি কি প্রতিটি edge এর জন্য চেক করতে পারবেন যে এই edge কোন  shortest path এর অংশ কিনা? <br> চিন্তা করে দেখুন! উত্তর খুবই সহজ!! <br>
-								<br>
-								<strong>Connected Components? - Codeforces</strong> <br>
-								<a href="https://codeforces.com/problemset/problem/920/E" target="blank">Connected Components? - Codeforces </a> প্রবলেমটি পড়ে ফেলুন।<br>
-								<strong>সমস্যাঃ </strong> একটি গ্রাফ আছে <strong>n</strong> সংখ্যক নোড দিয়ে তৈরি। আপনাকে বলা আছে কোন কোন নোড এর মধ্যে কোন   edge</strong> নেই। আপনাকে খুজে বের করতে হবে সেই গ্রাফে সর্ব মোট কতো গুলো   component</strong> আছে। আর কোন   component</strong> এর সাইজ কতো? <br> ভেবে দেখুন!<br> <br>
-								<strong>সমাধানঃ </strong>  কোন নোড এর সাথে কোন নোড এর কোন   edge</strong> নেই সেটি আমরা একটি   graph</strong> নামক 2D   set</strong> এ   store</strong> করে রাখি। তারপর প্রতিটি নোড কে <strong>nvis</strong> নামক আরেকটি   set</strong> এ   insert</strong> করে নেই। এই সেট এর কাজ হচ্ছে কোন কোন নোড এখনো ভিজিট করা হয়নি সে হিসাব রাখা।  <br> প্রতিটি নোড চেক করি যে এটি ভিজিট করা হয়েছে কিনা। যেগুলো এখনো ভিজিট করা হয়নি সেগুলো থেকে একবার করে একটু মডিফাই করে বিএফএস চালাই। <br> প্রতিবার বিএফএস এর এর ফ্রন্ট নোড এর জন্য আমরা <strong>nvis</strong> নামক   set</strong> টি   traverse</strong> করি। ধরি বর্তমান নোড হচ্ছে <strong>x</strong>. আমরা <strong>x</strong> এর জন্য চেক করি <strong>x</strong> এর সাথে ফ্রন্ট নোড এর কোন নিষেধাজ্ঞা আছে কিনা। সেটি আমরা   set</strong> এর   count function</strong> ব্যবহার করে চেক করতে পারি <strong>graph</strong> এ ফ্রন্ট নোড এর জন্য। যদি <strong>x</strong> এর সাথে ফ্রন্ট নোড এর   edge</strong> দেওয়া সম্ভব হয় তাহলে <strong>x</strong> কে কিউ তে পুশ করে নেই। আর <strong>nvis</strong> নামক   set</strong> থেকে <strong>x</strong> কে   erase</strong> করে দেই। <br> তাহলে প্রতিবার বিএফএস চালানোর সময় মোট নতুন সংখ্যক নোড এর সংখ্যাই আমাদের বর্তমান   component</strong> এর সাইজ! <br> আমরা কিন্তু প্রতিবার ফ্রন্ট নোড এর জন্য পুরো   nvis</strong>   traverse</strong> করছি। তাহলে আমাদের টাইম কমপ্লেক্সিটি কতো? ভেবে দেখুন। <br><br>   Worst case</strong> এ একটি নোডকে আমাদের সর্বোচ্চ কতোবার চেক করতে হতে পারে? <br> সহজ! যতো গুলো নোড এর জন্য বলা আছে তাদের মধ্যে কোন   edge</strong> নেই ততোবার! <br> সব নোড মিলিয়ে বলা আছে <strong>m</strong> সংখ্যক নিষেধাজ্ঞা আছে। তাহলে মোট কমপ্লেক্সিটি হতে পারে সর্বোচ্চ <strong class="make-italic make_bold">O(m log n)</strong>.
- 
-								<br> <br>
-								<a href="codes/ConnectedComponents.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
-								এখন যদি আমাদের বলা হয় প্রতিটি কম্পোনেন্ট এর সবগুলো নোড ও খোঁজে বের করতে হবে আশা করি সেটিও পারবেন। <br> <br>
-								<strong>প্র্যাকটিস প্রবলেমঃ </strong> <br> <a href="https://codeforces.com/problemset/problem/190/E" target="blank"> Counter Attack - Codeforces. </a> <br> <a href="https://codeforces.com/contest/653/problem/E" target="blank">Bear and Forgotten Tree 2 - Codeforces.</a>  
-							</p>
-				   		</div>
-					</div>	
-			    </div>
-			
+            <p class="card-text">
+                <br><br>
+                আশা করি এখন আর সমাধান করতে কোন সমস্যা হবে না। আমরা কিন্তু তিনটি বিএফএস ব্যবহার করেছি। আমাদের কি তিন বার আলাদা আলাদা বিএফএস কোড লেখার দরকার আছে? আমরা একটি বিএফএস এর ফাংসান লিখে সেটি বারে বারে কল করতে পারি না? চেষ্টা করুন। যদি সাহায্য দরকার হয় তাহলে নিচের সম্পূর্ণ কোডটি দেখতে পারেন। <br><br>
+                <a href="codes/Caravans_timus.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br> <br> প্রতিটি নোড এর জন্য আপনি চেক করতে পারেন সে নোডটি কোন shortest path এর অংশ কিনা। আপনি কি প্রতিটি edge এর জন্য চেক করতে পারবেন যে এই edge কোন  shortest path এর অংশ কিনা? <br> চিন্তা করে দেখুন! উত্তর খুবই সহজ!! <br>
+                <br>
+                <strong>Connected Components? - Codeforces</strong> <br>
+                <a href="https://codeforces.com/problemset/problem/920/E" target="blank">Connected Components? - Codeforces </a> প্রবলেমটি পড়ে ফেলুন।<br>
+                <strong>সমস্যাঃ </strong> একটি গ্রাফ আছে <strong>n</strong> সংখ্যক নোড দিয়ে তৈরি। আপনাকে বলা আছে কোন কোন নোড এর মধ্যে কোন edge নেই। আপনাকে খুজে বের করতে হবে সেই গ্রাফে সর্ব মোট কতো গুলো   component আছে। আর কোন   component এর সাইজ কতো? <br> ভেবে দেখুন!<br> <br>
+                <strong>সমাধানঃ </strong>  কোন নোড এর সাথে কোন নোড এর কোন  edge নেই সেটি আমরা একটি  graph নামক 2D  set এ  store করে রাখি। তারপর প্রতিটি নোড কে <strong>nvis</strong> নামক আরেকটি set এ   insert করে নেই। এই সেট এর কাজ হচ্ছে কোন কোন নোড এখনো ভিজিট করা হয়নি সে হিসাব রাখা।  <br> প্রতিটি নোড চেক করি যে এটি ভিজিট করা হয়েছে কিনা। যেগুলো এখনো ভিজিট করা হয়নি সেগুলো থেকে একবার করে একটু মডিফাই করে বিএফএস চালাই। <br> প্রতিবার বিএফএস এর এর ফ্রন্ট নোড এর জন্য আমরা <strong>nvis</strong> নামক set টি traverse করি। ধরি বর্তমান নোড হচ্ছে <strong>x</strong>. আমরা <strong>x</strong> এর জন্য চেক করি <strong>x</strong> এর সাথে ফ্রন্ট নোড এর কোন নিষেধাজ্ঞা আছে কিনা। সেটি আমরা set এর   count function ব্যবহার করে চেক করতে পারি <strong>graph</strong> এ ফ্রন্ট নোড এর জন্য। যদি <strong>x</strong> এর সাথে ফ্রন্ট নোড এর  edge দেওয়া সম্ভব হয় তাহলে <strong>x</strong> কে কিউ তে পুশ করে নেই। আর <strong>nvis</strong> নামক   set থেকে <strong>x</strong> কে   erase করে দেই। <br> তাহলে প্রতিবার বিএফএস চালানোর সময় মোট নতুন সংখ্যক নোড এর সংখ্যাই আমাদের বর্তমান   component এর সাইজ! <br> আমরা কিন্তু প্রতিবার ফ্রন্ট নোড এর জন্য পুরো  <strong>nvis</strong>  traverse করছি। তাহলে আমাদের টাইম কমপ্লেক্সিটি কতো? ভেবে দেখুন। <br><br>   Worst caseএ একটি নোডকে আমাদের সর্বোচ্চ কতোবার চেক করতে হতে পারে? <br> সহজ! যতো গুলো নোড এর জন্য বলা আছে তাদের মধ্যে কোন   edge নেই ততোবার! <br> সব নোড মিলিয়ে বলা আছে <strong>m</strong> সংখ্যক নিষেধাজ্ঞা আছে। তাহলে মোট কমপ্লেক্সিটি হতে পারে সর্বোচ্চ <strong class="make-italic make_bold">O(m log n)</strong>.
 
+                <br> <br>
+                <a href="codes/ConnectedComponents.html" target="blank">সম্পূর্ণ কোড C++ দিয়ে।</a> <br><br>
+                এখন যদি আমাদের বলা হয় প্রতিটি কম্পোনেন্ট এর সবগুলো নোড ও খোঁজে বের করতে হবে আশা করি সেটিও পারবেন। <br> <br>
+                <strong>প্র্যাকটিস প্রবলেমঃ </strong> <br> <a href="https://codeforces.com/problemset/problem/190/E" target="blank"> Counter Attack - Codeforces. </a> <br> <a href="https://codeforces.com/contest/653/problem/E" target="blank">Bear and Forgotten Tree 2 - Codeforces.</a>  
+            </p>
 
+        </div>
+    </div>
 
-		</div>
-	</main>
-
-	<footer class="bg-light footer-last">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 d-flex justify-content-center align-items-center">
-					<a class="navbar-brand footer_" href="../../About Me/about_me_bangla.html">আমার সম্পর্কে</a>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="../../css/bootstrap.min.js" ></script>
-	
+    <footer>
+        <p>Copyright 2020© Amit Sarker</p>
+    </footer>
+   
 </body>
 </html>

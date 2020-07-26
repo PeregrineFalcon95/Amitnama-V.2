@@ -49,14 +49,14 @@
 						<a href="https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=979" target="blank">Problem Link Online Judge (Uva) 10038</a>
 						</p>
 
-						<p class="card-text-bangla">
+						<p class="  card-text">
 						<br>
 						একটি n সাইজের array দেওয়া থাকবে। তাহলে adjacent value গুলোর absolute difference হবে সর্বমোট n-1 টি। সেই সংখ্যা গুলোর মধ্যে যদি 1 থেকে n-1 পর্যন্ত প্রতিটি value একবার করে উপস্থিত থাকে তাহলে সে sequence  টি jolly jumper আর যদি না থাকে তাহলে সেটি jolly jumper নয়। আমাদের বের করতে হবে input এ দেওয়া array টি jolly jumper  নাকি jolly jumper নয়। <br>Solution পড়ার আগে পর্যাপ্ত পরিমানে চিন্তা করার অনুরোধ রইলো।
 						<br>
 						<br>
 					    </p>
 						<p class="make_bold">Solution:</p>
-						<p class="card-text-bangla">
+						<p class="  card-text">
 						<br>
 						Time Limit - 3 seconds. <br> n এর value হতে পারে সর্বোচ্চ 3000. Adjacent value গুলোর মধ্যে absolute difference বের করতে আমাদের একবার loop চালানোই যথেষ্ট। কিন্তু আমরা জানবো কিভাবে যে 1 থেকে n-1 এর মধ্যে সবগুলো value একবার করে আছে কিনা? n এর value কিন্তু সর্বোচ্চ 3000 হতে পারে। একটি array তেও কি 1 থেকে n-1 পর্যন্ত সবগুলো index থাকে না? এখন একটু ভাবুন কিভাবে এই তথ্য ব্যবহার করে প্রবলেমটি সল্ভ করা যায়। অনেকক্ষণ চেষ্টা করেও যদি না পারেন, তবেই নিচের অংশ দেখুন। <br><br>একটি boolean array নেই “marker” নামে 3001 সাইজের। প্রতি test case এর শুরুতে ঐ array এর সব index এর মান 0 করে দেই। আর “ar” নামক একটি input array নেই। ধরি, val = দুইটি adjacent value এর মধ্যে absolute difference. এখন প্রতিবার val দিয়ে marker [ val ] = 1 করে রাখি। আমাদের কিন্তু সতর্ক থাকতে হবে যে val এর মান n-1 এর চেয়ে বড় হয়ে যাচ্ছে কিনা। কারন যদি val এর মান আমাদের marker নামক array এর সাইজের চেয়ে বড় হয়ে যায় তাহলে valid কোন index থাকবে না। আর তখন runtime error verdict বোনাস হিসেবে পাওয়ার সম্ভাবনা শতভাগ।  তাহলে  আমরা এই অংশের কোড এইভাবে করতে পারি:
 						<br>
@@ -68,7 +68,7 @@ for ( int i = 2 ; i <= n; i++ )
     int val = abs( ar [ i ] - ar [ i - 1 ] );
     if( val < n )marker [ val ] = 1;
 }</pre>
-						<p class="card-text-bangla">
+						<p class="  card-text">
 							<br>
 							তাহলে এখন আমাদের কি করতে হবে? একটি loop চালিয়ে দেখতে হবে 1 থেকে n-1 পর্যন্ত সবগুলো index এর মান “marker” নামক array তে 1  আছে কিনা। যদি কোন index এ 1 ব্যতীত 0 থাকে তাহলে সে sequence  টি jolly jumper  নয়।
 							<br>
@@ -87,7 +87,7 @@ for ( int i = 1 ; i < n ; i++ )
 
 if ( !temp )cout<<"Jolly\n";
 else cout<<"Not jolly\n";</pre>
-						<p class="card-text-bangla">
+						<p class="  card-text">
 						<br>
 						<a href="codes/uva_10038.html" target="blank">সম্পূর্ণ C++ কোড</a>
 						<br>
