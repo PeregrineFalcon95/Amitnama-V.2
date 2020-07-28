@@ -90,15 +90,15 @@ table {
 */
 @font-face{
     font-family: "Playfair";
-    src: url(../../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 @font-face{
     font-family: "Dosis";
-    src: url(../../fonts/Dosis-VariableFont_wght.ttf);
+    src: url(../fonts/Dosis-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: "SolaimanLipi_bangla";
-    src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
 
 
@@ -108,7 +108,7 @@ body
 {
     font-family: "Playfair";
     background-color: black;
-    background-image: url(../../images/6.jpg);
+    background-image: url(../images/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -155,8 +155,6 @@ nav .current
     height: auto;   
     margin-top: 100px;
     background: #F8f8f8;
-    font-family:  "SolaimanLipi_bangla";
-    /*font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;*/
 }
 
 @media all and ( min-width: 1080px)
@@ -211,7 +209,6 @@ nav .current
     border: black;
     border-width: 100px;
     border-radius: 8px;
-    font-family: "SolaimanLipi_bangla";
 }
 .card a
 {
@@ -226,6 +223,7 @@ nav .current
 }
 .card-text
 {
+    font-family: "SolaimanLipi_bangla";
     line-height: 120%;
     padding-top: 15px;
     font-size: 100%;
@@ -237,6 +235,5 @@ nav .current
 }
 footer
 {
-    padding-top: 30px;
     text-align: center;
 }

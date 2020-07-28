@@ -1,67 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Uva 1038 Solution</title>
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Author: Amit Sarker. Jolly Jumpers – Online Judge (Uva) - 10038  Problem  Solution in C++.">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jolly Jumpers – Online Judge (Uva) - 10038  Problem  Solution in C++.</title>
+    <link rel="stylesheet" href="styles_article.css">
 </head>
 <body>
-    <div class="container">
-    <h2>Online Judge (uva) 10038 Jolly Jumpers solution in C++</h2>
-    <pre>
-#include&lt;bits/stdc++.h&gt;
-using namespace std;
-#define ll long long int
-#define inf ( ll  )( 1e9 + 10 )
-#define mxs (int)( 1e4 + 10 )
-string s , s2 , s3;
-int ar [ mxs ] ;
-bool marker [ mxs ];
-void brain();
-int main()
-{
-    ios_base::sync_with_stdio(NULL);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    brain();
-    return 0;
-}
-void brain()
-{
-    int n;
-    while( cin>>n )
-    {
-        ///Making the value of whole marker array 0
-        memset( marker , 0 , sizeof marker );
+    <nav>
+        <a href="../../../index.html">HOME</a>
+        <a href="#" class="current">English</a>
+        <a href="#">বাংলা</a>
+        <a href="../../../about me/about_me.html">About Me</a>  
+    </nav>
+    <div class="sidebar">
+        <p class="blogName">AmitNama</p>
+        <a href="../../beginner_index.html">Beginners Section</a>
+        <a href="../../../graph theory/graph_theory_index.html">Graph Theory</a>
+        <a href="#">Data Structure</a>
+        <a href="../../../number theory/Number_Theory_index.html">Number Theory</a>
+        <a href="#">Bit Manipulation</a>
+        <a href="#">Dynamic Programming</a>
+        <a href="#">Backtracking</a>
+        <a href="#">Source Code of Videos</a>
 
-        for ( int i = 1 ; i <= n; i++ )cin>>ar [ i ];
-
-        ///Calculating the absolute difference
-        for ( int i = 2 ; i <= n; i++ )
-        {
-            int val = abs( ar [ i ] - ar [ i - 1 ] );
-
-            if( val < n )marker [ val ] = 1;
-        }
-
-        int temp = 0;
-        for ( int i = 1 ; i < n ; i++ )
-        {
-            if ( !marker [ i ] )
-            {
-                temp = 1;
-                break;
-            }
-        }
-
-        if ( !temp )cout<<"Jolly\n";
-        else cout<<"Not jolly\n";
-    }
-}
-
-    </pre>    
     </div>
-	
-	
+
+    <div class="container">
+        <p class="heading">Jolly Jumpers – Online Judge (Uva) - 10038  Problem  Solution in C++.</p>
+        
+        <div class="card">
+            <p class="card-title">Jolly Jumpers – Online Judge (Uva) - 10038  Problem  Solution in C++.</p>
+            <p class="card-text">
+                <pre>
+                    #include&lt;bits/stdc++.h&gt;
+                    using namespace std;
+                    #define ll long long int
+                    #define inf ( ll  )( 1e9 + 10 )
+                    #define mxs (int)( 1e4 + 10 )
+                    string s , s2 , s3;
+                    int ar [ mxs ] ;
+                    bool marker [ mxs ];
+                    void brain();
+                    int main()
+                    {
+                        ios_base::sync_with_stdio(NULL);
+                        cin.tie(NULL);
+                        cout.tie(NULL);
+                        brain();
+                        return 0;
+                    }
+                    void brain()
+                    {
+                        int n;
+                        while( cin>>n )
+                        {
+                            ///Making the value of whole marker array 0
+                            memset( marker , 0 , sizeof marker );
+                    
+                            for ( int i = 1 ; i <= n; i++ )cin>>ar [ i ];
+                    
+                            ///Calculating the absolute difference
+                            for ( int i = 2 ; i <= n; i++ )
+                            {
+                                int val = abs( ar [ i ] - ar [ i - 1 ] );
+                    
+                                if( val < n )marker [ val ] = 1;
+                            }
+                    
+                            int temp = 0;
+                            for ( int i = 1 ; i < n ; i++ )
+                            {
+                                if ( !marker [ i ] )
+                                {
+                                    temp = 1;
+                                    break;
+                                }
+                            }
+                    
+                            if ( !temp )cout<<"Jolly\n";
+                            else cout<<"Not jolly\n";
+                        }
+                    }
+                    </pre>
+                </p>
+
+
+            
+        </div>
+
+        
+        
+    </div>
+
+    <footer>
+        <p>Copyright 2020© Amit Sarker</p>
+    </footer>
+   
 </body>
 </html>

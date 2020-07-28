@@ -8,7 +8,7 @@
 html, body, div, strong, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
@@ -100,12 +100,12 @@ table {
     font-family: "SolaimanLipi_bangla";
     src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
-
-
+@font-face {
+    font-family: "Hack-Regular";
+    src: url(../fonts/Hack-Regular.ttf)format('truetype'); }
 
 
 /*==================END OF FONTS======================*/
-
 body 
 {
     font-family: "Playfair";
@@ -159,6 +159,7 @@ nav .current
     background: #F8f8f8;
 }
 
+
 @media all and ( min-width: 1080px)
 {
     .sidebar
@@ -189,6 +190,7 @@ nav .current
     {
         padding: 10px 20px;
         color: rgb(250, 229, 229);
+        font-family: "SolaimanLipi_bangla";
         font-size: 150%;
         font-weight: bold;
     }
@@ -199,11 +201,10 @@ nav .current
     .sidebar { display: none; }
 }
 
-
 .card
 {
     background: #DCDCDC;
-    width: 80%;
+    width: 95%;
     margin: 30px auto;
     padding: 30px;
     height: auto;
@@ -214,19 +215,64 @@ nav .current
 }
 .card a
 {
-    color: black;
+    color:rgb(66, 66, 182);
     text-align: center;
     text-decoration: none;
 }
+@media all and ( min-width: 1080px)
+{
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 40%;
+        height: 40%;
+    }
+}
+@media all and ( max-width: 1079px)
+{
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 70%;
+        height: 70%;
+    }
+}
+pre { 
+    white-space: pre-wrap; 
+    word-break: break-word;
+    font-family: Hack-Regular;
+    height: auto;
+    width: auto;
+    background-color: #CAC7C7 ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    line-height: 20px;
+    box-sizing: border-box;
+}
+.card strong
+{
+    font-weight: bold;
+}
 .card-title
 {
-    font-size: 180%;
+    font-size: 150%;
     text-align: center;
 }
 .card-text
 {
-    font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
-    line-height: 120%;
+    font-family:  "SolaimanLipi_bangla";
+    line-height: 140%;
     padding-top: 15px;
     font-size: 100%;
 }
@@ -235,10 +281,8 @@ nav .current
     font-size: 200%;
     text-align: center;
 }
-
-footer 
+footer
 {
-    padding-top: 20px;
-    height: auto;
-    text-align: center; 
+    padding-top: 30px;
+    text-align: center;
 }

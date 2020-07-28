@@ -8,7 +8,7 @@
 html, body, div, strong, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
@@ -90,17 +90,19 @@ table {
 */
 @font-face{
     font-family: "Playfair";
-    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 @font-face{
     font-family: "Dosis";
-    src: url(../fonts/Dosis-VariableFont_wght.ttf);
+    src: url(../../fonts/Dosis-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: "SolaimanLipi_bangla";
-    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+    src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
-
+@font-face {
+    font-family: "Hack-Regular";
+    src: url(../../fonts/Hack-Regular.ttf)format('truetype'); }
 
 
 
@@ -110,7 +112,7 @@ body
 {
     font-family: "Playfair";
     background-color: black;
-    background-image: url(../images/6.jpg);
+    background-image: url(../../images/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -156,11 +158,8 @@ nav .current
     padding: 20px;
     height: auto;   
     margin-top: 100px;
-    /*background: aliceblue;*/
-    /*background: #DCDCDC;*/
-    /*background: #e0d0d0;*/
     background: #F8f8f8;
-    font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
+    
 }
 
 @media all and ( min-width: 1080px)
@@ -207,7 +206,7 @@ nav .current
 .card
 {
     background: #DCDCDC;
-    width: 80%;
+    width: 95%;
     margin: 30px auto;
     padding: 30px;
     height: auto;
@@ -215,21 +214,67 @@ nav .current
     border: black;
     border-width: 100px;
     border-radius: 8px;
+    font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;
 }
 .card a
 {
-    color: black;
+    color:rgb(66, 66, 182);
     text-align: center;
     text-decoration: none;
 }
+@media all and ( min-width: 1080px)
+{
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 40%;
+        height: 40%;
+    }
+}
+@media all and ( max-width: 1079px)
+{
+    .card img
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 70%;
+        height: 70%;
+    }
+}
+pre { 
+    white-space: pre-wrap; 
+    word-break: break-word;
+    font-family: Hack-Regular;
+    height: auto;
+    width: auto;
+    background-color: #CAC7C7 ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    line-height: 20px;
+    box-sizing: border-box;
+}
+.card strong
+{
+    font-weight: bold;
+}
 .card-title
 {
-    font-size: 180%;
+    font-size: 150%;
     text-align: center;
 }
 .card-text
 {
-    line-height: 120%;
+    line-height: 140%;
     padding-top: 15px;
     font-size: 100%;
 }
@@ -241,7 +286,7 @@ nav .current
 
 footer 
 {
-    padding-top: 20px;
+    padding-top: 30px;
     height: auto;
     text-align: center; 
 }
