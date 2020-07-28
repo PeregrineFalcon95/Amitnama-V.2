@@ -90,19 +90,19 @@ table {
 */
 @font-face{
     font-family: "Playfair";
-    src: url(../../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 @font-face{
     font-family: "Dosis";
-    src: url(../../fonts/Dosis-VariableFont_wght.ttf);
+    src: url(../fonts/Dosis-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: "SolaimanLipi_bangla";
-    src: url(../../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
+    src: url(../fonts/SolaimanLipi_20-04-07.ttf)format('truetype'); } 
 
 @font-face {
     font-family: "Hack-Regular";
-    src: url(../../fonts/Hack-Regular.ttf)format('truetype'); }
+    src: url(../fonts/Hack-Regular.ttf)format('truetype'); }
 
 
 /*==================END OF FONTS======================*/
@@ -110,7 +110,7 @@ body
 {
     font-family: "Playfair";
     background-color: black;
-    background-image: url(../../images/6.jpg);
+    background-image: url(../images/6.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
