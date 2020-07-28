@@ -154,7 +154,7 @@ nav .current
     padding: 20px;
     height: auto;   
     margin-top: 100px;
-    background: #F8f8f8;
+    background: rgba(156, 151, 151, 0.5);
     font-family:  "SolaimanLipi_bangla";
     /*font-family: Georgia, Helvetica, Georgia, Verdana, Arial, Courier, Verdana;*/
 }
