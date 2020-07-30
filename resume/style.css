@@ -172,7 +172,7 @@ body {
   }
   
   .resume .resume_left .resume_skills ul li .skill_name {
-    width: 25%;
+    width: 50%;
   }
   
   .resume .resume_left .resume_skills ul li .skill_progress {
@@ -184,7 +184,7 @@ body {
   }
   
   .resume .resume_left .resume_skills ul li .skill_per {
-    width: 15%;
+    width: 20%;
   }
   
   .resume .resume_left .resume_skills ul li .skill_progress span {
@@ -194,7 +194,11 @@ body {
     height: 100%;
     background: #fff;
   }
-  
+  .lol .semi-bold
+  {
+    color: #fff;
+    margin-bottom: 3px;
+  }
   .resume .resume_left .resume_social .semi-bold {
     color: #fff;
     margin-bottom: 3px;
