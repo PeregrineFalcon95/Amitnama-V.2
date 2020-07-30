@@ -61,7 +61,7 @@ table {
 }
 
 body {
-    background: #585c68;
+    background: #1f2433;
     font-size: 14px;
     line-height: 22px;
     color: #555555;
@@ -91,7 +91,10 @@ body {
     width: 100%;
     height: 280px;
   }
-  
+  .semi-bold a
+  {
+      text-decoration: none;
+  }
   .resume .resume_left .resume_profile img {
     width: 100%;
     height: 100%;
@@ -173,7 +176,7 @@ body {
   }
   
   .resume .resume_left .resume_skills ul li .skill_progress {
-    width: 60%;
+    width: 50%;
     margin: 0 5px;
     height: 5px;
     background: #009fd9;
